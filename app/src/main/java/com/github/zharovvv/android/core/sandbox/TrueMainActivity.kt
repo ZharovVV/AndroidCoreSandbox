@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -45,17 +46,22 @@ class TrueMainActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView
     private lateinit var button1: Button
+    private lateinit var button2: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_true_main)
         textView = findViewById(R.id.main_text_view)
         button1 = findViewById(R.id.button_1)
-
+        button2 = findViewById(R.id.button_2)
         button1.setOnClickListener {
             startActivity<ExplicitCallExampleActivity> { intent ->
                 intent.putExtra(EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY, "Data from TrueMainActivity")
             }
+        }
+        button2.setOnClickListener {
+            val intent = Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
+            startActivity(intent)
         }
     }
 }

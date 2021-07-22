@@ -44,6 +44,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".ExplicitCallExampleActivity" />
+        <activity
+            android:name=".DateActivity"
+            android:label="DateActivity">
+            <intent-filter>
+                <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.showdate" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DateExtActivity"
+            android:label="DateExtActivity">
+            <intent-filter>
+                <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.showdate" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
