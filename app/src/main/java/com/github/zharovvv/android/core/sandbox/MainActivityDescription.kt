@@ -3,6 +3,7 @@ package com.github.zharovvv.android.core.sandbox
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 
 /**
  * Основными компонентами приложения Android являются:
@@ -75,6 +76,12 @@ import android.os.PersistableBundle
  *
  * * При повороте активность проходит через цепочку различных состояний. Порядок следующий.
  * onPause() → onStop() → onDestroy() → onCreate() → onStart() → onResume()
+ *
+ * * При вызове из Activity1 → Activity2 (Activity2 полностью перекрывает Activity1):
+ * Activity1#onPause() → Activity2#onCreate() → Activity2#onStart() → Activity2#onResume() → Activity1#onStop()
+ *
+ * * При вызове из Activity1 → Activity2 (Activity2 частично перекрывает Activity1 (присвоим диалоговый стиль для Activity2)):
+ * Activity1#onPause() → Activity2#onCreate() → Activity2#onStart() → Activity2#onResume()
  */
 class MainActivityDescription : AppCompatActivity() {
 
@@ -101,6 +108,7 @@ class MainActivityDescription : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_description)
+        Log.i("ActivityLifeCycle", "onCreate")
     }
 
     /**
@@ -115,6 +123,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onStart() {
         super.onStart()
+        Log.i("ActivityLifeCycle", "onStart")
     }
 
     /**
@@ -136,6 +145,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
+        Log.i("ActivityLifeCycle", "onResume")
     }
 
     /**
@@ -157,6 +167,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onPause() {
         super.onPause()
+        Log.i("ActivityLifeCycle", "onPause")
     }
 
     /**
@@ -192,6 +203,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onStop() {
         super.onStop()
+        Log.i("ActivityLifeCycle", "onStop")
     }
 
     /**
@@ -206,6 +218,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onRestart() {
         super.onRestart()
+        Log.i("ActivityLifeCycle", "onRestart")
     }
 
     /**
@@ -220,6 +233,7 @@ class MainActivityDescription : AppCompatActivity() {
      */
     override fun onDestroy() {
         super.onDestroy()
+        Log.i("ActivityLifeCycle", "onDestroy")
     }
 
     //------------------------Конец основных методов жизненного цикла-------------------------------
