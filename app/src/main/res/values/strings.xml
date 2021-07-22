@@ -12,4 +12,8 @@
     <string name="return_from_activity">Return from StartActivityForResult: %1$s</string>
     <string name="return_from_activity_new">Return from StartActivityForResultNew: %1$s</string>
     <string name="start_activity_button_4">"Activity Result Api (New) "</string>
+    <string name="system_call_web">Web</string>
+    <string name="system_call_map">Map</string>
+    <string name="system_call_tel">Call</string>
+    <string name="start_activity_button_5">Вызов системных приложений</string>
 </resources>

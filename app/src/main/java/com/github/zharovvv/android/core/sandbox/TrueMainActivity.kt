@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
+import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 
 class TrueMainActivity : AppCompatActivity() {
 
@@ -76,6 +77,7 @@ class TrueMainActivity : AppCompatActivity() {
     private lateinit var button2: Button
     private lateinit var button3: Button
     private lateinit var button4: Button
+    private lateinit var button5: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +111,11 @@ class TrueMainActivity : AppCompatActivity() {
         button4 = findViewById(R.id.button_4)
         button4.setOnClickListener {
             activityLauncher.launch("input for launching")  //Запуск контракта
+        }
+
+        button5 = findViewById(R.id.button_5)
+        button5.setOnClickListener {
+            startActivity<CallSystemAppExampleActivity>()
         }
     }
 

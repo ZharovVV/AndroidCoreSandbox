@@ -64,6 +64,7 @@
         </activity>
         <activity android:name=".StartForResultActivity" />
         <activity android:name=".activity.result.api.StartForResultNewActivity" />
+        <activity android:name=".call.system.app.CallSystemAppExampleActivity" />
     </application>
 
 </manifest>

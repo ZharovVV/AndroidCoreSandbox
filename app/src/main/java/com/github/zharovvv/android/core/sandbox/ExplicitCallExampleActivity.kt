@@ -45,3 +45,8 @@ inline fun <reified T : Activity> Activity.startActivity(
     intentEnrichment(intent)
     this.startActivity(intent)
 }
+
+inline fun <reified T : Activity> Activity.startActivity() {
+    val intent = Intent(this, T::class.java)
+    this.startActivity(intent)
+}
