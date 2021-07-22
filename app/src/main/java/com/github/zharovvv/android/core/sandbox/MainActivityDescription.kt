@@ -76,7 +76,7 @@ import android.os.PersistableBundle
  * * При повороте активность проходит через цепочку различных состояний. Порядок следующий.
  * onPause() → onStop() → onDestroy() → onCreate() → onStart() → onResume()
  */
-class MainActivity : AppCompatActivity() {
+class MainActivityDescription : AppCompatActivity() {
 
     /**
      * Метод onCreate() вызывается при создании или перезапуска активности.
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_description)
     }
 
     /**

@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.zharovvv.android.core.sandbox">
 
+    <!-- В манифесте прописываются все компоненты приложения.
+    Прописываются intent-filters, разрешения, требования по оборудованию.
+
+    Манифест читает система при установке приложения и при его запуске, чтобы понять,
+    что представлеяет собой приложение и какие у него есть точки входа.
+
+    Манифест читает Google Store чтобы понять, что представляет собой приложение и какие у него есть
+    требования по оборудованию и поддерживаемым версиям ОС.
+    -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +19,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidCoreSandbox">
-        <activity android:name=".MainActivity">
+        <!--Под MainActivity понимается активити, у которой intent-filter содержит action.MAIN
+        и category.LAUNCHER.
+
+        В AndroidManifest можно добавить несколько main activity. Для каждой активити появится
+        иконка в меню приложений. По-умолчанию будет использоваться иконка и имя приложения,
+        заданные в атрибутах icon и label элемента application в манифесте. Эти атрибуты можно
+        переопределить в элементе activity.
+        -->
+        <activity
+            android:name=".TrueMainActivity"
+            android:label="@string/app_name_first_main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivityDescription"
+            android:label="@string/app_name_second_main_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
