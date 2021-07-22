@@ -4,8 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
+import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 
 class TrueMainActivity : AppCompatActivity() {
 
@@ -46,10 +49,33 @@ class TrueMainActivity : AppCompatActivity() {
         const val START_ACTIVITY_FOR_RESULT_REQUEST_CODE = 15
     }
 
+    /**
+     * # Activity Result API
+     *
+     * Отметим несколько неочевидных моментов, которые необходимо учитывать:
+     * * Регистрировать контракты можно в любой момент жизненного цикла активности или фрагмента,
+     * но вот запустить его до перехода в состояние CREATED нельзя.
+     * Общепринятый подход — регистрация контрактов как полей класса.
+     *
+     * * Не рекомендуется вызывать registerForActivityResult() внутри операторов if и when.
+     * Дело в том, что во время ожидания результата процесс приложения может быть уничтожен системой
+     * (например, при открытии камеры, которая требовательна к оперативной памяти).
+     * И если при восстановлении процесса мы не зарегистрируем контракт заново,
+     * результат будет утерян.
+     *
+     * * Если запустить неявный интент, а операционная система не сможет найти подходящую Activity,
+     * выбрасывается исключение ActivityNotFoundException: “No Activity found to handle Intent”.
+     * Чтобы избежать такой ситуации, необходимо перед вызовом launch()
+     * или в методе getSynchronousResult() выполнить проверку resolveActivity()
+     * c помощью PackageManager.
+     */
+    private val startActivityForResultNewContract: ActivityResultContract<String, String?> = StartActivityForResultNewContract()
+
     private lateinit var textView: TextView
     private lateinit var button1: Button
     private lateinit var button2: Button
     private lateinit var button3: Button
+    private lateinit var button4: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,10 +97,26 @@ class TrueMainActivity : AppCompatActivity() {
             val intent = Intent(this, StartForResultActivity::class.java)
             startActivityForResult(intent, START_ACTIVITY_FOR_RESULT_REQUEST_CODE)  //deprecated use
         }
+
+        //Использование Activity Result API
+
+        //Регистрируем контракт
+        //Коллбек сработает при получении результата
+        val activityLauncher: ActivityResultLauncher<String> =
+                registerForActivityResult(startActivityForResultNewContract) { result: String? ->
+                    textView.text = getString(R.string.return_from_activity_new, result)
+                }
+        button4 = findViewById(R.id.button_4)
+        button4.setOnClickListener {
+            activityLauncher.launch("input for launching")  //Запуск контракта
+        }
     }
 
     /**
      * deprecated use
+     * метод onActivityResult() нарушает принцип единственной ответственности (особенно) если необходимо
+     * получать результат из нескольких активити, ведь он отвечает и за получение и обработку результата
+     * Activity1 и за получение и обработку данных от Activity2.
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
