@@ -49,6 +49,8 @@
             android:label="DateActivity">
             <intent-filter>
                 <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.showdate" />
+                <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.something.else" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -60,6 +62,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".StartForResultActivity" />
     </application>
 
 </manifest>

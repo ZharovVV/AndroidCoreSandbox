@@ -5,4 +5,9 @@
     <string name="main_activity">Второе Main-Activity</string>
     <string name="start_activity_button_1">start Activity (явный вызов)</string>
     <string name="start_activity_button_2">start Activity (неявный вызов)</string>
+    <string name="start_for_result_activity_edit_text_hint">Введите текст</string>
+    <string name="ok">OK</string>
+    <string name="start_activity_button_3">start activity for result (deprecated)</string>
+    <string name="empty_return">Return from StartActivityForResult: data is empty</string>
+    <string name="return_from_activity">Return from StartActivityForResult: %1$s</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 
 class TrueMainActivity : AppCompatActivity() {
 
@@ -42,11 +43,13 @@ class TrueMainActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY = "SECOND_ACTIVITY"
+        const val START_ACTIVITY_FOR_RESULT_REQUEST_CODE = 15
     }
 
     private lateinit var textView: TextView
     private lateinit var button1: Button
     private lateinit var button2: Button
+    private lateinit var button3: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,34 @@ class TrueMainActivity : AppCompatActivity() {
         button2.setOnClickListener {
             val intent = Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
             startActivity(intent)
+        }
+        button3 = findViewById(R.id.button_3)
+        button3.setOnClickListener {
+            val intent = Intent(this, StartForResultActivity::class.java)
+            startActivityForResult(intent, START_ACTIVITY_FOR_RESULT_REQUEST_CODE)  //deprecated use
+        }
+    }
+
+    /**
+     * deprecated use
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            START_ACTIVITY_FOR_RESULT_REQUEST_CODE -> {
+                when (resultCode) {
+                    RESULT_OK -> {
+                        val result = data!!.getStringExtra(EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY)
+                        textView.text = getString(R.string.return_from_activity, result)
+                    }
+                    //Back pressed
+                    RESULT_CANCELED -> {
+                        textView.text = getString(R.string.empty_return)
+                    }
+                }
+            }
+            else -> {
+            }
         }
     }
 }

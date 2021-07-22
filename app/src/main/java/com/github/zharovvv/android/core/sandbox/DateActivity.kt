@@ -1,6 +1,7 @@
 package com.github.zharovvv.android.core.sandbox
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
@@ -17,5 +18,8 @@ class DateActivity : AppCompatActivity() {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
         val date = simpleDateFormat.format(Date())
         dateTextView.text = date
+
+        val action = intent.action  //Получаем action из интента, который вызвал это Activity
+        Log.i("Actions", action ?: "action is empty")
     }
 }
