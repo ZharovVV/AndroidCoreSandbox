@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
+import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 
 class TrueMainActivity : AppCompatActivity() {
 
@@ -78,6 +79,7 @@ class TrueMainActivity : AppCompatActivity() {
     private lateinit var button3: Button
     private lateinit var button4: Button
     private lateinit var button5: Button
+    private lateinit var button6: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +118,10 @@ class TrueMainActivity : AppCompatActivity() {
         button5 = findViewById(R.id.button_5)
         button5.setOnClickListener {
             startActivity<CallSystemAppExampleActivity>()
+        }
+        button6 = findViewById(R.id.button_6)
+        button6.setOnClickListener {
+            startActivity<MenuExampleActivity>()
         }
     }
 

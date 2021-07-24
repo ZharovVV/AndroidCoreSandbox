@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--Атрибут showAsAction - режим показа элемента (в Action Bar)-->
+    <!--
+    never – не показывать элемент
+    ifRoom – показывать, если есть место
+    always – всегда показывать
+    -->
+    <item
+        android:id="@+id/menu_item_1"
+        android:title="@string/menu_item_title_1"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_2"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/menu_item_title_2"
+        app:showAsAction="ifRoom" />
+    <!--
+    К этим значениям может быть добавлено еще одно – withText.
+     Актуально для элементов с указанной иконкой.
+     В этом случае для элемента будет показана не только иконка, но и текст из title.
+    -->
+    <item
+        android:id="@+id/menu_item_3"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/menu_item_title_3"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_item_4"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/menu_item_title_4"
+        app:showAsAction="never" />
+
+    <group android:id="@+id/menu_group_1">
+        <item
+            android:id="@+id/menu_item_5"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/menu_item_title_5"
+            app:showAsAction="never" />
+    </group>
+
+</menu>

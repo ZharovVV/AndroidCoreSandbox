@@ -16,4 +16,11 @@
     <string name="system_call_map">Map</string>
     <string name="system_call_tel">Call</string>
     <string name="start_activity_button_5">Вызов системных приложений</string>
+    <string name="start_activity_button_6">Menu Example</string>
+    <string name="menu_item_title_1">Пункт меню 1</string>
+    <string name="menu_item_title_2">Пункт меню 2</string>
+    <string name="menu_item_title_3">Пункт меню 3</string>
+    <string name="menu_item_title_4">Пункт меню 4</string>
+    <string name="menu_item_title_5">Пункт меню 5</string>
+    <string name="check_box_menu_description">Чекбокс включения группы</string>
 </resources>
