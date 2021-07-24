@@ -17,10 +17,14 @@
     <string name="system_call_tel">Call</string>
     <string name="start_activity_button_5">Вызов системных приложений</string>
     <string name="start_activity_button_6">Menu Example</string>
+    <!--Menu items on ActionBar MenuExampleActivity-->
     <string name="menu_item_title_1">Пункт меню 1</string>
     <string name="menu_item_title_2">Пункт меню 2</string>
     <string name="menu_item_title_3">Пункт меню 3</string>
     <string name="menu_item_title_4">Пункт меню 4</string>
-    <string name="menu_item_title_5">Пункт меню 5</string>
+    <string name="menu_item_title_5">Пункт меню 5 и ооооочень длинный текст</string>
+    <!--Context menu items-->
+    <string name="context_menu_item_1_title">Выключает пункт меню 5,\nпринадлежащий группе с \nid menu_group_1</string>
     <string name="check_box_menu_description">Чекбокс включения группы</string>
+    <string name="checkbox_overflow">Чекбокс для перемещения первых двух элементов в Overflow</string>
 </resources>
