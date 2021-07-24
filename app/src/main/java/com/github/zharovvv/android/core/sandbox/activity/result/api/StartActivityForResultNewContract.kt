@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox.activity.result.api
 
+import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
@@ -20,6 +21,8 @@ class StartActivityForResultNewContract : ActivityResultContract<String, String?
     override fun parseResult(resultCode: Int, intent: Intent?): String? {
         return when (resultCode) {
             RESULT_OK -> intent?.getStringExtra(START_ACTIVITY_FOR_RESULT_CONTRACT_OUTPUT_CODE)
+            //Back pressed
+            RESULT_CANCELED -> "Back pressed"
             else -> null
         }
     }

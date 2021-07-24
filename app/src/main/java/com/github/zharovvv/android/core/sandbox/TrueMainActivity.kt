@@ -2,11 +2,12 @@ package com.github.zharovvv.android.core.sandbox
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
@@ -74,55 +75,59 @@ class TrueMainActivity : AppCompatActivity() {
     private val startActivityForResultNewContract: ActivityResultContract<String, String?> = StartActivityForResultNewContract()
 
     private lateinit var textView: TextView
-    private lateinit var button1: Button
-    private lateinit var button2: Button
-    private lateinit var button3: Button
-    private lateinit var button4: Button
-    private lateinit var button5: Button
-    private lateinit var button6: Button
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_true_main)
         textView = findViewById(R.id.main_text_view)
-        button1 = findViewById(R.id.button_1)
-        button2 = findViewById(R.id.button_2)
-        button1.setOnClickListener {
-            startActivity<ExplicitCallExampleActivity> { intent ->
-                intent.putExtra(EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY, "Data from TrueMainActivity")
-            }
-        }
-        button2.setOnClickListener {
-            val intent = Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
-            startActivity(intent)
-        }
-        button3 = findViewById(R.id.button_3)
-        button3.setOnClickListener {
-            val intent = Intent(this, StartForResultActivity::class.java)
-            startActivityForResult(intent, START_ACTIVITY_FOR_RESULT_REQUEST_CODE)  //deprecated use
-        }
+        recyclerView = findViewById(R.id.main_recycler_view)
 
         //Использование Activity Result API
-
-        //Регистрируем контракт
+        //Регистрируем контракт (LifecycleOwners must call register before they are STARTED)
         //Коллбек сработает при получении результата
         val activityLauncher: ActivityResultLauncher<String> =
                 registerForActivityResult(startActivityForResultNewContract) { result: String? ->
                     textView.text = getString(R.string.return_from_activity_new, result)
                 }
-        button4 = findViewById(R.id.button_4)
-        button4.setOnClickListener {
-            activityLauncher.launch("input for launching")  //Запуск контракта
-        }
 
-        button5 = findViewById(R.id.button_5)
-        button5.setOnClickListener {
-            startActivity<CallSystemAppExampleActivity>()
+
+        val launchers = listOf(
+                Launcher("ExplicitCallExampleActivity", getString(R.string.start_activity_button_1)),
+                Launcher("ImplicitCallExample", getString(R.string.start_activity_button_2)),
+                Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)),
+                Launcher("StartForResultActivityNewContract", getString(R.string.start_activity_button_4)),
+                Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
+                Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6))
+        )
+        val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
+            when (launcherItem.id) {
+                "ExplicitCallExampleActivity" -> {
+                    startActivity<ExplicitCallExampleActivity> { intent ->
+                        intent.putExtra(EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY, "Data from TrueMainActivity")
+                    }
+                }
+                "ImplicitCallExample" -> {
+                    val intent = Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
+                    startActivity(intent)
+                }
+                "StartForResultActivity" -> {
+                    val intent = Intent(this, StartForResultActivity::class.java)
+                    startActivityForResult(intent, START_ACTIVITY_FOR_RESULT_REQUEST_CODE)  //deprecated use
+                }
+                "StartForResultActivityNewContract" -> {
+                    //Использование Activity Result API
+                    activityLauncher.launch("input for launching")  //Запуск контракта
+                }
+                "CallSystemAppExampleActivity" -> startActivity<CallSystemAppExampleActivity>()
+                "MenuExampleActivity" -> startActivity<MenuExampleActivity>()
+            }
         }
-        button6 = findViewById(R.id.button_6)
-        button6.setOnClickListener {
-            startActivity<MenuExampleActivity>()
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@TrueMainActivity)
+            adapter = launchersListAdapter
         }
+        launchersListAdapter.submitList(launchers)
     }
 
     /**
