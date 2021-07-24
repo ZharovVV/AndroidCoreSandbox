@@ -66,6 +66,7 @@
         <activity android:name=".activity.result.api.StartForResultNewActivity" />
         <activity android:name=".call.system.app.CallSystemAppExampleActivity" />
         <activity android:name=".menu.MenuExampleActivity" />
+        <activity android:name=".preferences.PreferencesExampleActivity" />
     </application>
 
 </manifest>

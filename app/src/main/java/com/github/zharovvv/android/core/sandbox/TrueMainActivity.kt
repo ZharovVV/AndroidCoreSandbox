@@ -12,6 +12,7 @@ import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
+import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 
 class TrueMainActivity : AppCompatActivity() {
 
@@ -98,7 +99,8 @@ class TrueMainActivity : AppCompatActivity() {
                 Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)),
                 Launcher("StartForResultActivityNewContract", getString(R.string.start_activity_button_4)),
                 Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
-                Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6))
+                Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
+                Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
@@ -121,6 +123,7 @@ class TrueMainActivity : AppCompatActivity() {
                 }
                 "CallSystemAppExampleActivity" -> startActivity<CallSystemAppExampleActivity>()
                 "MenuExampleActivity" -> startActivity<MenuExampleActivity>()
+                "PreferencesExampleActivity" -> startActivity<PreferencesExampleActivity>()
             }
         }
         recyclerView.apply {

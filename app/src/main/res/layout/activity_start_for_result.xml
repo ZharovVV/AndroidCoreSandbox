@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:autofillHints="Text"
-        android:hint="@string/start_for_result_activity_edit_text_hint"
+        android:hint="@string/edit_text_hint"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

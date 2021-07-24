@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.result.api.StartForResultNewActivity">
+    tools:context=".preferences.PreferencesExampleActivity">
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/activity_preferences_example_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -19,12 +19,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_ok"
+        android:id="@+id/button_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/ok"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/activity_preferences_example_edit_text" />
+
+    <Button
+        android:id="@+id/button_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/load"
+        app:layout_constraintEnd_toStartOf="@id/button_save"
+        app:layout_constraintTop_toBottomOf="@id/activity_preferences_example_edit_text" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
