@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
+import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 
-class TrueMainActivity : AppCompatActivity() {
+class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
     /**
      * # Task
@@ -100,7 +100,8 @@ class TrueMainActivity : AppCompatActivity() {
                 Launcher("StartForResultActivityNewContract", getString(R.string.start_activity_button_4)),
                 Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
                 Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
-                Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7))
+                Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
+                Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
@@ -124,6 +125,7 @@ class TrueMainActivity : AppCompatActivity() {
                 "CallSystemAppExampleActivity" -> startActivity<CallSystemAppExampleActivity>()
                 "MenuExampleActivity" -> startActivity<MenuExampleActivity>()
                 "PreferencesExampleActivity" -> startActivity<PreferencesExampleActivity>()
+                "HandlerExampleActivity" -> startActivity<HandlerExampleActivity>()
             }
         }
         recyclerView.apply {

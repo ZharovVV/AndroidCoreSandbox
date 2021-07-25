@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 
-class StartForResultActivity : AppCompatActivity() {
+class StartForResultActivity : LogLifecycleAppCompatActivity() {
 
     companion object {
         const val EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY = "StartForResultActivity"

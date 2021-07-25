@@ -4,10 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 
-class CallSystemAppExampleActivity : AppCompatActivity(R.layout.activity_call_system_app_example) {
+class CallSystemAppExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_call_system_app_example) {
 
     private lateinit var button1: Button
     private lateinit var button2: Button

@@ -4,10 +4,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 
-class PreferencesExampleActivity : AppCompatActivity(R.layout.activity_preferences_example) {
+class PreferencesExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_preferences_example) {
 
     companion object {
         const val SOME_PREFERENCES_NAME = "SOME_PREFERENCES_NAME"

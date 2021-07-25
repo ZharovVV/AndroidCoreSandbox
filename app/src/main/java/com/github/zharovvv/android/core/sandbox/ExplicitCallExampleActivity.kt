@@ -4,10 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.github.zharovvv.android.core.sandbox.TrueMainActivity.Companion.EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY
 
-class ExplicitCallExampleActivity : AppCompatActivity() {
+class ExplicitCallExampleActivity : LogLifecycleAppCompatActivity() {
 
     private lateinit var textView: TextView
 

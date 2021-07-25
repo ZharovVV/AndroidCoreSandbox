@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract.Companion.START_ACTIVITY_FOR_RESULT_CONTRACT_OUTPUT_CODE
 
-class StartForResultNewActivity : AppCompatActivity(R.layout.activity_start_for_result_new) {
+class StartForResultNewActivity : LogLifecycleAppCompatActivity(R.layout.activity_start_for_result_new) {
 
     private lateinit var editText: EditText
     private lateinit var okButton: Button
