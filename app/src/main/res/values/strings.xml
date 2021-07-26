@@ -30,4 +30,7 @@
     <string name="start_activity_button_7">Preferences</string>
     <string name="load">Load</string>
     <string name="save">Save</string>
+    <string name="start_activity_button_8">Handler</string>
+    <string name="activity_handler_example_text_start">start background task…</string>
+    <string name="activity_handler_example_text_finish">finish background task!</string>
 </resources>
