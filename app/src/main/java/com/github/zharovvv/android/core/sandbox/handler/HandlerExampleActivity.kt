@@ -77,6 +77,8 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
             textView.text = getString(R.string.activity_handler_example_text_finish)
         }
         potentiallyLeakingHandler.sendEmptyMessage(16132342)
+
+        //this.runOnUiThread(Runnable {  }) //Под капотом вызывается handler в Activity.
     }
 
     /**

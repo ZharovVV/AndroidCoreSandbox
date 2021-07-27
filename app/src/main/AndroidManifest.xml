@@ -68,6 +68,7 @@
         <activity android:name=".menu.MenuExampleActivity" />
         <activity android:name=".preferences.PreferencesExampleActivity" />
         <activity android:name=".handler.HandlerExampleActivity" />
+        <activity android:name=".async.task.AsyncTaskExampleActivity" />
     </application>
 
 </manifest>

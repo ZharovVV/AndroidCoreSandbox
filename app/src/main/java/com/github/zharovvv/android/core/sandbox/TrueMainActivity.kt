@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
+import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
@@ -101,7 +102,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
                 Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
                 Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
-                Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8))
+                Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
+                Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
@@ -126,6 +128,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 "MenuExampleActivity" -> startActivity<MenuExampleActivity>()
                 "PreferencesExampleActivity" -> startActivity<PreferencesExampleActivity>()
                 "HandlerExampleActivity" -> startActivity<HandlerExampleActivity>()
+                "AsyncTaskExampleActivity" -> startActivity<AsyncTaskExampleActivity>()
             }
         }
         recyclerView.apply {

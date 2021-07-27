@@ -33,4 +33,7 @@
     <string name="start_activity_button_8">Handler</string>
     <string name="activity_handler_example_text_start">start background task…</string>
     <string name="activity_handler_example_text_finish">finish background task!</string>
+    <string name="start_activity_button_9">AsyncTask (deprecated)</string>
+    <string name="start">start</string>
+    <string name="result">result</string>
 </resources>
