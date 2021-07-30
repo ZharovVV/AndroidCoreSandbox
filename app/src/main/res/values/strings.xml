@@ -36,4 +36,7 @@
     <string name="start_activity_button_9">AsyncTask (deprecated)</string>
     <string name="start">start</string>
     <string name="result">result</string>
+    <string name="stop">stop</string>
+    <string name="start_activity_button_10">Service</string>
+    <string name="START_SERVICE_CONSTANT">START_SERVICE_CONSTANT</string>
 </resources>

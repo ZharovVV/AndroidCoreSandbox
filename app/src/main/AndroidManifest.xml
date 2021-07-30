@@ -69,6 +69,16 @@
         <activity android:name=".preferences.PreferencesExampleActivity" />
         <activity android:name=".handler.HandlerExampleActivity" />
         <activity android:name=".async.task.AsyncTaskExampleActivity" />
+        <activity android:name=".service.ServiceExampleActivity" />
+
+        <!--
+        Организовать работу сервиса и активити в разных процессах можно в одном Application.
+        Для этого в манифесте для сервиса надо прописать атрибут: android:process
+        The ':' prefix appends the name to your package's standard process name.
+        -->
+        <service
+            android:name=".service.ExampleService"
+            android:process=":remote" />
     </application>
 
 </manifest>

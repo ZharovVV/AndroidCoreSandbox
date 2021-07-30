@@ -14,6 +14,7 @@ import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExa
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
+import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -103,7 +104,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
                 Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
                 Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
-                Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9))
+                Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9)),
+                Launcher("ServiceExampleActivity", getString(R.string.start_activity_button_10))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
@@ -129,6 +131,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 "PreferencesExampleActivity" -> startActivity<PreferencesExampleActivity>()
                 "HandlerExampleActivity" -> startActivity<HandlerExampleActivity>()
                 "AsyncTaskExampleActivity" -> startActivity<AsyncTaskExampleActivity>()
+                "ServiceExampleActivity" -> startActivity<ServiceExampleActivity>()
             }
         }
         recyclerView.apply {
