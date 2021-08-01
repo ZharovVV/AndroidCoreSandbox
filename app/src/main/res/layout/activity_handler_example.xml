@@ -28,7 +28,7 @@
         android:id="@+id/activity_handler_example_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/main_margin"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/activity_handler_example_text_view"
         app:layout_constraintEnd_toEndOf="parent"

@@ -79,6 +79,8 @@
         <service
             android:name=".service.ExampleService"
             android:process=":remote" />
+        <service android:name=".service.PendingIntentService" />
+        <service android:name=".service.BroadcastReceiverService" />
     </application>
 
 </manifest>
