@@ -44,4 +44,7 @@
     <string name="result_canceled">RESULT_CANCELED</string>
     <string name="broadcastreceiver">Использование BroadcastReceiver для обратной связи от сервиса</string>
     <string name="start_broadcast_receiver">start (broadcast receiver)</string>
+    <string name="start_binding">Использование Binding для обратной связи от сервиса</string>
+    <string name="bind">bind</string>
+    <string name="unbind">unbind</string>
 </resources>

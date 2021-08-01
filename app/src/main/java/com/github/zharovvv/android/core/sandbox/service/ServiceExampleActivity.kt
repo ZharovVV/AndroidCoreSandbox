@@ -1,9 +1,9 @@
 package com.github.zharovvv.android.core.sandbox.service
 
-import android.content.BroadcastReceiver
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -36,12 +36,18 @@ class ServiceExampleActivity :
     private lateinit var startButtonBr: Button
     private lateinit var broadcastReceiver: BroadcastReceiver
 
+    private lateinit var serviceResultOutputBindingTextView: TextView
+    private lateinit var startBindingServiceButton: Button
+    private lateinit var bindServiceButton: Button
+    private lateinit var unbindServiceButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initSimpleServicePart()
         initPendingIntentServicePart()
         initBroadcastReceiverServicePart()
+        initBindingServicePart()
     }
 
     private fun initSimpleServicePart() {
@@ -126,8 +132,59 @@ class ServiceExampleActivity :
         }
     }
 
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            isServiceBinding = true
+            Log.i("ServiceLifecycle", "ServiceConnection#onServiceConnected")
+            //Если сервис находится в другом процессе то service это экземпляр класса android.os.BinderProxy
+            service as BindingService.LocalBinder
+            service.addUpdateListener { data ->
+                serviceResultOutputBindingTextView.text = data
+            }
+        }
+
+        //Метод onServiceDisconnected не сработает при явном unbind-е
+        override fun onServiceDisconnected(name: ComponentName?) {
+            isServiceBinding = false
+            Log.i("ServiceLifecycle", "ServiceConnection#onServiceDisconnected")
+        }
+    }
+    private var isServiceBinding: Boolean = false
+
+    /**
+     * Использование Binding для обратной связи от сервиса
+     */
+    private fun initBindingServicePart() {
+        val bindingServiceIntent = Intent(this, BindingService::class.java)
+        serviceResultOutputBindingTextView =
+            findViewById(R.id.service_result_binding_output_text_view)
+        startBindingServiceButton = findViewById(R.id.start_service_binding)
+        startBindingServiceButton.setOnClickListener {
+            startService(bindingServiceIntent)
+        }
+        bindServiceButton = findViewById(R.id.bind_service_button)
+        bindServiceButton.setOnClickListener {
+            bindService(
+                bindingServiceIntent,
+                serviceConnection,
+                BIND_AUTO_CREATE    //если сервис, к которому мы пытаемся подключиться, не работает, то он будет запущен.
+            )
+        }
+        unbindServiceButton = findViewById(R.id.unbind_service_button)
+        unbindServiceButton.setOnClickListener {
+            if (isServiceBinding) {
+                unbindService(serviceConnection)
+            }
+            isServiceBinding = false
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(broadcastReceiver)
+        if (isServiceBinding) { //Если сервис не будет зарегистрирован и вызвать этот метод
+            //java.lang.IllegalArgumentException: Service not registered
+            unbindService(serviceConnection)
+        }
     }
 }

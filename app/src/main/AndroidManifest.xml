@@ -81,6 +81,8 @@
             android:process=":remote" />
         <service android:name=".service.PendingIntentService" />
         <service android:name=".service.BroadcastReceiverService" />
+        <!--Для использования локального биндинга сервис должен работать в одном процессе с активити-->
+        <service android:name=".service.BindingService" />
     </application>
 
 </manifest>
