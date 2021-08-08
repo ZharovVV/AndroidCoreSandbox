@@ -132,24 +132,27 @@ class ServiceExampleActivity :
         }
     }
 
+    private lateinit var mService: BindingService.LocalBinder
+    private var isServiceBinding: Boolean = false
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             isServiceBinding = true
             Log.i("ServiceLifecycle", "ServiceConnection#onServiceConnected")
             //Если сервис находится в другом процессе то service это экземпляр класса android.os.BinderProxy
             service as BindingService.LocalBinder
-            service.addUpdateListener { data ->
+            mService = service
+            mService.addUpdateListener { data ->
                 serviceResultOutputBindingTextView.text = data
             }
         }
 
-        //Метод onServiceDisconnected не сработает при явном unbind-е
+        //Срабатывает когда уничтожается процесс, в котором был запущен сервис.
+        //Метод onServiceDisconnected не сработает при явном unbind-е.
         override fun onServiceDisconnected(name: ComponentName?) {
             isServiceBinding = false
             Log.i("ServiceLifecycle", "ServiceConnection#onServiceDisconnected")
         }
     }
-    private var isServiceBinding: Boolean = false
 
     /**
      * Использование Binding для обратной связи от сервиса
@@ -167,15 +170,18 @@ class ServiceExampleActivity :
             bindService(
                 bindingServiceIntent,
                 serviceConnection,
-                BIND_AUTO_CREATE    //если сервис, к которому мы пытаемся подключиться, не работает, то он будет запущен.
+                BIND_AUTO_CREATE    //если сервис, к которому мы пытаемся подключиться, не создан, то он будет создан.
             )
         }
         unbindServiceButton = findViewById(R.id.unbind_service_button)
         unbindServiceButton.setOnClickListener {
             if (isServiceBinding) {
+                Log.i("ServiceLifecycle", "unbind Service (call from Activity)")
                 unbindService(serviceConnection)
+                mService.removeListener()
+                serviceResultOutputBindingTextView.text = getString(R.string.unbind_service_text)
+                isServiceBinding = false
             }
-            isServiceBinding = false
         }
     }
 
@@ -185,6 +191,8 @@ class ServiceExampleActivity :
         if (isServiceBinding) { //Если сервис не будет зарегистрирован и вызвать этот метод
             //java.lang.IllegalArgumentException: Service not registered
             unbindService(serviceConnection)
+            mService.removeListener()
+            isServiceBinding = false
         }
     }
 }

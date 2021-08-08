@@ -27,6 +27,10 @@ class BindingService : Service() {
         fun addUpdateListener(updateListener: (data: String) -> Unit) {
             this@BindingService.updateListener = updateListener
         }
+
+        fun removeListener() {
+            this@BindingService.updateListener = null
+        }
     }
 
     override fun onCreate() {
@@ -36,6 +40,12 @@ class BindingService : Service() {
 
     /**
      * Обычно реализуют либо onBind, либо onStartCommand.
+     * В случае, если переопределены оба метода, то поведение будет следующим:
+     * * Если bindService не был вызван, то сервис будет работать пока не будет остановлен (stopSelf например).
+     * * Если же помимо startService, был вызван bindService, то сервис будет работать, пока живет соединение
+     * (вызовы stopSelf игнорируются).
+     * * Если же после bindService, будет вызван unbindService (при этом сервис ещё не закончил свою работу),
+     * то сервис будет работать пока не будет остановлен.
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i("ServiceLifecycle", "$this#onStartCommand; startId: $startId")
@@ -54,7 +64,13 @@ class BindingService : Service() {
 
     /**
      * Если мы биндингом запустили сервис, он будет жить, пока живет соединение.
-     * Как только мы отключаемся, сервис уничтожается.
+     * Как только мы отключаемся, сервис уничтожается (если сервис не был запущен через startService).
+     *
+     * Несколько клиентов могут подключаться к службе одновременно.
+     * Однако система вызывает метод onBind() вашей службы для получения IBinder только
+     * при привязке первого клиента.
+     * Затем система доставляет тот же IBinder всем дополнительным клиентам,
+     * которые связываются, без повторного вызова onBind().
      */
     override fun onBind(intent: Intent?): IBinder {
         Log.i("ServiceLifecycle", "$this#onBind")
@@ -66,12 +82,15 @@ class BindingService : Service() {
         Log.i("ServiceLifecycle", "$this#onRebind")
     }
 
+    /**
+     * Вызывается 1 раз (когда все клиенты разрывают соединение),
+     * при посторном unbind-е (после повторного bind-а) не вызывается.
+     *
+     * Called when all clients have disconnected from a particular interface
+     * published by the service.
+     */
     override fun onUnbind(intent: Intent?): Boolean {
         Log.i("ServiceLifecycle", "$this#onUnbind")
-        handler.post {
-            updateListener?.invoke("Unbind BindingService")
-            updateListener = null
-        }
         return super.onUnbind(intent)
     }
 

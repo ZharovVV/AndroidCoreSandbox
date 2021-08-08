@@ -47,4 +47,5 @@
     <string name="start_binding">Использование Binding для обратной связи от сервиса</string>
     <string name="bind">bind</string>
     <string name="unbind">unbind</string>
+    <string name="unbind_service_text">Unbind BindingService</string>
 </resources>
