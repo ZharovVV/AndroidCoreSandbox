@@ -13,6 +13,7 @@
     -->
 
     <application
+        android:name=".AndroidCoreSandboxApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -70,6 +71,7 @@
         <activity android:name=".handler.HandlerExampleActivity" />
         <activity android:name=".async.task.AsyncTaskExampleActivity" />
         <activity android:name=".service.ServiceExampleActivity" />
+        <activity android:name=".sqlite.SQLiteExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.

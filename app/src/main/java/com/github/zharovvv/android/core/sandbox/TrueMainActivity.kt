@@ -15,6 +15,7 @@ import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
+import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -75,7 +76,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
      * или в методе getSynchronousResult() выполнить проверку resolveActivity()
      * c помощью PackageManager.
      */
-    private val startActivityForResultNewContract: ActivityResultContract<String, String?> = StartActivityForResultNewContract()
+    private val startActivityForResultNewContract: ActivityResultContract<String, String?> =
+        StartActivityForResultNewContract()
 
     private lateinit var textView: TextView
     private lateinit var recyclerView: RecyclerView
@@ -90,37 +92,48 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
         //Регистрируем контракт (LifecycleOwners must call register before they are STARTED)
         //Коллбек сработает при получении результата
         val activityLauncher: ActivityResultLauncher<String> =
-                registerForActivityResult(startActivityForResultNewContract) { result: String? ->
-                    textView.text = getString(R.string.return_from_activity_new, result)
-                }
+            registerForActivityResult(startActivityForResultNewContract) { result: String? ->
+                textView.text = getString(R.string.return_from_activity_new, result)
+            }
 
 
         val launchers = listOf(
-                Launcher("ExplicitCallExampleActivity", getString(R.string.start_activity_button_1)),
-                Launcher("ImplicitCallExample", getString(R.string.start_activity_button_2)),
-                Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)),
-                Launcher("StartForResultActivityNewContract", getString(R.string.start_activity_button_4)),
-                Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
-                Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
-                Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
-                Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
-                Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9)),
-                Launcher("ServiceExampleActivity", getString(R.string.start_activity_button_10))
+            Launcher("ExplicitCallExampleActivity", getString(R.string.start_activity_button_1)),
+            Launcher("ImplicitCallExample", getString(R.string.start_activity_button_2)),
+            Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)),
+            Launcher(
+                "StartForResultActivityNewContract",
+                getString(R.string.start_activity_button_4)
+            ),
+            Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
+            Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
+            Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
+            Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
+            Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9)),
+            Launcher("ServiceExampleActivity", getString(R.string.start_activity_button_10)),
+            Launcher("SQLiteExampleActivity", getString(R.string.start_activity_button_11))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
                 "ExplicitCallExampleActivity" -> {
                     startActivity<ExplicitCallExampleActivity> { intent ->
-                        intent.putExtra(EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY, "Data from TrueMainActivity")
+                        intent.putExtra(
+                            EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY,
+                            "Data from TrueMainActivity"
+                        )
                     }
                 }
                 "ImplicitCallExample" -> {
-                    val intent = Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
+                    val intent =
+                        Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
                     startActivity(intent)
                 }
                 "StartForResultActivity" -> {
                     val intent = Intent(this, StartForResultActivity::class.java)
-                    startActivityForResult(intent, START_ACTIVITY_FOR_RESULT_REQUEST_CODE)  //deprecated use
+                    startActivityForResult(
+                        intent,
+                        START_ACTIVITY_FOR_RESULT_REQUEST_CODE
+                    )  //deprecated use
                 }
                 "StartForResultActivityNewContract" -> {
                     //Использование Activity Result API
@@ -132,6 +145,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 "HandlerExampleActivity" -> startActivity<HandlerExampleActivity>()
                 "AsyncTaskExampleActivity" -> startActivity<AsyncTaskExampleActivity>()
                 "ServiceExampleActivity" -> startActivity<ServiceExampleActivity>()
+                "SQLiteExampleActivity" -> startActivity<SQLiteExampleActivity>()
             }
         }
         recyclerView.apply {
@@ -153,7 +167,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             START_ACTIVITY_FOR_RESULT_REQUEST_CODE -> {
                 when (resultCode) {
                     RESULT_OK -> {
-                        val result = data!!.getStringExtra(EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY)
+                        val result =
+                            data!!.getStringExtra(EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY)
                         textView.text = getString(R.string.return_from_activity, result)
                     }
                     //Back pressed

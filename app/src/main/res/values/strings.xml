@@ -48,4 +48,11 @@
     <string name="bind">bind</string>
     <string name="unbind">unbind</string>
     <string name="unbind_service_text">Unbind BindingService</string>
+    <string name="start_activity_button_11">SQLite example</string>
+    <string name="person_name">person_name:</string>
+    <string name="hint_person_name">Введите имя клиента</string>
+    <string name="person_age">person_age:</string>
+    <string name="hint_person_age">Введите возраст клиента</string>
+    <string name="delete">DELETE</string>
+    <string name="clear_all_table">CLEAR ALL TABLE</string>
 </resources>
