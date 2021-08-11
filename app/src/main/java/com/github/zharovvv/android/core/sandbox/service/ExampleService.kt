@@ -7,12 +7,14 @@ import android.os.IBinder
 import android.util.Log
 
 /**
+ * # Service
  * Службы (Сервисы) в Android работают как фоновые процессы и представлены классом android.app.Service.
  * Они не имеют пользовательского интерфейса и нужны в тех случаях,
  * когда не требуется вмешательства пользователя. Сервисы работают в фоновом режиме,
  * выполняя сетевые запросы к веб-серверу, обрабатывая информацию, запуская уведомления и т.д.
  * Служба может быть запущена и будет продолжать работать до тех пор,
  * пока кто-нибудь не остановит её или пока она не остановит себя сама.
+ *
  *
  * Сервисы предназначены для длительного существования, в отличие от активностей.
  * Они могут работать, постоянно перезапускаясь, выполняя постоянные задачи или выполняя задачи,
@@ -29,6 +31,11 @@ import android.util.Log
  * будет заметно влиять на впечатления пользователя от приложения,
  * и в подобных ситуациях приоритет сервиса может быть повышен до уровня активности,
  * работающей на переднем плане.
+ *
+ * Сервисы делятся на два вида
+ * * по способу использования: __Started и Bound__, и на два вида
+ * * по способу взаимодействия с пользователем: __Background и Foreground__.
+ * Когда спрашивают о видах сервисов обычно имеют в виду способ использования.
  */
 class ExampleService : Service() {
 
@@ -62,17 +69,19 @@ class ExampleService : Service() {
         Log.i("ServiceLifecycle", "$this#onStartCommand; startId: $startId")
         if (intent != null) {
             Log.i(
-                    "ServiceLifecycle",
-                    intent.getStringExtra(SERVICE_INPUT) ?: "Интент есть, но нет данных"
+                "ServiceLifecycle",
+                intent.getStringExtra(SERVICE_INPUT) ?: "Интент есть, но нет данных"
             )
         } else {
             Log.i("ServiceLifecycle", "intent is null")
         }
-        Log.i("ServiceLifecycle", when (flags) {
-            START_FLAG_REDELIVERY -> "flags: START_FLAG_REDELIVERY"
-            START_FLAG_RETRY -> "flags: START_FLAG_RETRY"
-            else -> "flags: $flags" //Почему-то во всех случаях приходит 0???
-        })
+        Log.i(
+            "ServiceLifecycle", when (flags) {
+                START_FLAG_REDELIVERY -> "flags: START_FLAG_REDELIVERY"
+                START_FLAG_RETRY -> "flags: START_FLAG_RETRY"
+                else -> "flags: $flags" //Почему-то во всех случаях приходит 0???
+            }
+        )
         Thread {
             someTask()
 
@@ -128,7 +137,7 @@ inline fun <reified T : Service> Activity.startService() {
 }
 
 inline fun <reified T : Service> Activity.startService(
-        intentEnrichment: (intent: Intent) -> Unit
+    intentEnrichment: (intent: Intent) -> Unit
 ) {
     val intent = Intent(this, T::class.java)
     intentEnrichment(intent)
@@ -141,7 +150,7 @@ inline fun <reified T : Service> Activity.stopService() {
 }
 
 inline fun <reified T : Service> Activity.stopService(
-        intentEnrichment: (intent: Intent) -> Unit
+    intentEnrichment: (intent: Intent) -> Unit
 ) {
     val intent = Intent(this, T::class.java)
     intentEnrichment(intent)
