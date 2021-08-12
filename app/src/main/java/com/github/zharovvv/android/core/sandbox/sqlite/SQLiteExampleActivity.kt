@@ -15,6 +15,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
 
     private lateinit var editTextPersonName: EditText
     private lateinit var editTextPersonAge: EditText
+    private lateinit var editTextPersonId: EditText
     private lateinit var buttonSave: Button
     private lateinit var buttonDelete: Button
     private lateinit var buttonClearAllTable: Button
@@ -26,6 +27,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
         super.onCreate(savedInstanceState)
         editTextPersonName = findViewById(R.id.edit_text_column_person_name)
         editTextPersonAge = findViewById(R.id.edit_text_column_person_age)
+        editTextPersonId = findViewById(R.id.edit_text_column_person_id)
         buttonSave = findViewById(R.id.button_save_person)
         buttonDelete = findViewById(R.id.button_delete_person)
         buttonClearAllTable = findViewById(R.id.button_clear_all_table)
@@ -36,12 +38,12 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
             layoutManager = LinearLayoutManager(this@SQLiteExampleActivity)
         }
         buttonSave.setOnClickListener {
-            doAfterValidate { person ->
+            doAfterValidate(editTextPersonName) { person ->
                 insertPerson(person)
             }
         }
         buttonDelete.setOnClickListener {
-            doAfterValidate {
+            doAfterValidate(editTextPersonId) {
                 deletePerson(it)
             }
         }
@@ -56,22 +58,25 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
         super.onDestroy()
     }
 
-    private inline fun doAfterValidate(block: (person: Person) -> Unit) {
-        if (editTextPersonName.text.isNullOrEmpty()) {
-            editTextPersonName.setHintTextColor(resources.getColor(R.color.red, theme))
+    private inline fun doAfterValidate(
+        validatedEditText: EditText,
+        block: (person: Person) -> Unit
+    ) {
+        if (validatedEditText.text.isNullOrEmpty()) {
+            validatedEditText.setHintTextColor(resources.getColor(R.color.red, theme))
             handler.postDelayed({
-                editTextPersonName.setHintTextColor(resources.getColor(R.color.gray, theme))
+                validatedEditText.setHintTextColor(resources.getColor(R.color.gray, theme))
             }, 500)
         } else {
             val stringAge = editTextPersonAge.text.toString()
             val person = Person(
                 editTextPersonName.text.toString(),
-                if (stringAge.isNotEmpty()) {
-                    stringAge.toInt()
-                } else {
-                    null
-                }
+                if (stringAge.isNotEmpty()) stringAge.toInt() else null
             )
+            val stringId = editTextPersonId.text.toString()
+            if (stringId.isNotEmpty()) {
+                person.id = stringId.toLong()
+            }
             block(person)
         }
     }
@@ -88,7 +93,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
     private fun insertPerson(person: Person) {
         Thread {
             val personDao = AndroidCoreSandboxApplication.personDatabase.personDao
-            personDao.insert(person)
+            personDao.savePerson(person)
             val persons = personDao.getPersons()
             handler.post {
                 updatePersonList(persons)

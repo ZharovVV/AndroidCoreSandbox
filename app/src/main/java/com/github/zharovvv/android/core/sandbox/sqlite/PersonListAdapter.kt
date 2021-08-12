@@ -15,7 +15,7 @@ class PersonListAdapter :
     companion object {
         private val PERSON_DIFF_UTIL = object : DiffUtil.ItemCallback<Person>() {
             override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
-                return oldItem.id == newItem.id || oldItem.name == newItem.name
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Person, newItem: Person): Boolean {

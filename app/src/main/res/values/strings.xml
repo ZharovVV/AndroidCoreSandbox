@@ -55,4 +55,6 @@
     <string name="hint_person_age">Введите возраст клиента</string>
     <string name="delete">DELETE</string>
     <string name="clear_all_table">CLEAR ALL TABLE</string>
+    <string name="hint_person_id">Идентификатор клиента (опционально)</string>
+    <string name="person_id">person_id</string>
 </resources>

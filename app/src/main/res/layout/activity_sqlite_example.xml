@@ -56,6 +56,31 @@
         app:layout_constraintStart_toEndOf="@id/text_view_column_person_age"
         app:layout_constraintTop_toTopOf="@id/text_view_column_person_age" />
 
+    <TextView
+        android:id="@+id/text_view_column_person_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="24dp"
+        android:text="@string/person_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_age" />
+
+    <EditText
+        android:id="@+id/edit_text_column_person_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
+        android:autofillHints="Text"
+        android:hint="@string/hint_person_id"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_column_person_id"
+        app:layout_constraintStart_toEndOf="@id/text_view_column_person_id"
+        app:layout_constraintTop_toTopOf="@id/text_view_column_person_id" />
+
     <Button
         android:id="@+id/button_save_person"
         android:layout_width="wrap_content"
@@ -63,7 +88,7 @@
         android:layout_margin="@dimen/main_margin"
         android:text="@string/save"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_age" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_id" />
 
     <Button
         android:id="@+id/button_delete_person"
@@ -72,7 +97,7 @@
         android:layout_margin="@dimen/main_margin"
         android:text="@string/delete"
         app:layout_constraintStart_toEndOf="@id/button_save_person"
-        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_age" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_id" />
 
     <Button
         android:id="@+id/button_clear_all_table"
@@ -81,7 +106,7 @@
         android:layout_margin="@dimen/main_margin"
         android:text="@string/clear_all_table"
         app:layout_constraintStart_toEndOf="@id/button_delete_person"
-        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_age" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_column_person_id" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_columns"
