@@ -5,22 +5,18 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.observables.ConnectableObservable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
 class RxJavaBasedViewModel : ViewModel() {
 
-    private val behaviorSubject: BehaviorSubject<String> = BehaviorSubject.create()
-
     //hot observable
-    private val connectableObservable: ConnectableObservable<String> = behaviorSubject.publish()
-    private val connectionDisposable: Disposable = connectableObservable.connect()
+    private val behaviorSubject: BehaviorSubject<String> = BehaviorSubject.create()
 
     private val compositeDisposable = CompositeDisposable()
 
-    val data: Observable<String> = connectableObservable
+    val data: Observable<String> = behaviorSubject
 
     fun start() {
         Observable.create<String> { emitter ->
@@ -38,7 +34,7 @@ class RxJavaBasedViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        connectionDisposable.dispose()
+        compositeDisposable.dispose()
     }
 
     private fun Disposable.keep() {
