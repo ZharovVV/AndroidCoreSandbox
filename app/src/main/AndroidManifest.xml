@@ -72,6 +72,7 @@
         <activity android:name=".async.task.AsyncTaskExampleActivity" />
         <activity android:name=".service.ServiceExampleActivity" />
         <activity android:name=".sqlite.SQLiteExampleActivity" />
+        <activity android:name=".viewmodel.rxjava.ViewModelRxJavaExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.

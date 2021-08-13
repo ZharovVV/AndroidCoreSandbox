@@ -16,6 +16,7 @@ import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
+import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -111,7 +112,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
             Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9)),
             Launcher("ServiceExampleActivity", getString(R.string.start_activity_button_10)),
-            Launcher("SQLiteExampleActivity", getString(R.string.start_activity_button_11))
+            Launcher("SQLiteExampleActivity", getString(R.string.start_activity_button_11)),
+            Launcher("ViewModelRxJavaExampleActivity", getString(R.string.start_activity_button_12))
         )
         val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
             when (launcherItem.id) {
@@ -146,6 +148,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                 "AsyncTaskExampleActivity" -> startActivity<AsyncTaskExampleActivity>()
                 "ServiceExampleActivity" -> startActivity<ServiceExampleActivity>()
                 "SQLiteExampleActivity" -> startActivity<SQLiteExampleActivity>()
+                "ViewModelRxJavaExampleActivity" -> startActivity<ViewModelRxJavaExampleActivity>()
             }
         }
         recyclerView.apply {
