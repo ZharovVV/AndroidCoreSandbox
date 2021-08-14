@@ -16,6 +16,7 @@ class ViewModelRxJavaExampleActivity :
     private lateinit var startButton: Button
     private lateinit var textView: TextView
 
+    //lazy call ViewModelProvider(store, factory).get(viewModelClass.java)
     private val viewModel: RxJavaBasedViewModel by viewModels()
 
     private val compositeDisposable = CompositeDisposable()
