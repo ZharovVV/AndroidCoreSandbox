@@ -1,4 +1,4 @@
-package com.github.zharovvv.android.core.sandbox
+package com.github.zharovvv.android.core.sandbox.noncore.launcher
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.github.zharovvv.android.core.sandbox.R
 
-class LaunchersListAdapter(
-        private val onLauncherItemClick: (launcherItem: Launcher) -> Unit
-) : ListAdapter<Launcher, LaunchersListAdapter.LauncherItemHolder>(LAUNCHER_ITEM_DIFF) {
+class LaunchersListAdapter :
+    ListAdapter<Launcher, LaunchersListAdapter.LauncherItemHolder>(LAUNCHER_ITEM_DIFF) {
 
     companion object {
         private val LAUNCHER_ITEM_DIFF = object : DiffUtil.ItemCallback<Launcher>() {
@@ -24,16 +24,13 @@ class LaunchersListAdapter(
         }
     }
 
-    class LauncherItemHolder(
-            itemView: View,
-            private val onLauncherItemClick: (launcherItem: Launcher) -> Unit
-    ) : RecyclerView.ViewHolder(itemView) {
+    class LauncherItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val launcherButton: Button = itemView.findViewById(R.id.launcher_button)
         private var currentLauncher: Launcher? = null
 
         init {
             launcherButton.setOnClickListener {
-                currentLauncher?.let { onLauncherItemClick(it) }
+                currentLauncher?.launch()
             }
         }
 
@@ -45,8 +42,7 @@ class LaunchersListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LauncherItemHolder {
         return LauncherItemHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.list_item_launcher, parent, false),
-                onLauncherItemClick
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_launcher, parent, false)
         )
     }
 
@@ -54,5 +50,3 @@ class LaunchersListAdapter(
         holder.bind(getItem(position))
     }
 }
-
-data class Launcher(val id: String, val title: String)

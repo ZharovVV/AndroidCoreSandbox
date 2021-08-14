@@ -13,6 +13,9 @@ import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActiv
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
+import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
+import com.github.zharovvv.android.core.sandbox.noncore.launcher.LaunchersListAdapter
+import com.github.zharovvv.android.core.sandbox.noncore.launcher.launcherFor
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
@@ -89,73 +92,12 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
         textView = findViewById(R.id.main_text_view)
         recyclerView = findViewById(R.id.main_recycler_view)
 
-        //Использование Activity Result API
-        //Регистрируем контракт (LifecycleOwners must call register before they are STARTED)
-        //Коллбек сработает при получении результата
-        val activityLauncher: ActivityResultLauncher<String> =
-            registerForActivityResult(startActivityForResultNewContract) { result: String? ->
-                textView.text = getString(R.string.return_from_activity_new, result)
-            }
-
-
-        val launchers = listOf(
-            Launcher("ExplicitCallExampleActivity", getString(R.string.start_activity_button_1)),
-            Launcher("ImplicitCallExample", getString(R.string.start_activity_button_2)),
-            Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)),
-            Launcher(
-                "StartForResultActivityNewContract",
-                getString(R.string.start_activity_button_4)
-            ),
-            Launcher("CallSystemAppExampleActivity", getString(R.string.start_activity_button_5)),
-            Launcher("MenuExampleActivity", getString(R.string.start_activity_button_6)),
-            Launcher("PreferencesExampleActivity", getString(R.string.start_activity_button_7)),
-            Launcher("HandlerExampleActivity", getString(R.string.start_activity_button_8)),
-            Launcher("AsyncTaskExampleActivity", getString(R.string.start_activity_button_9)),
-            Launcher("ServiceExampleActivity", getString(R.string.start_activity_button_10)),
-            Launcher("SQLiteExampleActivity", getString(R.string.start_activity_button_11)),
-            Launcher("ViewModelRxJavaExampleActivity", getString(R.string.start_activity_button_12))
-        )
-        val launchersListAdapter = LaunchersListAdapter { launcherItem: Launcher ->
-            when (launcherItem.id) {
-                "ExplicitCallExampleActivity" -> {
-                    startActivity<ExplicitCallExampleActivity> { intent ->
-                        intent.putExtra(
-                            EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY,
-                            "Data from TrueMainActivity"
-                        )
-                    }
-                }
-                "ImplicitCallExample" -> {
-                    val intent =
-                        Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
-                    startActivity(intent)
-                }
-                "StartForResultActivity" -> {
-                    val intent = Intent(this, StartForResultActivity::class.java)
-                    startActivityForResult(
-                        intent,
-                        START_ACTIVITY_FOR_RESULT_REQUEST_CODE
-                    )  //deprecated use
-                }
-                "StartForResultActivityNewContract" -> {
-                    //Использование Activity Result API
-                    activityLauncher.launch("input for launching")  //Запуск контракта
-                }
-                "CallSystemAppExampleActivity" -> startActivity<CallSystemAppExampleActivity>()
-                "MenuExampleActivity" -> startActivity<MenuExampleActivity>()
-                "PreferencesExampleActivity" -> startActivity<PreferencesExampleActivity>()
-                "HandlerExampleActivity" -> startActivity<HandlerExampleActivity>()
-                "AsyncTaskExampleActivity" -> startActivity<AsyncTaskExampleActivity>()
-                "ServiceExampleActivity" -> startActivity<ServiceExampleActivity>()
-                "SQLiteExampleActivity" -> startActivity<SQLiteExampleActivity>()
-                "ViewModelRxJavaExampleActivity" -> startActivity<ViewModelRxJavaExampleActivity>()
-            }
-        }
+        val launchersListAdapter = LaunchersListAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@TrueMainActivity)
             adapter = launchersListAdapter
         }
-        launchersListAdapter.submitList(launchers)
+        launchersListAdapter.submitList(buildLaunchers())
     }
 
     /**
@@ -183,5 +125,51 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             else -> {
             }
         }
+    }
+
+    private fun buildLaunchers(): List<Launcher> {
+        //Использование Activity Result API
+        //Регистрируем контракт (LifecycleOwners must call register before they are STARTED)
+        //Коллбек сработает при получении результата
+        val activityLauncher: ActivityResultLauncher<String> =
+            registerForActivityResult(startActivityForResultNewContract) { result: String? ->
+                textView.text = getString(R.string.return_from_activity_new, result)
+            }
+
+        return listOf(
+            launcherFor<ExplicitCallExampleActivity>(getString(R.string.start_activity_button_1)) { intent ->
+                intent.putExtra(
+                    EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY,
+                    "Data from TrueMainActivity"
+                )
+            },
+            Launcher("ImplicitCallExample", getString(R.string.start_activity_button_2)) {
+                val intent =
+                    Intent("com.github.zharovvv.android.core.sandbox.intent.action.showdate")
+                startActivity(intent)
+            },
+            Launcher("StartForResultActivity", getString(R.string.start_activity_button_3)) {
+                val intent = Intent(this, StartForResultActivity::class.java)
+                startActivityForResult(
+                    intent,
+                    START_ACTIVITY_FOR_RESULT_REQUEST_CODE
+                )  //deprecated use
+            },
+            Launcher(
+                "StartForResultActivityNewContract",
+                getString(R.string.start_activity_button_4)
+            ) {
+                //Использование Activity Result API
+                activityLauncher.launch("input for launching")  //Запуск контракта
+            },
+            launcherFor<CallSystemAppExampleActivity>(getString(R.string.start_activity_button_5)),
+            launcherFor<MenuExampleActivity>(getString(R.string.start_activity_button_6)),
+            launcherFor<PreferencesExampleActivity>(getString(R.string.start_activity_button_7)),
+            launcherFor<HandlerExampleActivity>(getString(R.string.start_activity_button_8)),
+            launcherFor<AsyncTaskExampleActivity>(getString(R.string.start_activity_button_9)),
+            launcherFor<ServiceExampleActivity>(getString(R.string.start_activity_button_10)),
+            launcherFor<SQLiteExampleActivity>(getString(R.string.start_activity_button_11)),
+            launcherFor<ViewModelRxJavaExampleActivity>(getString(R.string.start_activity_button_12))
+        )
     }
 }

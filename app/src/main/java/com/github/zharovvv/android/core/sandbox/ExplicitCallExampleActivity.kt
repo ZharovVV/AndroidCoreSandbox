@@ -38,11 +38,10 @@ class ExplicitCallExampleActivity : LogLifecycleAppCompatActivity() {
  * какой именно программой вы хотите воспользоваться.
  */
 inline fun <reified T : Activity> Activity.startActivity(
-        intentEnrichment: (intent: Intent) -> Unit
+    crossinline intentEnrichment: (intent: Intent) -> Intent
 ) {
     val intent = Intent(this, T::class.java)
-    intentEnrichment(intent)
-    this.startActivity(intent)
+    this.startActivity(intentEnrichment(intent))
 }
 
 inline fun <reified T : Activity> Activity.startActivity() {
