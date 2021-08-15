@@ -74,6 +74,7 @@
         <activity android:name=".sqlite.SQLiteExampleActivity" />
         <activity android:name=".viewmodel.rxjava.ViewModelRxJavaExampleActivity" />
         <activity android:name=".viewmodel.livedata.ViewModelLiveDataExampleActivity" />
+        <activity android:name=".work.manager.WorkManagerExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.

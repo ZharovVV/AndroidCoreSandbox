@@ -21,6 +21,7 @@ import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.livedata.ViewModelLiveDataExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
+import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleActivity
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -171,7 +172,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<ServiceExampleActivity>(getString(R.string.start_activity_button_10)),
             launcherFor<SQLiteExampleActivity>(getString(R.string.start_activity_button_11)),
             launcherFor<ViewModelRxJavaExampleActivity>(getString(R.string.start_activity_button_12)),
-            launcherFor<ViewModelLiveDataExampleActivity>(getString(R.string.start_activity_button_13))
+            launcherFor<ViewModelLiveDataExampleActivity>(getString(R.string.start_activity_button_13)),
+            launcherFor<WorkManagerExampleActivity>(getString(R.string.start_activity_button_14))
         )
     }
 }
