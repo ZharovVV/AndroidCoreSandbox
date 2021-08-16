@@ -60,4 +60,6 @@
     <string name="start_activity_button_12"><![CDATA[ViewModel&RxJava]]></string>
     <string name="start_activity_button_13"><![CDATA[ViewModel&LiveData]]></string>
     <string name="start_activity_button_14">WorkManager</string>
+    <string name="start_periodic_work">start periodic work</string>
+    <string name="cancel_periodic_work">cancel periodic work</string>
 </resources>

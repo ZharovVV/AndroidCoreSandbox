@@ -5,12 +5,11 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
-import com.github.zharovvv.android.core.sandbox.work.manager.MyWorker.Companion.LOG_WORK_TAG
+import androidx.work.*
 import com.github.zharovvv.android.core.sandbox.work.manager.MyWorker.Companion.UNIQUE_WORK_TAG
+import com.github.zharovvv.android.core.sandbox.work.manager.PeriodicalWorker.Companion.UNIQUE_PERIODICAL_WORK_NAME
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class WorkManagerExampleViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -53,11 +52,6 @@ class WorkManagerExampleViewModel(application: Application) : AndroidViewModel(a
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-//        workManager.cancelAllWorkByTag(UNIQUE_WORK_TAG)
-    }
-
     private fun findNonFinishedWorkId(): UUID? {
         return workManager.getWorkInfosByTag(UNIQUE_WORK_TAG)
             .also { Log.i(LOG_WORK_TAG, "start Future.get") }
@@ -66,5 +60,38 @@ class WorkManagerExampleViewModel(application: Application) : AndroidViewModel(a
             ?.also { Log.i(LOG_WORK_TAG, "$it") }
             ?.firstOrNull { workInfo: WorkInfo -> !workInfo.state.isFinished }
             ?.id
+    }
+
+    /**
+     * ```
+     * [     before flex     |     flex     ][     before flex     |     flex     ]...
+     * [   cannot run work   | can run work ][   cannot run work   | can run work ]...
+     * \____________________________________/\____________________________________/...
+     *                interval 1                            interval 2             ...(repeat)
+     * ```
+     */
+    fun schedulePeriodicWork() {
+        val uniqueWorkName = UNIQUE_PERIODICAL_WORK_NAME
+        val existingWorkPolicy = ExistingPeriodicWorkPolicy.REPLACE
+        val periodicWorkRequest = PeriodicWorkRequestBuilder<PeriodicalWorker>(
+            repeatInterval = 15L,   //должен быть >= 15 мин
+            repeatIntervalTimeUnit = TimeUnit.MINUTES,
+            flexTimeInterval = 5L,  //должен быть >= 5 мин
+            flexTimeIntervalUnit = TimeUnit.MINUTES
+        ).build()
+        workManager.enqueueUniquePeriodicWork(
+            uniqueWorkName,
+            existingWorkPolicy,
+            periodicWorkRequest
+        )
+    }
+
+    fun cancelPeriodicWork() {
+        workManager.cancelUniqueWork(UNIQUE_PERIODICAL_WORK_NAME)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+//        workManager.cancelAllWorkByTag(UNIQUE_WORK_TAG)
     }
 }

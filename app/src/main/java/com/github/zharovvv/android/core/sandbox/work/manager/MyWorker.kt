@@ -16,8 +16,6 @@ import androidx.work.WorkerParameters
 class MyWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
     companion object {
-        const val LOG_WORK_TAG = "log_work_tag"
-
         const val UNIQUE_WORK_TAG = "my_worker_work_tag"
         const val WORK_OUTPUT_DATA_STRING = "work_output_data_string"
     }
