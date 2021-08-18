@@ -62,4 +62,5 @@
     <string name="start_activity_button_14">WorkManager</string>
     <string name="start_periodic_work">start periodic work</string>
     <string name="cancel_periodic_work">cancel periodic work</string>
+    <string name="start_activity_button_15">Data Binding</string>
 </resources>

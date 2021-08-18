@@ -11,6 +11,7 @@ import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
+import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
@@ -173,7 +174,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<SQLiteExampleActivity>(getString(R.string.start_activity_button_11)),
             launcherFor<ViewModelRxJavaExampleActivity>(getString(R.string.start_activity_button_12)),
             launcherFor<ViewModelLiveDataExampleActivity>(getString(R.string.start_activity_button_13)),
-            launcherFor<WorkManagerExampleActivity>(getString(R.string.start_activity_button_14))
+            launcherFor<WorkManagerExampleActivity>(getString(R.string.start_activity_button_14)),
+            launcherFor<DataBindingExampleActivity>(getString(R.string.start_activity_button_15))
         )
     }
 }

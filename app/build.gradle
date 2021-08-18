@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -30,11 +31,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+//        viewBinding = true //Enabled View Binding
+    }
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+// Начиная с Kotlin 1.4.
+// Вам больше не нужно объявлять зависимость от библиотеки stdlib в любом проекте Kotlin Gradle,
+// включая мультиплатформенный. Зависимость добавляется по умолчанию.
+//
+// implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
