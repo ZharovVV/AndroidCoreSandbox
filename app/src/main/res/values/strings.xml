@@ -63,4 +63,10 @@
     <string name="start_periodic_work">start periodic work</string>
     <string name="cancel_periodic_work">cancel periodic work</string>
     <string name="start_activity_button_15">Data Binding</string>
+    <string name="start_activity_button_16">Location</string>
+    <string name="network_provider">NETWORK_PROVIDER</string>
+    <string name="gps_provider">GPS_PROVIDER</string>
+    <string name="start_gps">Start (GPS)</string>
+    <string name="start_network">Start (NETWORK)</string>
+    <string name="location_settings">location settings</string>
 </resources>

@@ -12,6 +12,14 @@
     требования по оборудованию и поддерживаемым версиям ОС.
     -->
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--Обеспечивает приблизительное местоположение устройства с точностью до 1,6 км.-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--Обеспечивает максимально точную оценку местоположения устройства, обычно в пределах
+    около 160 футов (50 метров), а иногда с такой же точностью,
+    как в пределах 10 футов (нескольких метров) или лучше.-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".AndroidCoreSandboxApplication"
         android:allowBackup="true"
@@ -76,6 +84,7 @@
         <activity android:name=".viewmodel.livedata.ViewModelLiveDataExampleActivity" />
         <activity android:name=".work.manager.WorkManagerExampleActivity" />
         <activity android:name=".data.binding.DataBindingExampleActivity" />
+        <activity android:name=".location.LocationExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.
