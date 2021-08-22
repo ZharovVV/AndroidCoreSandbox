@@ -15,6 +15,7 @@ import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleA
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
+import com.github.zharovvv.android.core.sandbox.navigation.NavigationExampleActivity
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.LaunchersListAdapter
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.launcherFor
@@ -177,7 +178,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<ViewModelLiveDataExampleActivity>(getString(R.string.start_activity_button_13)),
             launcherFor<WorkManagerExampleActivity>(getString(R.string.start_activity_button_14)),
             launcherFor<DataBindingExampleActivity>(getString(R.string.start_activity_button_15)),
-            launcherFor<LocationExampleActivity>(getString(R.string.start_activity_button_16))
+            launcherFor<LocationExampleActivity>(getString(R.string.start_activity_button_16)),
+            launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17))
         )
     }
 }

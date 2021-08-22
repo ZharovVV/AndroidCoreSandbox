@@ -85,6 +85,7 @@
         <activity android:name=".work.manager.WorkManagerExampleActivity" />
         <activity android:name=".data.binding.DataBindingExampleActivity" />
         <activity android:name=".location.LocationExampleActivity" />
+        <activity android:name=".navigation.NavigationExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.
