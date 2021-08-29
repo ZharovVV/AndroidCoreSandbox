@@ -11,6 +11,7 @@ import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
+import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
 import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
@@ -179,7 +180,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<WorkManagerExampleActivity>(getString(R.string.start_activity_button_14)),
             launcherFor<DataBindingExampleActivity>(getString(R.string.start_activity_button_15)),
             launcherFor<LocationExampleActivity>(getString(R.string.start_activity_button_16)),
-            launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17))
+            launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17)),
+            launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18))
         )
     }
 }

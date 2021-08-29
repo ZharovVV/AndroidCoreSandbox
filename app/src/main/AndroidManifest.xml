@@ -86,6 +86,7 @@
         <activity android:name=".data.binding.DataBindingExampleActivity" />
         <activity android:name=".location.LocationExampleActivity" />
         <activity android:name=".navigation.NavigationExampleActivity" />
+        <activity android:name=".custom.view.CustomViewExampleActivity" />
 
         <!--
         Организовать работу сервиса и активити в разных процессах можно в одном Application.
