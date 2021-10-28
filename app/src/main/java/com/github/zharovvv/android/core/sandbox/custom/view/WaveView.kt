@@ -18,7 +18,7 @@ class WaveView @JvmOverloads constructor(
     companion object {
         private const val DEFAULT_ITEM_WIDTH_DP = 2
         private const val DEFAULT_ITEM_COLOR = Color.BLACK
-        private const val DEFAULT_HEIGHT = 50
+        private const val DEFAULT_HEIGHT_DP = 50
     }
 
     private val wavePath = Path()
@@ -39,7 +39,7 @@ class WaveView @JvmOverloads constructor(
         ).toInt()
         defaultHeightPixelSize = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            DEFAULT_HEIGHT.toFloat(),
+            DEFAULT_HEIGHT_DP.toFloat(),
             displayMetrics
         ).toInt()
         var itemColorFromAttr = DEFAULT_ITEM_COLOR

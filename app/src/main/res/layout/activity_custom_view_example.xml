@@ -6,29 +6,31 @@
 
     <com.github.zharovvv.android.core.sandbox.custom.view.WaveView
         android:id="@+id/wave_view_1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/wave_view_background"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         app:itemColor="@color/gray"
         app:itemWidth="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.zharovvv.android.core.sandbox.custom.view.WaveView
         android:id="@+id/wave_view_2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="@dimen/main_margin"
         app:itemColor="@color/purple_500"
         app:itemWidth="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wave_view_1" />
 
     <com.github.zharovvv.android.core.sandbox.custom.view.WaveView
         android:id="@+id/wave_view_3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
         app:itemColor="@color/purple_200"
