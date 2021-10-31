@@ -20,7 +20,11 @@ StackView
 AdapterViewFlipper.
 Иначе получим: android.view.InflateException: Binary XML file line #2 in
 com.github.zharovvv.android.core.sandbox:layout/widget:
-Error inflating class androidx.constraintlayout.widget.ConstraintLayout
+Error inflating class androidx.constraintlayout.widget.ConstraintLayout.
+
+Также стоит учитывать недостаток с отступами.
+В Android 4.0 (API Level 14) и выше этот недостаток с отступами был устранен,
+и вручную делать отступы больше не надо.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

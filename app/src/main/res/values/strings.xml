@@ -79,4 +79,7 @@
 
     <string name="widget_name">My first widget</string>
     <string name="widget_text">Text in widget</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
 </resources>
