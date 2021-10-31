@@ -76,4 +76,7 @@
     <string name="title_fragment3">Fragment 3</string>
     <string name="start_activity_button_17">Navigation AC</string>
     <string name="start_activity_button_18">CustomView</string>
+
+    <string name="widget_name">My first widget</string>
+    <string name="widget_text">Text in widget</string>
 </resources>
