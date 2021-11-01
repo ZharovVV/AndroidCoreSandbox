@@ -20,6 +20,7 @@ import com.github.zharovvv.android.core.sandbox.navigation.NavigationExampleActi
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.LaunchersListAdapter
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.launcherFor
+import com.github.zharovvv.android.core.sandbox.pending.intent.PendingIntentExampleActivity
 import com.github.zharovvv.android.core.sandbox.preferences.PreferencesExampleActivity
 import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
@@ -181,7 +182,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<DataBindingExampleActivity>(getString(R.string.start_activity_button_15)),
             launcherFor<LocationExampleActivity>(getString(R.string.start_activity_button_16)),
             launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17)),
-            launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18))
+            launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18)),
+            launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19))
         )
     }
 }
