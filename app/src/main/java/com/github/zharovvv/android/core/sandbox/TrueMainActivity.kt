@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion.EXTRA_DATA_NAME_START_FOR_RESULT_ACTIVITY
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
+import com.github.zharovvv.android.core.sandbox.alarm.manager.AlarmManagerExampleActivity
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
@@ -183,7 +184,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<LocationExampleActivity>(getString(R.string.start_activity_button_16)),
             launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17)),
             launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18)),
-            launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19))
+            launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19)),
+            launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager")
         )
     }
 }

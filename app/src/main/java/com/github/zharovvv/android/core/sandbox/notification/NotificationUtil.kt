@@ -1,4 +1,4 @@
-package com.github.zharovvv.android.core.sandbox.work.manager
+package com.github.zharovvv.android.core.sandbox.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,6 +13,8 @@ const val WORK_NOTIFICATION_ID = 1
 const val WORK_CHANNEL_ID = "INFO_CHANNEL_ID"
 
 fun makeNotification(message: String, context: Context) {
+    //Это безопасно вызывать повторно, потому что создание существующего канала уведомлений не выполняет никаких действий.
+    //Но лучше создавать канал при запуске приложения.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val name = "INFO_WORK_CHANNEL"
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -21,6 +23,7 @@ fun makeNotification(message: String, context: Context) {
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
         notificationManager?.createNotificationChannel(channel)
     }
+    //
 
     val notificationBuilder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         NotificationCompat.Builder(context, WORK_CHANNEL_ID)

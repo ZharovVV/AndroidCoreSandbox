@@ -6,6 +6,8 @@ import androidx.work.Data
 import androidx.work.WorkInfo
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.github.zharovvv.android.core.sandbox.notification.makeNotification
+import com.github.zharovvv.android.core.sandbox.notification.makeNotificationAutoDismiss
 
 /**
  * # WorkManager

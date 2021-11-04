@@ -3,6 +3,7 @@ package com.github.zharovvv.android.core.sandbox.work.manager
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.github.zharovvv.android.core.sandbox.notification.makeNotification
 
 class PeriodicalWorker(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
