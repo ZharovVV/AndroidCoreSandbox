@@ -69,6 +69,7 @@ class WorkManagerExampleViewModel(application: Application) : AndroidViewModel(a
      * \____________________________________/\____________________________________/...
      *                interval 1                            interval 2             ...(repeat)
      * ```
+     * Обращу внимание, что после переустановки приложения запланированная работа продолжилась.
      */
     fun schedulePeriodicWork() {
         val uniqueWorkName = UNIQUE_PERIODICAL_WORK_NAME

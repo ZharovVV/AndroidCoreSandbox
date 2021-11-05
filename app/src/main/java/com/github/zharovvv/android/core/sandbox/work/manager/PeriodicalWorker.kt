@@ -3,6 +3,7 @@ package com.github.zharovvv.android.core.sandbox.work.manager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
@@ -15,6 +16,7 @@ class PeriodicalWorker(context: Context, workerParams: WorkerParameters) :
     }
 
     override fun doWork(): Result {
+        Log.e(LOG_WORK_TAG, "PeriodicalWorker#doWork")
         val notificationUtil = AndroidCoreSandboxApplication.notificationUtil
         val startActivityPendingIntent = PendingIntent.getActivity(
             applicationContext,
@@ -25,9 +27,11 @@ class PeriodicalWorker(context: Context, workerParams: WorkerParameters) :
             0
         )
         notificationUtil.sendNotification(
+            notificationId = 2,
             title = "WorkManager",
             text = "periodical work",
-            contentIntent = startActivityPendingIntent
+            contentIntent = startActivityPendingIntent,
+            autoCancel = true
         )
         return Result.success()
     }

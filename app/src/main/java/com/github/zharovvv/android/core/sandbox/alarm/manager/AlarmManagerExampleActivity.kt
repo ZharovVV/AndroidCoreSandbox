@@ -66,6 +66,9 @@ class AlarmManagerExampleActivity : LogLifecycleAppCompatActivity() {
      *
      * Таким способом можно запускать BroadcastReceiver и Service (через PendingIntent).
      * Для запуска activity есть свои нюансы (E/ActivityTaskManager: Abort background activity starts from 10358).
+     *
+     * В отличие от WorkManager-а, при переустановке приложения, запланированная работа не продолжилась
+     * (скорее всего из-за удаления PendingIntent).
      */
     private fun scheduleAlarm(operation: PendingIntent, alarmManager: AlarmManager) {
 //        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 4000L, operation)
