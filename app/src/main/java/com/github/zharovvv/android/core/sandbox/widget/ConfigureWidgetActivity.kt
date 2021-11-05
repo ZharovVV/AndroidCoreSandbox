@@ -2,6 +2,7 @@ package com.github.zharovvv.android.core.sandbox.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -24,8 +25,10 @@ class ConfigureWidgetActivity : AppCompatActivity() {
         const val WIDGET_COLOR = "widget_color_"
     }
 
-    var widgetID = AppWidgetManager.INVALID_APPWIDGET_ID
-    var resultValue: Intent? = null
+    private var widgetID = AppWidgetManager.INVALID_APPWIDGET_ID
+    private lateinit var resultValue: Intent
+    private lateinit var editText: EditText
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +50,7 @@ class ConfigureWidgetActivity : AppCompatActivity() {
 
         // формируем intent ответа
         resultValue = Intent()
-        resultValue!!.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID)
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID)
 
         // отрицательный ответ
         // Хелп рекомендует при создании Activity сразу формировать отрицательный результат.
@@ -55,6 +58,10 @@ class ConfigureWidgetActivity : AppCompatActivity() {
         // что виджет создавать не надо.
         setResult(RESULT_CANCELED, resultValue)
         setContentView(R.layout.activity_configure_widget)
+        sharedPreferences = getSharedPreferences(WIDGET_PREF, MODE_PRIVATE)
+        editText = findViewById(R.id.etText)
+        val text: String? = sharedPreferences.getString(WIDGET_TEXT + widgetID, null)
+        text?.let { editText.setText(it) }
     }
 
 
@@ -67,18 +74,16 @@ class ConfigureWidgetActivity : AppCompatActivity() {
             R.id.radioGreen -> color = Color.parseColor("#6600ff00")
             R.id.radioBlue -> color = Color.parseColor("#660000ff")
         }
-        val etText = findViewById<EditText>(R.id.etText)
 
         // Записываем значения с экрана в Preferences
-        val sp = getSharedPreferences(WIDGET_PREF, MODE_PRIVATE)
-        sp.edit()
+        sharedPreferences.edit()
             .apply {
-                putString(WIDGET_TEXT + widgetID, etText.text.toString())
+                putString(WIDGET_TEXT + widgetID, editText.text.toString())
                 putInt(WIDGET_COLOR + widgetID, color)
             }.apply()
         //фикс бага с вызовом AppWidgetProvider#onUpdate перед вызовом ConfigureWidgetActivity:
         val appWidgetManager = AppWidgetManager.getInstance(this)
-        ExampleAppWidgetProvider.updateWidget(widgetID, this, appWidgetManager, sp)
+        ExampleAppWidgetProvider.updateWidget(widgetID, this, appWidgetManager, sharedPreferences)
         // положительный ответ
         setResult(RESULT_OK, resultValue)
         Log.i(LOG_TAG, "finish config $widgetID")

@@ -1,9 +1,11 @@
 package com.github.zharovvv.android.core.sandbox.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
 import android.widget.RemoteViews
@@ -57,8 +59,21 @@ class ExampleAppWidgetProvider : AppWidgetProvider() {
             val widgetColor: Int = sp.getInt(ConfigureWidgetActivity.WIDGET_COLOR + widgetId, 0)
             // Настраиваем внешний вид виджета
             val widgetView: RemoteViews = RemoteViews(context?.packageName, R.layout.widget)
-            widgetView.setTextViewText(R.id.tv, widgetText)
-            widgetColor.let { widgetView.setInt(R.id.tv, "setBackgroundColor", it) }
+            widgetView.setTextViewText(R.id.widget_text_view, widgetText)
+            widgetColor.let { widgetView.setInt(R.id.widget_text_view, "setBackgroundColor", it) }
+            val startConfigureActivityPendingIntent = PendingIntent.getActivity(
+                context,
+                widgetId,
+                Intent(context, ConfigureWidgetActivity::class.java).apply {
+                    action = AppWidgetManager.ACTION_APPWIDGET_CONFIGURE
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+                },
+                0 //Missing PendingIntent mutability flag
+            )
+            widgetView.setOnClickPendingIntent(
+                R.id.widget_button,
+                startConfigureActivityPendingIntent
+            )
             // Обновляем виджет
             appWidgetManager?.updateAppWidget(widgetId, widgetView)
         }
