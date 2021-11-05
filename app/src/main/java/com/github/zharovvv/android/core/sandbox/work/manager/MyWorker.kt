@@ -1,13 +1,14 @@
 package com.github.zharovvv.android.core.sandbox.work.manager
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.work.Data
 import androidx.work.WorkInfo
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.github.zharovvv.android.core.sandbox.notification.makeNotification
-import com.github.zharovvv.android.core.sandbox.notification.makeNotificationAutoDismiss
+import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
 
 /**
  * # WorkManager
@@ -29,9 +30,22 @@ class MyWorker(context: Context, workerParams: WorkerParameters) : Worker(contex
      * Затем статус задачи меняется в зависимости от того, что вернул метод [doWork].
      */
     override fun doWork(): Result {
+        val startActivityPendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            0,
+            Intent(applicationContext, WorkManagerExampleActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            },
+            0
+        )
         //non UI Thread
+        val notificationUtil = AndroidCoreSandboxApplication.notificationUtil
         Log.i(LOG_WORK_TAG, "MyWorker#doWork/start")
-        makeNotification("work started...", applicationContext)
+        notificationUtil.sendNotification(
+            title = "WorkManager",
+            text = "work started...",
+            contentIntent = startActivityPendingIntent
+        )
         for (i in 1..30) {
             Thread.sleep(1000L)
             setProgressAsync(
@@ -41,7 +55,12 @@ class MyWorker(context: Context, workerParams: WorkerParameters) : Worker(contex
             )
         }
         Log.i(LOG_WORK_TAG, "MyWorker#doWork/finish")
-        makeNotificationAutoDismiss("The work is done!", applicationContext)
+        notificationUtil.sendNotification(
+            title = "WorkManager",
+            text = "The work is done!",
+            contentIntent = startActivityPendingIntent,
+            autoCancel = true
+        )
         return Result.success(
             Data.Builder()
                 .putString(WORK_OUTPUT_DATA_STRING, "Work is Done!")
