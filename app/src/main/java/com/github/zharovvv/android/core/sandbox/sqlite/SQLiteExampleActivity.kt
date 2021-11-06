@@ -54,7 +54,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
     }
 
     override fun onDestroy() {
-        AndroidCoreSandboxApplication.personDatabase.close()
+//        AndroidCoreSandboxApplication.personDatabase.close()
         super.onDestroy()
     }
 

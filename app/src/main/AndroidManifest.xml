@@ -122,6 +122,17 @@
         <activity android:name=".alarm.manager.AlarmManagerExampleActivity" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
+        <!--
+        Тег authorities служит для описания базового пути URI,
+        по которому ContentResolver может найти базу данных для взаимодействия.
+        Данный тег должен быть уникальным, поэтому рекомендуется использовать имя вашего пакета,
+        чтобы не произошло путаницы с другими приложениями.
+        -->
+        <provider
+            android:name=".content.provider.CustomContentProvider"
+            android:authorities="com.github.zharovvv.android.core.sandbox.content.provider.custom">
+
+        </provider>
     </application>
 
 </manifest>
