@@ -19,6 +19,8 @@
     около 160 футов (50 метров), а иногда с такой же точностью,
     как в пределах 10 футов (нескольких метров) или лучше.-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--Для использования CallLog-->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
         android:name=".AndroidCoreSandboxApplication"
@@ -120,6 +122,7 @@
         </activity>
         <activity android:name=".pending.intent.PendingIntentExampleActivity" />
         <activity android:name=".alarm.manager.AlarmManagerExampleActivity" />
+        <activity android:name=".content.provider.ContentProviderExampleActivity" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
         <!--

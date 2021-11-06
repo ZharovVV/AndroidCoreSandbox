@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.github.zharovvv.android.core.sandbox.notification.NotificationUtil
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
-import com.github.zharovvv.android.core.sandbox.sqlite.PersonDbOpenHelper
+import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
 
 class AndroidCoreSandboxApplication : Application() {
 
@@ -20,10 +20,14 @@ class AndroidCoreSandboxApplication : Application() {
         private const val LOG_TAG = "ApplicationLifecycle"
     }
 
+    /**
+     * Вызывается при запуске приложения до создания каких-либо действий,
+     * служб или объектов-получателей (за исключением поставщиков контента).
+     */
     override fun onCreate() {
         super.onCreate()
         Log.i(LOG_TAG, "AndroidCoreSandboxApplication#onCreate")
-        personDatabase = PersonDatabase(PersonDbOpenHelper(this, 1))
+        personDatabase = PersonDatabaseProvider.getPersonDatabase(this)
         _notificationUtil = NotificationUtil(this).apply { createNotificationChannel() }
     }
 }

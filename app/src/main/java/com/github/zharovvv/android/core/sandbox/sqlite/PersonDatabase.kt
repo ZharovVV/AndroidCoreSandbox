@@ -10,10 +10,11 @@ class PersonDatabase(private val personDbOpenHelper: PersonDbOpenHelper) : Close
         const val DATABASE_NAME = "PersonDatabase"
     }
 
-    val sqLiteDatabaseProviderDelegate =
+    private val sqLiteDatabaseProviderDelegate =
         SQLiteDBProviderDelegate { personDbOpenHelper.writableDatabase }
 
     val personDao = PersonDao(sqLiteDatabaseProviderDelegate)
+    val sqliteDatabase: SQLiteDatabase by sqLiteDatabaseProviderDelegate
 
     /**
      * Нет ничего плохого в том, чтобы оставить соединение с базой данных открытым.

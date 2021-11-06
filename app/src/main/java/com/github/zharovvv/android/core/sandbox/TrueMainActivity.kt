@@ -12,6 +12,7 @@ import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivit
 import com.github.zharovvv.android.core.sandbox.alarm.manager.AlarmManagerExampleActivity
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
+import com.github.zharovvv.android.core.sandbox.content.provider.ContentProviderExampleActivity
 import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
 import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
@@ -185,7 +186,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<NavigationExampleActivity>(getString(R.string.start_activity_button_17)),
             launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18)),
             launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19)),
-            launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager")
+            launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager"),
+            launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider")
         )
     }
 }

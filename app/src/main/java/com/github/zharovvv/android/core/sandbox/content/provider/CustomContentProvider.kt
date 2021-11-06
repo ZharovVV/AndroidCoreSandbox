@@ -8,8 +8,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import android.provider.*
 import android.util.Log
-import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDao
+import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
+import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
 
 /**
  *
@@ -96,7 +97,7 @@ class CustomContentProvider : ContentProvider() {
     companion object {
         private const val LOG_TAG = "ContentProvider"
 
-        private const val AUTHORITY =
+        const val AUTHORITY =
             "com.github.zharovvv.android.core.sandbox.content.provider.custom"
         private const val PERSON_CODE = 100
         private const val PERSON_ID_CODE = 101
@@ -108,11 +109,16 @@ class CustomContentProvider : ContentProvider() {
             }
     }
 
-    private val personDatabase = AndroidCoreSandboxApplication.personDatabase
-    private val sqliteDatabase: SQLiteDatabase by personDatabase.sqLiteDatabaseProviderDelegate
+    private lateinit var personDatabase: PersonDatabase
+    private lateinit var sqliteDatabase: SQLiteDatabase
 
+    /**
+     * ContentProvider создается раньше Application.
+     */
     override fun onCreate(): Boolean {
         Log.i(LOG_TAG, "CustomContentProvider#onCreate")
+        personDatabase = PersonDatabaseProvider.getPersonDatabase(context!!)
+        sqliteDatabase = personDatabase.sqliteDatabase
         return true
     }
 
@@ -133,7 +139,6 @@ class CustomContentProvider : ContentProvider() {
         Log.i(LOG_TAG, "CustomContentProvider#query")
         when (uriMatcher.match(uri)) {
             PERSON_CODE -> {
-
             }
             PERSON_ID_CODE -> {
             }
