@@ -29,6 +29,7 @@ import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.livedata.ViewModelLiveDataExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
 import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleActivity
+import com.github.zharovvv.rxjavasandbox.MainActivity
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -75,6 +76,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
      * Отметим несколько неочевидных моментов, которые необходимо учитывать:
      * * Регистрировать контракты можно в любой момент жизненного цикла активности или фрагмента,
      * но вот запустить его до перехода в состояние CREATED нельзя.
+     * (Если быть точнее, то LifecycleOwners must call register before they are STARTED.)
      * Общепринятый подход — регистрация контрактов как полей класса.
      *
      * * Не рекомендуется вызывать registerForActivityResult() внутри операторов if и when.
@@ -187,7 +189,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<CustomViewExampleActivity>(getString(R.string.start_activity_button_18)),
             launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19)),
             launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager"),
-            launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider")
+            launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider"),
+            launcherFor<MainActivity>(launcherTitle = "RxJava")
         )
     }
 }

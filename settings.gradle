@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':rxJavaSandboxModule'
 rootProject.name = "Android Core Sandbox"
