@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionManager xmlns:android="http://schemas.android.com/apk/res/android">
+    <transition
+        android:fromScene="@layout/scene_first"
+        android:toScene="@layout/scene_second"
+        android:transition="@transition/transition_to_right" />
+
+    <transition
+        android:fromScene="@layout/scene_second"
+        android:toScene="@layout/scene_first"
+        android:transition="@transition/transition_to_left" />
+
+</transitionManager>

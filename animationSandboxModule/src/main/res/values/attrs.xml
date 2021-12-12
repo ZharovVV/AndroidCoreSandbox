@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomView">
+        <attr name="piv_out_border_color" format="color" />
+        <attr name="piv_inside_color" format="color" />
+        <attr name="piv_progress" format="float" />
+        <attr name="piv_border_thickness" format="dimension" />
+    </declare-styleable>
+</resources>

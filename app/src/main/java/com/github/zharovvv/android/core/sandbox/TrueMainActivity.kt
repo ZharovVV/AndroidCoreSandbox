@@ -190,7 +190,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19)),
             launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager"),
             launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider"),
-            launcherFor<MainActivity>(launcherTitle = "RxJava")
+            launcherFor<MainActivity>(launcherTitle = "RxJava"),
+            launcherFor<com.github.zharovvv.animationsandbox.MainActivity>(launcherTitle = "Android Animation")
         )
     }
 }
