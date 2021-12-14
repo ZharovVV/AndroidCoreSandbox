@@ -1,9 +1,18 @@
 package com.github.zharovvv.android.core.sandbox.di
 
 import com.github.zharovvv.android.core.sandbox.di.example.*
+import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExample
+import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExampleImpl
+import com.github.zharovvv.android.core.sandbox.di.example.providers.AndroidMainThreadSchedulerProvider
+import com.github.zharovvv.android.core.sandbox.di.example.providers.IoSchedulerProvider
+import com.github.zharovvv.android.core.sandbox.di.example.providers.SchedulerProvider
+import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepository
+import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepositoryImpl
+import dagger.Binds
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 /**
  * # IoC
@@ -79,9 +88,76 @@ interface AppComponent {
 /**
  * Module - Annotates a class that contributes to the object graph.
  * В модулях можно провайдить объекты.
+ * includes - позволяет вложить в модуль другие модули.
+ * Крайне желательно разбивать модули логически, чтобы они не были большими.
  */
+@Module(
+    includes = [
+        SimpleDaggerExampleModule::class,
+        NetworkModule::class,
+        SchedulersModule::class,
+        RepositoryModule::class
+    ]
+)
+object AppModule
+
+@Module(includes = [NetworkBindModule::class])
+class NetworkModule {
+
+    /**
+     * Рекомендация:
+     * Использовать @Inject на конструкторах по максимуму, а провайдить объекты в модуле только
+     * в случае необходимости.
+     */
+//    @Provides //< -- Удаляем за ненадобностью, так как помечаем конструктор @Inject
+//    fun provideNetworkService(): NetworkServiceExample {
+//        return NetworkServiceExampleImpl()
+//    }
+
+}
+
 @Module
-object AppModule {
+interface NetworkBindModule {
+
+    @Binds
+    fun bindNetworkService(networkServiceExampleImpl: NetworkServiceExampleImpl): NetworkServiceExample
+}
+
+@Module(includes = [SchedulersBindModule::class])
+class SchedulersModule
+
+@Module
+interface SchedulersBindModule {
+
+    /**
+     * Binds Позволяет делать привязывание одного типа к другому.
+     * В данном случае мы привязываем тип IoSchedulerProvider к SchedulerProvider.
+     */
+    @Binds
+    @Named("io")
+    fun bindIoSchedulerProvider(ioSchedulerProvider: IoSchedulerProvider): SchedulerProvider
+
+    @Binds
+    @Named("mainThread")
+    fun bindAndroidMainThreadSchedulerProvider(
+        androidMainThreadSchedulerProvider: AndroidMainThreadSchedulerProvider
+    ): SchedulerProvider
+}
+
+@Module(includes = [RepositoryBindModule::class])
+class RepositoryModule
+
+@Module
+interface RepositoryBindModule {
+
+    @Binds
+    fun bindExampleRepository(
+        exampleRepositoryImpl: ExampleRepositoryImpl
+    ): ExampleRepository
+}
+
+@Module
+class SimpleDaggerExampleModule {
 
     @Provides
     fun provideProcessor(): Processor {
