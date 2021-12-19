@@ -17,8 +17,20 @@ class DaggerExampleActivity : AppCompatActivity() {
     //@Inject
     //internal lateinit var computer: Computer
 
+    /**
+     *  Отложенная инициализация при помощи Lazy и Provider
+     * Dagger does not support injecting Lazy<T>, Producer<T>, or Produced<T> when T
+     * is an @AssistedFactory-annotated type such as com.github.zharovvv.android.core.sandbox.di.example.DaggerExampleViewModel.Factory.DiFactory
+     * Lazy из Dagger. Отложенно инициализлурует зависимость.
+     * (То есть объект создастся не при вызове appComponent.inject(this),
+     * а при вызове Lazy<Object>.get()).
+     * Особенность Lazy в том, что он резолвит компоненты и сохраняет их внутри.
+     * Также есть Provider, который позволяет каждый раз при обращении к нему получать зависимость из графа.
+     * Полезно например если мы хотим получать новый инстанс каждый раз (если зависимость не Singleton).
+     */
     @Inject
     internal lateinit var viewModelDiFactory: DaggerExampleViewModel.Factory.DiFactory
+
     private lateinit var lateInitId: String
     private val daggerExampleViewModel: DaggerExampleViewModel by viewModels {
         viewModelDiFactory.create(initId = lateInitId)

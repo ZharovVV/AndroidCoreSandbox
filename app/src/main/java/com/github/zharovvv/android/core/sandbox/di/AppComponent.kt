@@ -12,7 +12,7 @@ import dagger.Binds
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
+import javax.inject.Qualifier
 
 /**
  * # IoC
@@ -137,11 +137,13 @@ interface SchedulersBindModule {
      * В данном случае мы привязываем тип IoSchedulerProvider к SchedulerProvider.
      */
     @Binds
-    @Named("io")
+    @Io
+//    @Named("io")
     fun bindIoSchedulerProvider(ioSchedulerProvider: IoSchedulerProvider): SchedulerProvider
 
     @Binds
-    @Named("mainThread")
+    @MainThread
+//    @Named("mainThread")
     fun bindAndroidMainThreadSchedulerProvider(
         androidMainThreadSchedulerProvider: AndroidMainThreadSchedulerProvider
     ): SchedulerProvider
@@ -190,3 +192,11 @@ class SimpleDaggerExampleModule {
         )
     }
 }
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Io
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class MainThread

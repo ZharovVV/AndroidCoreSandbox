@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.github.zharovvv.android.core.sandbox.di.MainThread
 import com.github.zharovvv.android.core.sandbox.di.example.providers.SchedulerProvider
 import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepository
 import dagger.assisted.Assisted
@@ -11,7 +12,6 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
-import javax.inject.Named
 
 class DaggerExampleViewModel(
     private val initId: String,
@@ -46,7 +46,8 @@ class DaggerExampleViewModel(
     class Factory @AssistedInject constructor(
         @Assisted("initId") private val initId: String,
         private val exampleRepository: ExampleRepository,
-        @param:Named("mainThread")
+//        @param:Named("mainThread")
+        @MainThread
         private val schedulerProvider: SchedulerProvider
     ) : ViewModelProvider.Factory {
 
