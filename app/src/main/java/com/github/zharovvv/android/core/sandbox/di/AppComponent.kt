@@ -126,6 +126,9 @@ interface NetworkBindModule {
 @Module(includes = [SchedulersBindModule::class])
 class SchedulersModule
 
+/**
+ * Данный пример искуственный, просто хотим показать работу аннотации @Named.
+ */
 @Module
 interface SchedulersBindModule {
 

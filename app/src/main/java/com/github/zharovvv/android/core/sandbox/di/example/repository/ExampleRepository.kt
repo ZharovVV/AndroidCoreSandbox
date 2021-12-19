@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 interface ExampleRepository {
-    fun getData(): Observable<String>
+    fun getData(initId: String): Observable<String>
 }
 
 class ExampleRepositoryImpl
@@ -17,9 +17,9 @@ class ExampleRepositoryImpl
     private val schedulerProvider: SchedulerProvider
 ) : ExampleRepository {
 
-    override fun getData(): Observable<String> {
+    override fun getData(initId: String): Observable<String> {
         return Observable.fromCallable {
-            networkServiceExample.requestData()
+            networkServiceExample.requestData(initId = initId)
         }.subscribeOn(schedulerProvider.provide())
     }
 }
