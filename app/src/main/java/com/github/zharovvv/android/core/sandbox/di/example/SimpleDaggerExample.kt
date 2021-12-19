@@ -11,3 +11,6 @@ data class Computer(
     val motherBoard: MotherBoard,
     val ram: RAM
 )
+
+data class DependencyExample(val data: String)
+data class FeatureExample(val data: String)

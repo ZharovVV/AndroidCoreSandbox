@@ -1,18 +1,18 @@
 package com.github.zharovvv.android.core.sandbox.di
 
+import android.content.Context
 import com.github.zharovvv.android.core.sandbox.di.example.*
 import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExample
 import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExampleImpl
 import com.github.zharovvv.android.core.sandbox.di.example.providers.AndroidMainThreadSchedulerProvider
 import com.github.zharovvv.android.core.sandbox.di.example.providers.IoSchedulerProvider
+import com.github.zharovvv.android.core.sandbox.di.example.providers.ResourceManager
 import com.github.zharovvv.android.core.sandbox.di.example.providers.SchedulerProvider
 import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepository
 import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepositoryImpl
-import dagger.Binds
-import dagger.Component
-import dagger.Module
-import dagger.Provides
+import dagger.*
 import javax.inject.Qualifier
+import javax.inject.Scope
 
 /**
  * # IoC
@@ -71,8 +71,20 @@ import javax.inject.Qualifier
  * [Component] - граф зависимостей (applicationContext в аналогии со Spring).
  * Компонент может содержать различные [Module].
  */
-@Component(modules = [AppModule::class])    //подключаем модуль AppModule, из которого данный граф
-//зависимостей будет тянуть нужные ему зависимости.
+@Component(
+    modules = [AppModule::class, ResourceModule::class], //подключаем модуль AppModule, из которого данный граф
+    //зависимостей будет тянуть нужные ему зависимости.
+    dependencies = [AppDependencies::class]
+)
+/**
+ * Scope - позволяет определять как долго будут существовать зависимости и привязывать их к
+ * жизни компонентов. Любой компонент может (и даже должен) быть помечен каким-то скоупом.
+ * Любая зависимость в рамках компонента также может быть помечена этим скоупом, что означает
+ * что эта зависимость будет создаваться в рамках этого компонента один раз и навсегда.
+ * Стандартный скоуп - это Singleton.
+ */
+//@Singleton
+@AppScope
 interface AppComponent {
 
     fun computer(): Computer    //1 способ
@@ -82,7 +94,35 @@ interface AppComponent {
      * Для метода внедрения зависимостей важна лишь сигнатура - аргументом метода должен быть
      * класс (интерфейс), в который необходимо доставить зависимости.
      */
-    fun inject(daggerExampleActivity: DaggerExampleActivity)    //2 способ
+//    fun inject(daggerExampleActivity: DaggerExampleActivity)    //2 способ //закоментили так как добавили метод в FeatureComponent.
+
+    fun featureComponent(): FeatureComponent.Builder
+
+    @Component.Builder
+    interface Builder {
+
+        /**
+         * Аннотация, говорит, что передаваемый в методе билдера параметр - это зависимость,
+         * которая должна быть добавлена в граф зависимостей (т.е. в Component).
+         * Если необходимо создать несколько методов билдера, принимающих одинаковый тип параметра,
+         * то нужно использовать аннотации-квалификаторы (кастомные, либо стандартные).
+         * ```
+         * @BindsInstance
+         * fun withContext(@AppContext context: Context): Builder
+         * ```
+         */
+        @BindsInstance
+        fun withContext(context: Context): Builder
+
+        fun withAppDependencies(appDependencies: AppDependencies): Builder
+
+        /**
+         * Требования к методу интерфейса, помеченного аннотацией Builder:
+         * * У метода  не должно быть никаких параметров
+         * * Он должен возвращать тип компонента
+         */
+        fun build(): AppComponent
+    }
 }
 
 /**
@@ -97,7 +137,8 @@ interface AppComponent {
         NetworkModule::class,
         SchedulersModule::class,
         RepositoryModule::class
-    ]
+    ],
+    subcomponents = [FeatureComponent::class]
 )
 object AppModule
 
@@ -193,6 +234,29 @@ class SimpleDaggerExampleModule {
     }
 }
 
+@Module
+class ResourceModule {
+
+    @Provides
+//    @Singleton
+    @AppScope
+    fun provideResourceManager(context: Context): ResourceManager {
+        return ResourceManager(context)
+    }
+}
+
+/**
+ * Из данной зависимости компонент может забирать необходимые для своей работы артефакты.
+ * Все доступные зависимости определяются по геттерам.
+ */
+interface AppDependencies {
+
+    val dependencyExample: DependencyExample
+}
+
+/**
+ * Кастомные аннотации-квалификаторы
+ */
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Io
@@ -200,3 +264,21 @@ annotation class Io
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class MainThread
+
+/**
+ * Кастомная scope-аннотация.
+ * Важные моменты:
+ * * один и тот же Scope __можно__ использовать для разных Component
+ * * один и тот же Scope __нельзя__ использовать для Component и Subcomponent
+ * # Разница между Lazy и Scope
+ * Инжект при помощи Lazy - это отложенное получение зависимости из графа, которая затем сохраняется
+ * локально. Как только будет уничтожено локальное место хранения у нас снова будет запрашиваться
+ * зависимость из графа. Scope же сохраняет зависимость на уровне компонента. И пока жив компонент,
+ * любой, ткто запросит зависимость, получит одну и ту же зависимость.
+ *
+ * Если мы не хотим все время держать в памяти зависимость (как будет происходить со Scope),
+ * но при этом мы можем часто запрашивать эту зависимость, то в этом случае лучше использовать аннотацию
+ * [Reusable]. В этом случае зависимость будет какое-то время жить в компоненте.
+ */
+@Scope
+annotation class AppScope

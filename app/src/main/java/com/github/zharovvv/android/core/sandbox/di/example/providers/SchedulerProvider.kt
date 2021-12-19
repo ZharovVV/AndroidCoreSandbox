@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox.di.example.providers
 
+import com.github.zharovvv.android.core.sandbox.di.AppScope
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,6 +10,8 @@ interface SchedulerProvider {
     fun provide(): Scheduler
 }
 
+//@Singleton
+@AppScope
 class IoSchedulerProvider
 @Inject constructor() : SchedulerProvider {
     override fun provide(): Scheduler {
@@ -16,6 +19,8 @@ class IoSchedulerProvider
     }
 }
 
+//@Singleton
+@AppScope
 class AndroidMainThreadSchedulerProvider
 @Inject constructor() : SchedulerProvider {
     override fun provide(): Scheduler {

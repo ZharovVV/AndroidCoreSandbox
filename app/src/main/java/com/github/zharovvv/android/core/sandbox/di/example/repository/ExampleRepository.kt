@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox.di.example.repository
 
+import com.github.zharovvv.android.core.sandbox.di.AppScope
 import com.github.zharovvv.android.core.sandbox.di.Io
 import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExample
 import com.github.zharovvv.android.core.sandbox.di.example.providers.SchedulerProvider
@@ -10,6 +11,8 @@ interface ExampleRepository {
     fun getData(initId: String): Observable<String>
 }
 
+//@Singleton
+@AppScope
 class ExampleRepositoryImpl
 @Inject constructor(
     private val networkServiceExample: NetworkServiceExample,

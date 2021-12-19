@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.github.zharovvv.android.core.sandbox.appComponent
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityDaggerExampleBinding
+import com.github.zharovvv.android.core.sandbox.di.FeatureComponent
 import javax.inject.Inject
 
 class DaggerExampleActivity : AppCompatActivity() {
@@ -31,6 +32,9 @@ class DaggerExampleActivity : AppCompatActivity() {
     @Inject
     internal lateinit var viewModelDiFactory: DaggerExampleViewModel.Factory.DiFactory
 
+    private var _featureComponent: FeatureComponent? = null
+    private val featureComponent: FeatureComponent get() = _featureComponent!!
+
     private lateinit var lateInitId: String
     private val daggerExampleViewModel: DaggerExampleViewModel by viewModels {
         viewModelDiFactory.create(initId = lateInitId)
@@ -43,9 +47,11 @@ class DaggerExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDaggerExampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        _featureComponent = appComponent.featureComponent().build()
+        featureComponent.inject(this)
         //Если бы не метод displayComputer, которому необходим доступ к view activity,
         //то мы могли бы заинжектить все зависимости в onAttach коллбеке.
-        appComponent.inject(this)
+//        appComponent.inject(this) //закоментили чтобы вызвать featureComponent.inject(this)
 //        val computer: Computer = appComponent.computer() //первый способ
         lateInitId = "LateInitId: 100500"
         lifecycle.addObserver(object : LifecycleObserver {
@@ -67,10 +73,23 @@ class DaggerExampleActivity : AppCompatActivity() {
      * аннотацией @Inject. При этом все параметры этих методов будут резолвиться из графа зависимостей
      * и доставляться в метод.
      */
+    @SuppressLint("SetTextI18n")
     @Inject
-    internal fun displayComputer(computer: Computer) {
+    internal fun displayComputerAndFeature(
+        computer: Computer,
+        dependencyExample: DependencyExample,
+        featureExample: FeatureExample
+    ) {
         with(binding) {
-            daggerExampleTextView.text = computer.toString()
+            daggerExampleTextView.text =
+                "computer: $computer\n" +
+                        "dependencyExample: ${dependencyExample.data}\n" +
+                        "featureExample: ${featureExample.data}"
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _featureComponent = null
     }
 }

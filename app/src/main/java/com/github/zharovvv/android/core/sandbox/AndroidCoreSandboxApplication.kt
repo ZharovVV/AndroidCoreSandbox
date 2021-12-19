@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.github.zharovvv.android.core.sandbox.di.AppComponent
+import com.github.zharovvv.android.core.sandbox.di.AppDependencies
 import com.github.zharovvv.android.core.sandbox.di.DaggerAppComponent
+import com.github.zharovvv.android.core.sandbox.di.example.DependencyExample
 import com.github.zharovvv.android.core.sandbox.notification.NotificationUtil
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
@@ -32,7 +34,18 @@ class AndroidCoreSandboxApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i(LOG_TAG, "AndroidCoreSandboxApplication#onCreate")
-        appComponent = DaggerAppComponent.create()
+//        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent.builder()
+            .withContext(context = this)
+            .withAppDependencies(object : AppDependencies {
+                private val source = DependencyExample(
+                    data = "dependencyExampleData"
+                )
+                override val dependencyExample: DependencyExample
+                    get() = source
+
+            })
+            .build()
         personDatabase = PersonDatabaseProvider.getPersonDatabase(this)
         _notificationUtil = NotificationUtil(this).apply { createNotificationChannel() }
     }
