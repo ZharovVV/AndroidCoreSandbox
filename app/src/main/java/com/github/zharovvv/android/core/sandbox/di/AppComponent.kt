@@ -138,7 +138,7 @@ interface AppComponent {
         SchedulersModule::class,
         RepositoryModule::class
     ],
-    subcomponents = [FeatureComponent::class]
+    subcomponents = [FeatureComponent::class]   //Включаем сабкомпонент в модуль.
 )
 object AppModule
 
@@ -247,7 +247,7 @@ class ResourceModule {
 
 /**
  * Из данной зависимости компонент может забирать необходимые для своей работы артефакты.
- * Все доступные зависимости определяются по геттерам.
+ * Все доступные зависимости определяются по публичному интерфейсу (т.е по всем методам в исходящей позиции).
  */
 interface AppDependencies {
 
