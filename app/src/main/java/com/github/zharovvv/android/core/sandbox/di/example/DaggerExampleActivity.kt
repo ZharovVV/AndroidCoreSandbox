@@ -10,6 +10,9 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.github.zharovvv.android.core.sandbox.appComponent
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityDaggerExampleBinding
 import com.github.zharovvv.android.core.sandbox.di.FeatureComponent
+import com.github.zharovvv.android.core.sandbox.di.FeatureScope
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.Analytics
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.AnalyticsTracker
 import javax.inject.Inject
 
 class DaggerExampleActivity : AppCompatActivity() {
@@ -31,6 +34,10 @@ class DaggerExampleActivity : AppCompatActivity() {
      */
     @Inject
     internal lateinit var viewModelDiFactory: DaggerExampleViewModel.Factory.DiFactory
+
+    @Inject
+    @FeatureScope
+    internal lateinit var analytics: Analytics
 
     private var _featureComponent: FeatureComponent? = null
     private val featureComponent: FeatureComponent get() = _featureComponent!!
@@ -65,6 +72,12 @@ class DaggerExampleActivity : AppCompatActivity() {
                 daggerExampleTextView.text = "Output: $it"
             }
         }
+        analytics.sendEvent(
+            event = AnalyticsTracker.Event(
+                name = "testEvent",
+                value = "TestValue"
+            )
+        )
     }
 
     //Третий способ: внедрение через метод

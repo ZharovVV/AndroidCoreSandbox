@@ -2,6 +2,10 @@ package com.github.zharovvv.android.core.sandbox.di
 
 import android.content.Context
 import com.github.zharovvv.android.core.sandbox.di.example.*
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.AnalyticsTracker
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.AppMetricaTracker
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.FacebookAnalyticsTracker
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.FirebaseAnalyticsTracker
 import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExample
 import com.github.zharovvv.android.core.sandbox.di.example.network.NetworkServiceExampleImpl
 import com.github.zharovvv.android.core.sandbox.di.example.providers.AndroidMainThreadSchedulerProvider
@@ -11,6 +15,7 @@ import com.github.zharovvv.android.core.sandbox.di.example.providers.SchedulerPr
 import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepository
 import com.github.zharovvv.android.core.sandbox.di.example.repository.ExampleRepositoryImpl
 import dagger.*
+import dagger.multibindings.IntoSet
 import javax.inject.Qualifier
 import javax.inject.Scope
 
@@ -140,7 +145,47 @@ interface AppComponent {
     ],
     subcomponents = [FeatureComponent::class]   //Включаем сабкомпонент в модуль.
 )
-object AppModule
+interface AppModule {
+
+//    /**
+//     * Данное решение негибкое, т.к. мы должны знать обо всех реализациях [AnalyticsTracker].
+//     * Более гибким решением для внедрения однотипных зависимостей является MultiBinding.
+//     */
+//    @Provides
+//    fun provideAnalytics(
+//        facebookAnalyticsTracker: FacebookAnalyticsTracker,
+//        firebaseAnalyticsTracker: FirebaseAnalyticsTracker,
+//        appMetricaTracker: AppMetricaTracker
+//    ): Analytics {
+//        return Analytics(
+//            listOf(
+//                facebookAnalyticsTracker,
+//                firebaseAnalyticsTracker,
+//                appMetricaTracker
+//            )
+//        )
+//    }
+
+    @Binds
+    @IntoSet    //Аннотация указывает, что данный элемент будет помещаться в специальный Set<AnalyticsTracker>
+    fun bindFbAnalyticsTracker(fbAnalyticsTracker: FacebookAnalyticsTracker): AnalyticsTracker
+
+    @Binds
+    @IntoSet    //Аннотация указывает, что данный элемент будет помещаться в специальный Set<AnalyticsTracker>
+    fun bindFirebaseAnalyticsTracker(firebaseAnalyticsTracker: FirebaseAnalyticsTracker): AnalyticsTracker
+
+    @Binds
+    @IntoSet    //Аннотация указывает, что данный элемент будет помещаться в специальный Set<AnalyticsTracker>
+    fun bindAppMetricaAnalyticsTracker(appMetricaTracker: AppMetricaTracker): AnalyticsTracker
+
+    //Также можно использовать аннотацию @ElementsIntoSet в методе-провайдере. Метод должен возвращать
+    //Set.
+    // Важной особенностью @IntoSet и @ElementsIntoSet является, то что их можно объявлять только над методами.
+    // Соответственно придется объявлять модули и там делать binding или провайдеры.
+    // Также можно создать свой Set, в который будут инжектится элементы. Для этого необходимо создать
+    // провайдер в модуле и пометить его аннотацией @Multibinds.
+
+}
 
 @Module(includes = [NetworkBindModule::class])
 class NetworkModule {

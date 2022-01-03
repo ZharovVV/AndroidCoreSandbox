@@ -2,9 +2,14 @@ package com.github.zharovvv.android.core.sandbox.di
 
 import com.github.zharovvv.android.core.sandbox.di.example.DaggerExampleActivity
 import com.github.zharovvv.android.core.sandbox.di.example.FeatureExample
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.Analytics
+import com.github.zharovvv.android.core.sandbox.di.example.analytics.AnalyticsTracker
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
+import dagger.multibindings.IntoSet
+import javax.inject.Inject
 import javax.inject.Scope
 
 /**
@@ -40,11 +45,30 @@ interface FeatureComponent {
 }
 
 @Module
-class FeatureModule {
+interface FeatureModule {
 
-    @FeatureScope
-    @Provides
-    fun provideFeatureExample(): FeatureExample {
-        return FeatureExample(data = "featureExampleData")
+    companion object {
+        @FeatureScope
+        @Provides
+        fun provideFeatureExample(): FeatureExample {
+            return FeatureExample(data = "featureExampleData")
+        }
     }
+
+    /**
+     * Важной особенностью Multibinding-а является то, что multibinding-элементы сабкомпонента
+     * будут дополняться элементами родительского компонента.
+     * (Данный пример сработал только тогда, когда я пометил [Analytics], инжектируемый в [DaggerExampleActivity],
+     * скоупом [FeatureScope].)
+     */
+    @Binds
+    @IntoSet
+    fun bindFromSubcomponentAnalyticsTracker(
+        fromSubcomponentAnalyticsTracker: FromSubcomponentAnalyticsTracker
+    ): AnalyticsTracker
+}
+
+class FromSubcomponentAnalyticsTracker
+@Inject constructor() : AnalyticsTracker {
+    override fun toString(): String = "FromSubcomponentAnalyticsTracker"
 }
