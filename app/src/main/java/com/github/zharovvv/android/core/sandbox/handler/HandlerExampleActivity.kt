@@ -34,7 +34,10 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
         override fun handleMessage(msg: Message) {
             //MainThread (UI Thread)
             super.handleMessage(msg)
-            Log.i("Handler_m", "handleMessage: message#what ${msg.what}")
+            Log.i(
+                "Handler_m", "handleMessage: message#what ${msg.what};"
+                        + " currentThread: ${Thread.currentThread()}"
+            )
         }
     }
 
@@ -81,6 +84,8 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
         //this.runOnUiThread(Runnable {  }) //Под капотом вызывается handler в Activity.
     }
 
+    private lateinit var myLooperThread: MyLooperThread
+
     /**
      * # Handler
      * [Handler] – это класс, который используется для работы с очередью сообщений,
@@ -106,6 +111,8 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
      * но для шедулинга объектов Message, которые позволяют передать произвольный объект.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        myLooperThread = MyLooperThread()
+        myLooperThread.start()
         super.onCreate(savedInstanceState)
         textView = findViewById(R.id.activity_handler_example_text_view)
         progressBar = findViewById(R.id.activity_handler_example_progress_bar)
@@ -120,15 +127,49 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
             }
             animView.visibility = VISIBLE
             rotateValueAnimator.start()
+            // Способ 1
+            //В данном примере все сообщения, передаваемые через хендлер,
+            // будут выполняться в MainThread-e.
             potentiallyLeakingHandler.postDelayed({
                 animView.visibility = GONE
                 rotateValueAnimator.end()
             }, 3000)
             foregroundThread.start()
         }
+        //В примерах выше messages обрабатываются в MainThread-е.
 
+        // Способ 2
+        //Пример создания своего Looper-а, в потоке которого будут обрабатываться сообщения.
+        //стартуем свой поток, в котором подготавливается Looper и связанный
+        //с ним Handler.
 
+        val myLooperHandler = myLooperThread.handler
+        //UI Thread
+        myLooperHandler?.sendEmptyMessage(100500)
+        //Message будет обработан в MyLooperThread-e.
     }
+
+    class MyLooperThread : Thread("MyLooperThread") {
+
+        private var _handler: Handler? = null
+        val handler: Handler? get() = _handler
+
+        override fun run() {
+            //MyLooperThread
+            Looper.prepare()
+            _handler = object : Handler(Looper.myLooper()!!) {
+                override fun handleMessage(msg: Message) {
+                    //MyLooperThread
+                    Log.i(
+                        "Handler_m", "handleMessage: message#what ${msg.what};" +
+                                " currentThread: ${currentThread()}"
+                    )
+                }
+            }
+            Looper.loop()
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -136,7 +177,8 @@ class HandlerExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_h
         foregroundThread.interrupt()
 
         //если token = null, этот метод будет удалить все неотправленные сообщения,
-        //отправленные текущим обработчиком из очереди сообщений
+        //отправленные текущим обработчиком, из очереди сообщений
         potentiallyLeakingHandler.removeCallbacksAndMessages(null)
+        myLooperThread.handler?.looper?.quit() // or quitSafety
     }
 }
