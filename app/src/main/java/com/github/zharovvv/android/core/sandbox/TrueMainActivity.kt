@@ -29,6 +29,7 @@ import com.github.zharovvv.android.core.sandbox.service.ServiceExampleActivity
 import com.github.zharovvv.android.core.sandbox.sqlite.SQLiteExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.livedata.ViewModelLiveDataExampleActivity
 import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
+import com.github.zharovvv.android.core.sandbox.window.WindowExampleActivity
 import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleActivity
 import com.github.zharovvv.rxjavasandbox.MainActivity
 
@@ -193,7 +194,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider"),
             launcherFor<MainActivity>(launcherTitle = "RxJava"),
             launcherFor<com.github.zharovvv.animationsandbox.MainActivity>(launcherTitle = "Android Animation"),
-            launcherFor<DaggerExampleActivity>(launcherTitle = "Dagger 2")
+            launcherFor<DaggerExampleActivity>(launcherTitle = "Dagger 2"),
+            launcherFor<WindowExampleActivity>(launcherTitle = "Window, Surface"),
         )
     }
 }

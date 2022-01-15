@@ -126,6 +126,7 @@
         <activity android:name=".alarm.manager.AlarmManagerExampleActivity" />
         <activity android:name=".content.provider.ContentProviderExampleActivity" />
         <activity android:name=".di.example.DaggerExampleActivity" />
+        <activity android:name=".window.WindowExampleActivity" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
         <!--
