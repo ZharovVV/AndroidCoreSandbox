@@ -145,14 +145,14 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
     }
 
     /**
-     * ActivityThread#handleResumeActivity
+     * __ActivityThread#handleResumeActivity__
      * Тут происходит следующее:
      * * Получаем DecorView из Window.
-     * * Вызывается wm.addView(decor, l); decor - DecorView; l - WindowManager.LayoutParams
+     * * Вызывается __wm.addView(decor, l);__ decor - DecorView; l - WindowManager.LayoutParams
      * * В некоторых случаях (например клик в поле ввода) вызывается wm.updateViewLayout(decor, l);
      * * После этого вызывается Activity#makeVisible, где mDecor.setVisibility(View.VISIBLE);
      *
-     * Под капотом WindowManagerImpl#addView вызывает WindowManagerGlobal#addView.
+     * Под капотом __WindowManagerImpl#addView__ вызывает __WindowManagerGlobal#addView__.
      * И там происходит следующее:
      * ```
      * ...
@@ -173,9 +173,9 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
      * ViewRootImpl содержит ссылку mView на "истинный" корень в иерархии представлений - DecorView
      * (после вызова root.setView(view, wparams, panelParentView, userId); в WindowManagerGlobal
      * и если конечно мы не вызывали раньше window.takeSurface).
-     * Что происходит в методе ViewRootImpl#setView:
-     * * -> ViewRootImpl#requestLayout
-     * * -> ViewRootImpl#scheduleTraversals
+     * Что происходит в методе __ViewRootImpl#setView__:
+     * * -> __ViewRootImpl#requestLayout__
+     * * -> __ViewRootImpl#scheduleTraversals__
      * здесь обратим внимание, что вызывается
      * mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();
      *
@@ -199,7 +199,7 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
      * Этот токен должен быть передан в removeSyncBarrier для снятия барьера.
      * ##
      *
-     * * Затем внутри метода ViewRootImpl#requestLayout вызывается:
+     * * Затем внутри метода ViewRootImpl#scheduleTraversals вызывается:
      * mChoreographer.postCallback(Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, null);
      *
      * ##
@@ -224,19 +224,19 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
      *      }
      *  }
      * ```
-     * * -> ViewRootImpl#doTraversal
+     * * -> __ViewRootImpl#doTraversal__ (вызывается через Looper)
      * внутри вызывается mHandler.getLooper().getQueue().removeSyncBarrier(mTraversalBarrier);
      * а затем вызывается ViewRootImpl#performTraversals.
-     * * -> ViewRootImpl#performTraversals
+     * * -> __ViewRootImpl#performTraversals__
      * Метод на 1000 строк :)
      *
      * [flow chart](https://images4.programmerall.com/816/08/086c59c7d2a0a53fcfb078e916eaf818.png)
-     * * -> ViewRootImpl#performMeasure
+     * * -> __ViewRootImpl#performMeasure__
      * тут вызывается DecorView#measure
-     * * -> ViewRootImpl#performLayout
-     * * -> ViewRootImpl#performDraw
-     * * -> ViewRootImpl#draw
-     * * В результате вся цепочка вызовов приводит к вызову WindowManagerService#addWindow. (?)
+     * * -> __ViewRootImpl#performLayout__
+     * * -> __ViewRootImpl#performDraw__
+     * * -> __ViewRootImpl#draw__
+     * * В результате вся цепочка вызовов приводит к вызову __WindowManagerService#addWindow__. (?)
      * который в свою очередь взаимодействует с SurfaceFlinger.
      */
     override fun onResume() {

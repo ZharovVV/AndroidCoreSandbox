@@ -11,6 +11,7 @@ import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.alarm.manager.AlarmManagerExampleActivity
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
+import com.github.zharovvv.android.core.sandbox.bundle.BundleDescriptionActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.content.provider.ContentProviderExampleActivity
 import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
@@ -196,6 +197,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<com.github.zharovvv.animationsandbox.MainActivity>(launcherTitle = "Android Animation"),
             launcherFor<DaggerExampleActivity>(launcherTitle = "Dagger 2"),
             launcherFor<WindowExampleActivity>(launcherTitle = "Window, Surface"),
+            launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle")
         )
     }
 }
