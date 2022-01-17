@@ -17,6 +17,7 @@ import com.github.zharovvv.android.core.sandbox.content.provider.ContentProvider
 import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
 import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleActivity
 import com.github.zharovvv.android.core.sandbox.di.example.DaggerExampleActivity
+import com.github.zharovvv.android.core.sandbox.fragment.FragmentExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
@@ -197,7 +198,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<com.github.zharovvv.animationsandbox.MainActivity>(launcherTitle = "Android Animation"),
             launcherFor<DaggerExampleActivity>(launcherTitle = "Dagger 2"),
             launcherFor<WindowExampleActivity>(launcherTitle = "Window, Surface"),
-            launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle")
+            launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle"),
+            launcherFor<FragmentExampleActivity>(launcherTitle = "Fragment")
         )
     }
 }

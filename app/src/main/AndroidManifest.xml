@@ -128,6 +128,7 @@
         <activity android:name=".di.example.DaggerExampleActivity" />
         <activity android:name=".window.WindowExampleActivity" />
         <activity android:name=".bundle.BundleDescriptionActivity" />
+        <activity android:name=".fragment.FragmentExampleActivity" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
         <!--
