@@ -28,6 +28,15 @@ class ExampleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i(LOG_TAG, "$this#onCreate")
         super.onCreate(savedInstanceState)
+        // Метод setRetainInstance() принимает boolean параметр.
+        // По умолчанию значение retainInstance фрагмента – false.
+        // Если retainInstance выставлен в true,
+        // то фрагмент переживает пересоздание хост-активити, например при повороте экрана.
+        // Когда активити пересоздается, фрагмент с retainInstance=true отсоединяется от старой активити и присоединяется к новой.
+        // Поэтому при пересоздании активити у фрагмента не вызываются методы onDestroy() и onCreate(),
+        // но вызываются onDetach(), onAttach() и onActivityCreated().
+        // setRetainInstance() может быть использован только на фрагментах, не добавленных в backstack.
+        // Объявлен Deprecated с рекомендацией использовать ViewModel для сохранения состояния.
     }
 
     override fun onCreateView(
