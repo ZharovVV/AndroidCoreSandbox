@@ -15,12 +15,12 @@ import com.github.zharovvv.android.core.sandbox.fragment.ExampleFragment.Compani
 class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResumeListener {
 
     private lateinit var binding: ActivityFragmentExampleBinding
-    private lateinit var currentFragmentTag: String
+    private val tagStack = TagStack()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFragmentExampleBinding.inflate(layoutInflater)
-        initSpinner(binding.fragmentBackgroundSpinner)
+        initSpinner(spinner = binding.fragmentBackgroundSpinner)
         setContentView(binding.root)
         initAddButton(button = binding.addButton)
         initReplaceButton(button = binding.replaceButton)
@@ -96,21 +96,41 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
 
     private fun initRemoveButton(button: Button) {
         button.setOnClickListener {
-            val fragment = supportFragmentManager.findFragmentByTag(currentFragmentTag)
-            if (fragment != null) {
-                supportFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    remove(fragment)
+            tagStack.pop()?.let {
+                val fragment = supportFragmentManager.findFragmentByTag(it)
+                if (fragment != null) {
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        remove(fragment)
+                    }
                 }
             }
         }
     }
 
     override fun fragmentOnResume(fragmentTag: String) {
-        currentFragmentTag = fragmentTag
+        tagStack.push(tag = fragmentTag)
     }
 }
 
 interface FragmentOnResumeListener {
     fun fragmentOnResume(fragmentTag: String)
+}
+
+class TagStack {
+    private val deque = ArrayDeque<String>()
+
+    fun push(tag: String): String {
+        deque.add(tag)
+        return tag
+    }
+
+    fun pop(): String? {
+        return deque.removeLastOrNull()
+    }
+
+    fun peek(): String? {
+        return deque.lastOrNull()
+    }
+
 }
