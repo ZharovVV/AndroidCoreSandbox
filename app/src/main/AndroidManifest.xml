@@ -42,6 +42,7 @@
         -->
         <activity
             android:name=".TrueMainActivity"
+            android:exported="true"
             android:label="@string/app_name_first_main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,6 +51,7 @@
         </activity>
         <activity
             android:name=".MainActivityDescription"
+            android:exported="true"
             android:label="@string/app_name_second_main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,6 +61,7 @@
         <activity android:name=".ExplicitCallExampleActivity" />
         <activity
             android:name=".DateActivity"
+            android:exported="true"
             android:label="DateActivity">
             <intent-filter>
                 <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.showdate" />
@@ -69,6 +72,7 @@
         </activity>
         <activity
             android:name=".DateExtActivity"
+            android:exported="true"
             android:label="DateExtActivity">
             <intent-filter>
                 <action android:name="com.github.zharovvv.android.core.sandbox.intent.action.showdate" />
@@ -107,6 +111,7 @@
         <!--Настойки для работы виджета-->
         <receiver
             android:name=".widget.ExampleAppWidgetProvider"
+            android:exported="true"
             android:icon="@drawable/ic_launcher_foreground"
             android:label="@string/widget_name">
             <intent-filter>
@@ -117,7 +122,9 @@
                 android:resource="@xml/widget_metadata" />
         </receiver>
 
-        <activity android:name=".widget.ConfigureWidgetActivity">
+        <activity
+            android:name=".widget.ConfigureWidgetActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

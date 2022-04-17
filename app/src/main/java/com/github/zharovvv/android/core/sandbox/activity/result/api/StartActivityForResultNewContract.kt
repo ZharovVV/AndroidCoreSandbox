@@ -13,9 +13,9 @@ class StartActivityForResultNewContract : ActivityResultContract<String, String?
         const val START_ACTIVITY_FOR_RESULT_CONTRACT_OUTPUT_CODE = "OUTPUT_CODE"
     }
 
-    override fun createIntent(context: Context, input: String?): Intent {
+    override fun createIntent(context: Context, input: String): Intent {
         return Intent(context, StartForResultNewActivity::class.java)
-                .putExtra(START_ACTIVITY_FOR_RESULT_CONTRACT_INPUT_CODE, input)
+            .putExtra(START_ACTIVITY_FOR_RESULT_CONTRACT_INPUT_CODE, input)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): String? {
@@ -32,7 +32,10 @@ class StartActivityForResultNewContract : ActivityResultContract<String, String?
      * если получены невалидные входные данные.
      * Если подобное поведение не требуется, метод по умолчанию возвращает null.
      */
-    override fun getSynchronousResult(context: Context, input: String?): SynchronousResult<String?>? {
+    override fun getSynchronousResult(
+        context: Context,
+        input: String
+    ): SynchronousResult<String?>? {
         return super.getSynchronousResult(context, input)
     }
 }

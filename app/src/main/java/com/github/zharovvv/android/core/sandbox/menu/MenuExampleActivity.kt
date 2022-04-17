@@ -41,7 +41,7 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
      * Создает меню и более не используется.
      */
     @SuppressLint("RestrictedApi")
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (menu is MenuBuilder) {  //Без этого блока иконки не отображаются
             menu.setOptionalIconsVisible(true)
         }
