@@ -23,7 +23,7 @@ class MultiViewModelFactory
     val viewModelClasses: Set<Class<*>> get() = viewModelFactories.keys
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return viewModelFactories.getValue(modelClass as Class<ViewModel>).get() as T
     }
 }

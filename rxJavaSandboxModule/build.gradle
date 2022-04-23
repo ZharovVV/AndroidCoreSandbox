@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
 //        applicationId "com.github.zharovvv.rxjavasandbox"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,4 +44,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxjava2_rxandroid_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rxjava2_rxkotlin_version"
+
+    //region DI
+    implementation project(path: ':core-di')
+    //Dagger 2
+    implementation "com.google.dagger:dagger:$dagger_2_version"
+    //Java annotationProcessor "..."
+    kapt "com.google.dagger:dagger-compiler:$dagger_2_version"
+    //endregion
 }
