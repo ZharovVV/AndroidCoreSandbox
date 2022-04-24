@@ -14,6 +14,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.github.zharovvv.animationsandbox.R
 import com.github.zharovvv.animationsandbox.views.CustomView
+import com.github.zharovvv.core.ui.R as DSR
 
 class PropertyAnimationExampleFragment : Fragment() {
 
@@ -88,7 +89,7 @@ class PropertyAnimationExampleFragment : Fragment() {
         testImageView.setOnTouchListener { v, event ->
             when (event.action) {
                 ACTION_DOWN -> {
-                    v.setBackgroundResource(R.color.purple_700)
+                    v.setBackgroundResource(DSR.color.ds_purple_700)
                     touchX = event.rawX
                     touchY = event.rawY
                 }
@@ -106,7 +107,7 @@ class PropertyAnimationExampleFragment : Fragment() {
                 else -> {
                     touchX = event.x
                     touchY = event.y
-                    v.setBackgroundResource(R.color.purple_200)
+                    v.setBackgroundResource(DSR.color.ds_purple_200)
                 }
             }
             true

@@ -13,6 +13,9 @@ import dagger.Component
         AndroidCoreSandboxModule::class
     ],
     dependencies = [
+        //Здесь добавлено для примера
+        //В принципе если нам внутри нашего графа зависимостей не нужны зависимости другого модуля,
+        //то и добавлять в зависимости его не нужно
         RxJavaSandboxApi::class,
         //Legacy
         AppComponentLegacy::class
@@ -28,6 +31,7 @@ interface AndroidCoreSandboxComponent : AndroidCoreSandboxApi {
             @ApplicationContext
             @BindsInstance
             applicationContext: Context,
+            //для примера
             rxJavaSandboxApi: RxJavaSandboxApi,
             appComponentLegacy: AppComponentLegacy
         ): AndroidCoreSandboxComponent

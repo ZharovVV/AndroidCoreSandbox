@@ -1,13 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    extra.apply {
-        //TODO удалить после перехода на versionCatalogs
-        set("kotlin_version", "1.6.20")
-        set("rxjava2_version", "2.2.9")
-        set("rxjava2_rxandroid_version", "2.1.1")
-        set("rxjava2_rxkotlin_version", "2.3.0")
-        set("dagger_2_version", "2.40.5")
-    }
     repositories {
         google()
         mavenCentral()

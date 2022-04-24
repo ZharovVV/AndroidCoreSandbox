@@ -6,6 +6,7 @@ import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
 import com.github.zharovvv.common.di.qualifier.ApplicationContext
 import com.github.zharovvv.common.di.scope.PerFeature
+import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxRouter
 import dagger.Module
 import dagger.Provides
 
@@ -14,7 +15,7 @@ class AndroidCoreSandboxModule {
 
     @PerFeature
     @Provides
-    fun provideRxJavaSandboxRouter(): AndroidCoreSandboxRouter {
+    fun provideAndroidCoreSandboxRouter(): AndroidCoreSandboxRouter {
         return AndroidCoreSandboxRouterImpl()
     }
 
@@ -28,5 +29,12 @@ class AndroidCoreSandboxModule {
     @Provides
     fun providePersonDatabase(@ApplicationContext applicationContext: Context): PersonDatabase {
         return PersonDatabaseProvider.getPersonDatabase(applicationContext)
+    }
+
+    //Пример когда, нужна зависимость другого модуля
+    @PerFeature
+    @Provides
+    fun provideAnyWithDependencyFromAnotherModule(rxJavaSandboxRouter: RxJavaSandboxRouter): Any {
+        return Any()
     }
 }

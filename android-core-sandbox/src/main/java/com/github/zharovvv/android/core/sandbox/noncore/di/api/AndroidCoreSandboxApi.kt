@@ -14,4 +14,7 @@ interface AndroidCoreSandboxApi : FeatureApi {
     val notificationUtil: NotificationUtil
 
     val personDatabase: PersonDatabase
+
+    //пример зависимости, использующей зависимость из другого модуля
+    val any: Any
 }

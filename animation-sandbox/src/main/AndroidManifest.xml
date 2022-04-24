@@ -4,10 +4,8 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AnimationSandbox">
+        android:theme="@style/Theme.DSTheme">
         <activity android:name=".MainActivity" />
     </application>
 

@@ -1,12 +1,11 @@
 rootProject.name = "Android Core Sandbox"
 include(
-    ":android-core-sandbox",
-    ":animation-sandbox",
-    //new api
     ":appx",
     ":core-di",
     ":core-ui",
-    ":rx-java-sandbox"
+    ":android-core-sandbox",
+    ":rx-java-sandbox",
+    ":animation-sandbox"
 )
 
 enableFeaturePreview("VERSION_CATALOGS")

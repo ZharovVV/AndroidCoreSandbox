@@ -36,6 +36,6 @@ class AndroidCoreSandboxSandboxFeatureHolder(
     }
 
     override fun destroyDependencies() {
-        releaseDependency(RxJavaSandboxApi::class)
+//        releaseDependency(RxJavaSandboxApi::class) не нужно, так как фича очищает сама себя
     }
 }

@@ -9,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="16dp"
-        android:background="@color/purple_200"
+        android:background="@color/ds_purple_200"
         android:contentDescription="@null"
         android:rotation="360"
         app:layout_constraintEnd_toEndOf="parent"

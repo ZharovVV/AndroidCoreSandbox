@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.github.zharovvv.animationsandbox.R
+import com.github.zharovvv.core.ui.R as DSR
 
 class CustomView @JvmOverloads constructor(
     context: Context,
@@ -27,11 +28,11 @@ class CustomView @JvmOverloads constructor(
         outBorderColor =
             typedArray.getColor(
                 R.styleable.CustomView_piv_out_border_color,
-                resources.getColor(R.color.purple_200, context.theme)
+                resources.getColor(DSR.color.ds_purple_200, context.theme)
             )
         insideColor = typedArray.getColor(
             R.styleable.CustomView_piv_inside_color,
-            resources.getColor(R.color.purple_200, context.theme)
+            resources.getColor(DSR.color.ds_purple_200, context.theme)
         )
         progress = typedArray.getFloat(R.styleable.CustomView_piv_progress, 0f)
         borderThickness =

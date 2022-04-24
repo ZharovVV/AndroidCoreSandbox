@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="@dimen/ds_middle_margin"
-        app:itemColor="@color/purple_500"
+        app:itemColor="@color/ds_purple_500"
         app:itemWidth="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wave_view_1" />
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ds_middle_margin"
-        app:itemColor="@color/purple_200"
+        app:itemColor="@color/ds_purple_200"
         app:itemWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

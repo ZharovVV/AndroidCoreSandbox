@@ -35,7 +35,7 @@ import com.github.zharovvv.android.core.sandbox.viewmodel.livedata.ViewModelLive
 import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
 import com.github.zharovvv.android.core.sandbox.window.WindowExampleActivity
 import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleActivity
-import com.github.zharovvv.animationsandbox.MainActivity
+import com.github.zharovvv.animationsandbox.di.api.AnimationSandboxApi
 import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.releaseFeature
 import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxApi
@@ -210,7 +210,9 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             Launcher("RxJava:id", title = "RxJava") {
                 featureApi<RxJavaSandboxApi>().router.launch(this)
             },
-            launcherFor<MainActivity>(launcherTitle = "Android Animation")
+            Launcher("Android Animation:id", title = "Android Animation") {
+                featureApi<AnimationSandboxApi>().router.launch(this)
+            }
         )
     }
 
