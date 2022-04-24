@@ -39,10 +39,10 @@ dependencies {
     implementation(project(":core-di"))
     implementation("com.google.dagger:dagger:${rootProject.extra["dagger_2_version"]}")
     kapt("com.google.dagger:dagger-compiler:${rootProject.extra["dagger_2_version"]}")
+    implementation(project(":rx-java-sandbox"))
     //endregion
 
     //region Features
-    implementation(project(":rxJavaSandboxModule"))
     //endregion
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.1")

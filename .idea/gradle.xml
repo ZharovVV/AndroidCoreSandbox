@@ -11,11 +11,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/animationSandboxModule" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/android-core-sandbox" />
+            <option value="$PROJECT_DIR$/animation-sandbox" />
             <option value="$PROJECT_DIR$/appx" />
             <option value="$PROJECT_DIR$/core-di" />
-            <option value="$PROJECT_DIR$/rxJavaSandboxModule" />
+            <option value="$PROJECT_DIR$/rx-java-sandbox" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

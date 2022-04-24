@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
-      <module name="Android_Core_Sandbox.animationSandboxModule" target="11" />
-      <module name="Android_Core_Sandbox.app" target="11" />
+      <module name="Android_Core_Sandbox.android-core-sandbox" target="11" />
+      <module name="Android_Core_Sandbox.animation-sandbox" target="11" />
       <module name="Android_Core_Sandbox.appx" target="11" />
-      <module name="Android_Core_Sandbox.rxJavaSandboxModule" target="11" />
+      <module name="Android_Core_Sandbox.rx-java-sandbox" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

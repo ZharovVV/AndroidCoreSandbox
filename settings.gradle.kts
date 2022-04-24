@@ -1,7 +1,7 @@
 include(
-    ":app",
-    ":rxJavaSandboxModule",
-    ":animationSandboxModule",
+    ":android-core-sandbox",
+    ":rx-java-sandbox",
+    ":animation-sandbox",
     //new api
     ":appx",
     ":core-di"

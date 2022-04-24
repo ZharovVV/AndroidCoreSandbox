@@ -30,9 +30,9 @@ abstract class CommonFeatureHoldersModule {
     companion object {
 //        @Singleton
 //        @Provides
-//        @[IntoMap FeatureApiKey(RxJavaSandboxApi::class)]
-//        fun provideFeatureHolder(featureContainer: FeatureContainer): FeatureHolder<FeatureApi> {
-//            return ExampleFeatureHolder(featureContainer)
+//        @[IntoMap FeatureApiKey(ExampleFeatureApi::class)]
+//        fun provideFeatureHolder(featureContainer: FeatureContainer, appContext: Context): FeatureHolder<FeatureApi> {
+//            return ExampleFeatureHolder(featureContainer, appContext)
 //        }
     }
 }
