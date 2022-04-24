@@ -20,7 +20,7 @@
         android:label="@string/appx_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SandboxX"
+        android:theme="@style/Theme.DSTheme"
         tools:replace="android:theme">
 
         <activity

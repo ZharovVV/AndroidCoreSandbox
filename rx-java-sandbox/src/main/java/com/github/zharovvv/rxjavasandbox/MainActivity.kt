@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_rx_java_sandbox)
+        setContentView(R.layout.rx_java_sandbox_activity_main)
         if (savedInstanceState == null) {
             mainFragment = MainFragment()
             supportFragmentManager.beginTransaction()
