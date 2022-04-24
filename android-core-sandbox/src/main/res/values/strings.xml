@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Android Core Sandbox</string>
-    <string name="app_name_first_main_activity">@string/app_name</string>
+    <string name="app_name_first_main_activity">Android Core Sandbox</string>
     <string name="app_name_second_main_activity">Android Core Sandbox (Second Main Activity)</string>
     <string name="main_activity">Второе Main-Activity</string>
     <string name="start_activity_button_1">start Activity (явный вызов)</string>

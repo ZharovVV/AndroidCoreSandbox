@@ -5,7 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.SurfaceHolder
 import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
-import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.R as DSR
 
 class WindowExampleActivity : LogLifecycleAppCompatActivity() {
 
@@ -102,7 +102,7 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val paint = Paint().apply {
-            color = resources.getColor(R.color.blue, theme)
+            color = resources.getColor(DSR.color.ds_blue, theme)
         }
         val initX = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             windowManager.maximumWindowMetrics.bounds.centerX().toFloat()
@@ -114,7 +114,7 @@ class WindowExampleActivity : LogLifecycleAppCompatActivity() {
         } else {
             windowManager.defaultDisplay.height.toFloat() / 2
         }
-        val surfaceColor = resources.getColor(R.color.purple_200, theme)
+        val surfaceColor = resources.getColor(DSR.color.ds_purple_200, theme)
         window.takeSurface(object : SurfaceHolder.Callback2 {
 
             override fun surfaceCreated(holder: SurfaceHolder) {

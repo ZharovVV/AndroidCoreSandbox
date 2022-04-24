@@ -8,7 +8,7 @@
         android:id="@+id/text_view_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

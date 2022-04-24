@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -22,6 +23,7 @@ import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
 import com.github.zharovvv.android.core.sandbox.navigation.NavigationExampleActivity
+import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.LaunchersListAdapter
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.launcherFor
@@ -33,7 +35,10 @@ import com.github.zharovvv.android.core.sandbox.viewmodel.livedata.ViewModelLive
 import com.github.zharovvv.android.core.sandbox.viewmodel.rxjava.ViewModelRxJavaExampleActivity
 import com.github.zharovvv.android.core.sandbox.window.WindowExampleActivity
 import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleActivity
-import com.github.zharovvv.rxjavasandbox.MainActivity
+import com.github.zharovvv.animationsandbox.MainActivity
+import com.github.zharovvv.common.di.featureApi
+import com.github.zharovvv.common.di.releaseFeature
+import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxApi
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {
 
@@ -70,6 +75,10 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
      */
 
     companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, TrueMainActivity::class.java)
+        }
+
         const val EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY = "SECOND_ACTIVITY"
         const val START_ACTIVITY_FOR_RESULT_REQUEST_CODE = 15
     }
@@ -194,12 +203,21 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<PendingIntentExampleActivity>(getString(R.string.start_activity_button_19)),
             launcherFor<AlarmManagerExampleActivity>(launcherTitle = "Alarm Manager"),
             launcherFor<ContentProviderExampleActivity>(launcherTitle = "Content Provider"),
-            launcherFor<MainActivity>(launcherTitle = "RxJava"),
-            launcherFor<com.github.zharovvv.animationsandbox.MainActivity>(launcherTitle = "Android Animation"),
             launcherFor<DaggerExampleActivity>(launcherTitle = "Dagger 2"),
             launcherFor<WindowExampleActivity>(launcherTitle = "Window, Surface"),
             launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle"),
-            launcherFor<FragmentExampleActivity>(launcherTitle = "Fragment")
+            launcherFor<FragmentExampleActivity>(launcherTitle = "Fragment"),
+            Launcher("RxJava:id", title = "RxJava") {
+                featureApi<RxJavaSandboxApi>().router.launch(this)
+            },
+            launcherFor<MainActivity>(launcherTitle = "Android Animation")
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isFinishing) {
+            releaseFeature<AndroidCoreSandboxApi>()
+        }
     }
 }

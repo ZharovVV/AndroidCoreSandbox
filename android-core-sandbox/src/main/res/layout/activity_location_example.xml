@@ -8,7 +8,7 @@
         android:id="@+id/text_view_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -16,7 +16,7 @@
         android:id="@+id/text_view_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         app:layout_constraintStart_toEndOf="@id/text_view_latitude"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:id="@+id/button_request_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         android:text="@string/start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_latitude" />
@@ -33,7 +33,7 @@
         android:id="@+id/button_location_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         android:text="@string/location_settings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_request_location" />
@@ -42,7 +42,7 @@
         android:id="@+id/text_view_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_location_settings" />
 

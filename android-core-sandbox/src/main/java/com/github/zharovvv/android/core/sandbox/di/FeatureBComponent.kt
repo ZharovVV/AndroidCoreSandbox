@@ -21,17 +21,17 @@ annotation class FeatureBScope
 
 /**
  * В отличии от [FeatureComponent], который является сабкомпонентом и будет включен в состав класса
- * [DaggerAppComponent], [FeatureBComponent] - это компонент и он будет находиться в отдельном
+ * [DaggerAppComponentLegacy], [FeatureBComponent] - это компонент и он будет находиться в отдельном
  * сгенерированном классе [DaggerFeatureBComponent].
  */
 @FeatureBScope
-@Component(modules = [FeatureBModule::class], dependencies = [AppComponent::class])
+@Component(modules = [FeatureBModule::class], dependencies = [AppComponentLegacy::class])
 interface FeatureBComponent {
 
     @Component.Builder
     interface Builder {
 
-        fun withAppComponent(appComponent: AppComponent): Builder
+        fun withAppComponent(appComponentLegacy: AppComponentLegacy): Builder
 
         fun build(): FeatureBComponent
     }

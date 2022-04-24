@@ -10,7 +10,7 @@
         android:id="@+id/edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         android:autofillHints="Text"
         android:hint="@string/edit_text_hint"
         android:inputType="text"
@@ -22,7 +22,7 @@
         android:id="@+id/button_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
+        android:layout_margin="@dimen/ds_middle_margin"
         android:text="@string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text" />

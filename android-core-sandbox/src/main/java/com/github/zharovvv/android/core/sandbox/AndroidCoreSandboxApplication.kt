@@ -3,14 +3,15 @@ package com.github.zharovvv.android.core.sandbox
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.github.zharovvv.android.core.sandbox.di.AppComponent
+import com.github.zharovvv.android.core.sandbox.di.AppComponentLegacy
 import com.github.zharovvv.android.core.sandbox.di.AppDependencies
-import com.github.zharovvv.android.core.sandbox.di.DaggerAppComponent
+import com.github.zharovvv.android.core.sandbox.di.DaggerAppComponentLegacy
 import com.github.zharovvv.android.core.sandbox.di.example.DependencyExample
 import com.github.zharovvv.android.core.sandbox.notification.NotificationUtil
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
 
+//Оставлено здесь на память
 class AndroidCoreSandboxApplication : Application() {
 
     companion object {
@@ -25,7 +26,7 @@ class AndroidCoreSandboxApplication : Application() {
         private const val LOG_TAG = "ApplicationLifecycle"
     }
 
-    lateinit var appComponent: AppComponent
+    lateinit var appComponentLegacy: AppComponentLegacy
 
     /**
      * Вызывается при запуске приложения до создания каких-либо действий,
@@ -35,7 +36,7 @@ class AndroidCoreSandboxApplication : Application() {
         super.onCreate()
         Log.i(LOG_TAG, "AndroidCoreSandboxApplication#onCreate")
 //        appComponent = DaggerAppComponent.create()
-        appComponent = DaggerAppComponent.builder()
+        appComponentLegacy = DaggerAppComponentLegacy.builder()
             .withContext(context = this)
             .withAppDependencies(object : AppDependencies {
                 private val source = DependencyExample(
@@ -51,8 +52,8 @@ class AndroidCoreSandboxApplication : Application() {
     }
 }
 
-val Context.appComponent: AppComponent
+val Context.appComponentLegacy: AppComponentLegacy
     get() = when (this) {
-        is AndroidCoreSandboxApplication -> appComponent
-        else -> this.applicationContext.appComponent
+        is AndroidCoreSandboxApplication -> appComponentLegacy
+        else -> this.applicationContext.appComponentLegacy
     }

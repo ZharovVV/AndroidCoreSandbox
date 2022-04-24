@@ -8,7 +8,8 @@ import androidx.work.Data
 import androidx.work.WorkInfo
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
+import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
+import com.github.zharovvv.common.di.featureApi
 
 /**
  * # WorkManager
@@ -39,7 +40,7 @@ class MyWorker(context: Context, workerParams: WorkerParameters) : Worker(contex
             0
         )
         //non UI Thread
-        val notificationUtil = AndroidCoreSandboxApplication.notificationUtil
+        val notificationUtil = featureApi<AndroidCoreSandboxApi>().notificationUtil
         Log.i(LOG_WORK_TAG, "MyWorker#doWork/start")
         notificationUtil.sendNotification(
             title = "WorkManager",

@@ -7,9 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
 import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
+import com.github.zharovvv.common.di.featureApi
+import com.github.zharovvv.core.ui.R as DSR
 
 class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sqlite_example) {
 
@@ -63,9 +65,9 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
         block: (person: Person) -> Unit
     ) {
         if (validatedEditText.text.isNullOrEmpty()) {
-            validatedEditText.setHintTextColor(resources.getColor(R.color.red, theme))
+            validatedEditText.setHintTextColor(resources.getColor(DSR.color.ds_red, theme))
             handler.postDelayed({
-                validatedEditText.setHintTextColor(resources.getColor(R.color.gray, theme))
+                validatedEditText.setHintTextColor(resources.getColor(DSR.color.ds_gray, theme))
             }, 500)
         } else {
             val stringAge = editTextPersonAge.text.toString()
@@ -83,7 +85,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
 
     private fun initLoad() {
         Thread {
-            val persons = AndroidCoreSandboxApplication.personDatabase.personDao.getPersons()
+            val persons = featureApi<AndroidCoreSandboxApi>().personDatabase.personDao.getPersons()
             handler.post {
                 updatePersonList(persons)
             }
@@ -92,7 +94,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
 
     private fun insertPerson(person: Person) {
         Thread {
-            val personDao = AndroidCoreSandboxApplication.personDatabase.personDao
+            val personDao = featureApi<AndroidCoreSandboxApi>().personDatabase.personDao
             personDao.savePerson(person)
             val persons = personDao.getPersons()
             handler.post {
@@ -103,7 +105,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
 
     private fun deletePerson(person: Person) {
         Thread {
-            val personDao = AndroidCoreSandboxApplication.personDatabase.personDao
+            val personDao = featureApi<AndroidCoreSandboxApi>().personDatabase.personDao
             if (personDao.delete(person)) {
                 val persons = personDao.getPersons()
                 handler.post {
@@ -115,7 +117,7 @@ class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sq
 
     private fun clearAllTable() {
         Thread {
-            val personDao = AndroidCoreSandboxApplication.personDatabase.personDao
+            val personDao = featureApi<AndroidCoreSandboxApi>().personDatabase.personDao
             personDao.clearAllTable()
             handler.post {
                 updatePersonList(null)

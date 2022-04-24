@@ -90,7 +90,7 @@ import javax.inject.Scope
  */
 //@Singleton
 @AppScope
-interface AppComponent {
+interface AppComponentLegacy {
 
     fun computer(): Computer    //1 способ
     //val computer: Computer
@@ -126,7 +126,7 @@ interface AppComponent {
          * * У метода  не должно быть никаких параметров
          * * Он должен возвращать тип компонента
          */
-        fun build(): AppComponent
+        fun build(): AppComponentLegacy
     }
 }
 

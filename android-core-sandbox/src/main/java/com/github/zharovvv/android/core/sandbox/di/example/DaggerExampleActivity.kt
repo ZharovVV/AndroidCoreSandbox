@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.github.zharovvv.android.core.sandbox.appComponent
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityDaggerExampleBinding
 import com.github.zharovvv.android.core.sandbox.di.FeatureComponent
 import com.github.zharovvv.android.core.sandbox.di.FeatureScope
 import com.github.zharovvv.android.core.sandbox.di.example.analytics.Analytics
 import com.github.zharovvv.android.core.sandbox.di.example.analytics.AnalyticsTracker
+import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
+import com.github.zharovvv.common.di.featureApi
 import javax.inject.Inject
 
 class DaggerExampleActivity : AppCompatActivity() {
@@ -54,7 +55,7 @@ class DaggerExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDaggerExampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        _featureComponent = appComponent.featureComponent().build()
+        _featureComponent = featureApi<AndroidCoreSandboxApi>().legacy.featureComponent().build()
         featureComponent.inject(this)
         //Если бы не метод displayComputer, которому необходим доступ к view activity,
         //то мы могли бы заинжектить все зависимости в onAttach коллбеке.

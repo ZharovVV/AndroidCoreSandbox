@@ -11,6 +11,7 @@ import com.github.zharovvv.android.core.sandbox.R
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityFragmentExampleBinding
 import com.github.zharovvv.android.core.sandbox.fragment.ExampleFragment.Companion.FRAGMENT_COLOR_KEY
 import com.github.zharovvv.android.core.sandbox.fragment.ExampleFragment.Companion.FRAGMENT_DATA_KEY
+import com.github.zharovvv.core.ui.R as DSR
 
 class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResumeListener {
 
@@ -32,10 +33,10 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
             adapter = ColorArraySpinnerAdapter(
                 context = context,
                 objects = listOf(
-                    R.color.blue,
-                    R.color.purple_200,
-                    R.color.purple_500,
-                    R.color.purple_700
+                    DSR.color.ds_blue,
+                    DSR.color.ds_purple_200,
+                    DSR.color.ds_purple_500,
+                    DSR.color.ds_purple_700
                 )
             )
             prompt = "Fragment background"

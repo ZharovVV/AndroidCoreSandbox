@@ -33,6 +33,7 @@ dependencies {
     //endregion
 
     //region Features
+    implementation(project(":android-core-sandbox"))
     implementation(project(":rx-java-sandbox"))
     //endregion
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.github.zharovvv.android.core.sandbox">
 
     <!-- В манифесте прописываются все компоненты приложения.
@@ -24,14 +23,9 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
-        android:name=".AndroidCoreSandboxApplication"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidCoreSandbox"
-        tools:replace="android:theme">
+        android:theme="@style/Theme.DSTheme">
         <!--Под MainActivity понимается активити, у которой intent-filter содержит action.MAIN
         и category.LAUNCHER.
 
@@ -146,7 +140,8 @@
         -->
         <provider
             android:name=".content.provider.CustomContentProvider"
-            android:authorities="com.github.zharovvv.android.core.sandbox.content.provider.custom">
+            android:authorities="com.github.zharovvv.android.core.sandbox.content.provider.custom"
+            android:exported="true">
 
         </provider>
     </application>

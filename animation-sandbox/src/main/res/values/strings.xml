@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Animation Sandbox</string>
     <string name="tween_animation_title">Анимация преобразований (устар.)\nView Animation
     </string>
     <string name="frame_animation_title">Покадровая анимация (устар.)</string>

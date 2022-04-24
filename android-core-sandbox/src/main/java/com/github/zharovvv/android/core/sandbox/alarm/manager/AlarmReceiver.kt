@@ -5,8 +5,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.github.zharovvv.android.core.sandbox.AndroidCoreSandboxApplication
 import com.github.zharovvv.android.core.sandbox.TrueMainActivity
+import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
+import com.github.zharovvv.common.di.featureApi
 
 class AlarmReceiver : BroadcastReceiver() {
 
@@ -29,7 +30,7 @@ class AlarmReceiver : BroadcastReceiver() {
             0
         )
         intArrayOf(1, 3, 5)
-        AndroidCoreSandboxApplication.notificationUtil.sendNotification(
+        featureApi<AndroidCoreSandboxApi>().notificationUtil.sendNotification(
             notificationId = 3,
             title = "AlarmManager",
             text = "Alarm!",
