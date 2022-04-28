@@ -5,6 +5,7 @@
       <module name="Android_Core_Sandbox.android-core-sandbox" target="11" />
       <module name="Android_Core_Sandbox.animation-sandbox" target="11" />
       <module name="Android_Core_Sandbox.appx" target="11" />
+      <module name="Android_Core_Sandbox.compose-sandbox" target="11" />
       <module name="Android_Core_Sandbox.core-ui" target="11" />
       <module name="Android_Core_Sandbox.rx-java-sandbox" target="11" />
     </bytecodeTargetLevel>

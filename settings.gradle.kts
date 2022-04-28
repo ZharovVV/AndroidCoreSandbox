@@ -5,7 +5,8 @@ include(
     ":core-ui",
     ":android-core-sandbox",
     ":rx-java-sandbox",
-    ":animation-sandbox"
+    ":animation-sandbox",
+    ":compose-sandbox"
 )
 
 enableFeaturePreview("VERSION_CATALOGS")

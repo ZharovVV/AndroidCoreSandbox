@@ -5,6 +5,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
 import com.github.zharovvv.common.di.featureApi
+import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
 import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxApi
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val toRxJavaModuleButton: Button = findViewById(R.id.to_rx_java_module_button)
         toRxJavaModuleButton.setOnClickListener {
             featureApi<RxJavaSandboxApi>().router.launch(this)
+        }
+        val toJetpackComposeModule: Button = findViewById(R.id.to_compose_module_button)
+        toJetpackComposeModule.setOnClickListener {
+            featureApi<ComposeSandboxApi>().router.launch(this)
         }
     }
 }

@@ -7,6 +7,7 @@ import com.github.zharovvv.animationsandbox.di.AnimationSandboxFeatureHolderModu
 import com.github.zharovvv.common.di.FeatureContainer
 import com.github.zharovvv.common.di.FeatureContainerManager
 import com.github.zharovvv.common.di.qualifier.ApplicationContext
+import com.github.zharovvv.compose.sandbox.di.ComposeSandboxFeatureHolderModule
 import com.github.zharovvv.rxjavasandbox.di.RxJavaSandboxFeatureHolderModule
 import dagger.Binds
 import dagger.Module
@@ -17,7 +18,8 @@ import javax.inject.Singleton
         //Здесь указываем модули (featureHolders) фич, которые хотим подключить к приложению
         AndroidCoreSandboxFeatureHolderModule::class,
         RxJavaSandboxFeatureHolderModule::class,
-        AnimationSandboxFeatureHolderModule::class
+        AnimationSandboxFeatureHolderModule::class,
+        ComposeSandboxFeatureHolderModule::class
     ]
 )
 abstract class CommonFeatureHoldersModule {

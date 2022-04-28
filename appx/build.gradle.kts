@@ -36,6 +36,7 @@ dependencies {
     implementation(project(":android-core-sandbox"))
     implementation(project(":rx-java-sandbox"))
     implementation(project(":animation-sandbox"))
+    implementation(project(":compose-sandbox"))
     //endregion
 
     implementation(libs.bundles.core)
