@@ -37,6 +37,7 @@ dependencies {
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
 
+    //TODO вынести в versionCatalog
     implementation("androidx.compose.ui:ui:1.1.1")
     // Tooling support (Previews, etc.)
     implementation("androidx.compose.ui:ui-tooling:1.1.1")
