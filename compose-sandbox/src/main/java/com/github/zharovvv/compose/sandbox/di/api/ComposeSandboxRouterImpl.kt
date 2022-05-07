@@ -1,7 +1,7 @@
 package com.github.zharovvv.compose.sandbox.di.api
 
 import android.content.Context
-import com.github.zharovvv.compose.sandbox.ComposeMainActivity
+import com.github.zharovvv.compose.sandbox.ui.ComposeMainActivity
 
 class ComposeSandboxRouterImpl : ComposeSandboxRouter {
 

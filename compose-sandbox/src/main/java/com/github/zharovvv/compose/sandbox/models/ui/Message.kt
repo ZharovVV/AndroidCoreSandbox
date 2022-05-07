@@ -1,4 +1,4 @@
-package com.github.zharovvv.compose.sandbox.models.presentation
+package com.github.zharovvv.compose.sandbox.models.ui
 
 data class Message(
     val author: String,

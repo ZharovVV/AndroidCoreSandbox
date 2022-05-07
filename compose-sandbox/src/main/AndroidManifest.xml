@@ -3,6 +3,6 @@
     package="com.github.zharovvv.compose.sandbox">
 
     <application>
-        <activity android:name=".ComposeMainActivity" />
+        <activity android:name=".ui.ComposeMainActivity" />
     </application>
 </manifest>

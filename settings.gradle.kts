@@ -43,6 +43,49 @@ dependencyResolutionManagement {
                 "jetpack-navigation",
                 listOf("jetpack-navigation-fragment", "jetpack-navigation-ui")
             )
+            //compose
+            version("compose", "1.1.1")
+            alias("jetpack-compose-ui").to("androidx.compose.ui", "ui").versionRef("compose")
+            // Tooling support (Previews, etc.)
+            alias("jetpack-compose-ui-tooling")
+                .to("androidx.compose.ui", "ui-tooling")
+                .versionRef("compose")
+            // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+            alias("jetpack-compose-foundation")
+                .to("androidx.compose.foundation", "foundation")
+                .versionRef("compose")
+            // Material Design
+            alias("jetpack-compose-material")
+                .to("androidx.compose.material", "material")
+                .versionRef("compose")
+            alias("jetpack-compose-material-icons-core")
+                .to("androidx.compose.material", "material-icons-core")
+                .versionRef("compose")
+            alias("jetpack-compose-material-icons-extended")
+                .to("androidx.compose.material", "material-icons-extended")
+                .versionRef("compose")
+            // Integration with activities
+            alias("jetpack-compose-activity").to("androidx.activity:activity-compose:1.4.0")
+            // Integration with ViewModels
+            alias("jetpack-compose-viewmodel").to("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+            // Integration with observables
+            alias("jetpack-compose-livedata").to("androidx.compose.runtime:runtime-livedata:1.1.1")
+            alias("jetpack-compose-rxjava2").to("androidx.compose.runtime:runtime-rxjava2:1.1.1")
+            bundle(
+                "jetpack-compose",
+                listOf(
+                    "jetpack-compose-ui",
+                    "jetpack-compose-ui-tooling",
+                    "jetpack-compose-foundation",
+                    "jetpack-compose-material",
+                    "jetpack-compose-material-icons-core",
+                    "jetpack-compose-material-icons-extended",
+                    "jetpack-compose-activity",
+                    "jetpack-compose-viewmodel",
+                    "jetpack-compose-livedata",
+                    "jetpack-compose-rxjava2"
+                )
+            )
 
             //unit tests
             alias("junit").to("junit:junit:4.13.2")
@@ -53,6 +96,7 @@ dependencyResolutionManagement {
             alias("android-junit").to("androidx.test.ext:junit:1.1.3")
             alias("android-espresso").to("androidx.test.espresso:espresso-core:3.4.0")
             bundle("androidTest", listOf("android-junit", "android-espresso"))
+            alias("androidTest-compose").to("androidx.compose.ui:ui-test-junit4:1.1.1")
 
             //dagger
             version("dagger2", "2.40.5")
