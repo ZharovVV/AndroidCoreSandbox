@@ -11,7 +11,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.core.view.WindowCompat
 import com.github.zharovvv.common.di.releaseFeature
 import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
-import com.github.zharovvv.compose.sandbox.ui.main.MainScreen
+import com.github.zharovvv.compose.sandbox.ui.main.MainScreen2
 import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
 
 typealias AndroidColor = android.graphics.Color
@@ -31,7 +31,7 @@ class ComposeMainActivity : ComponentActivity() {
         window.navigationBarColor = AndroidColor.TRANSPARENT
         setContent {
             AppTheme(isDynamic = true) {
-                MainScreen()
+                MainScreen2()
             }
         }
     }

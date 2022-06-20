@@ -9,7 +9,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = libs.versions.compose.orNull
     }
     buildTypes {
         release {
@@ -35,7 +35,8 @@ dependencies {
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.jetpack.compose)
-    implementation("androidx.compose.material3:material3:1.0.0-alpha10")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha13")
+    implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
     androidTestImplementation(libs.androidTest.compose)
