@@ -1,8 +1,12 @@
 package com.github.zharovvv.compose.sandbox.ui.main
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -19,8 +23,7 @@ import com.github.zharovvv.compose.sandbox.ui.pager.DraggableSurface
 import com.github.zharovvv.compose.sandbox.ui.pager.StubItem
 import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.scan
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
@@ -49,11 +52,24 @@ fun MainScreen2() {
             val haptic = LocalHapticFeedback.current
             LaunchedEffect(key1 = data) {
                 snapshotFlow { dragZoneState.value }
-                    .filter { it == DragZoneState.ON_THREE_QUARTERS }
-                    .onEach {
+                    .scan(
+                        initial = DragZoneState.NO_DRAG to DragZoneState.NO_DRAG
+                    ) { accumulator, value ->
+                        accumulator.second to value
+                    }
+                    .filter {
+                        val (old, new) = it
+                        old == DragZoneState.ON_HALF
+                                && new == DragZoneState.ON_THREE_QUARTERS
+                                || (old == DragZoneState.ON_THREE_QUARTERS
+                                && new == DragZoneState.ON_HALF)
+                    }
+                    .collect {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
-                    .launchIn(this)
+            }
+            val dragProgress = remember {
+                mutableStateOf(0f)
             }
             Column {
                 AnimatedPager(count = data.size, contentPadding = contentPadding) { page: Int ->
@@ -80,6 +96,7 @@ fun MainScreen2() {
                         maxBottomOffset = maxBottomOffset,
                         dragProgressUp = { progress -> },
                         dragProgressDown = { progress ->
+                            dragProgress.value = progress
                             when {
                                 progress < 0.25f -> dragZoneState.value = DragZoneState.NO_DRAG
                                 progress >= 0.25f && progress < 0.5f -> dragZoneState.value =
@@ -101,19 +118,64 @@ fun MainScreen2() {
                 val animationDescription = remember {
                     mutableStateOf("")
                 }
+                val animatableSize = remember {
+                    Animatable(50f)
+                }
                 when (dragZoneState.value) {
                     DragZoneState.NO_DRAG -> {
                         animationDescription.value = ""
+                        LaunchedEffect(key1 = dragZoneState.value) {
+                            animatableSize.animateTo(
+                                targetValue = 50f,
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                                    stiffness = Spring.StiffnessMedium
+                                )
+                            )
+                        }
                     }
                     DragZoneState.ON_QUARTER, DragZoneState.ON_HALF -> {
                         animationDescription.value = "Потяните вниз чтобы..."
                     }
                     DragZoneState.ON_THREE_QUARTERS, DragZoneState.ON_MAX -> {
                         animationDescription.value = "Отпустите чтобы..."
+                        LaunchedEffect(key1 = dragZoneState.value) {
+                            animatableSize.animateTo(
+                                targetValue = 100f,
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioHighBouncy,
+                                    stiffness = Spring.StiffnessHigh
+                                )
+                            )
+                        }
                     }
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    LaunchedEffect(key1 = data) {
+                        snapshotFlow { dragProgress.value }
+                            .filter { it < 0.75 }
+                            .collect {
+                                animatableSize.snapTo(50 * (1 + it))
+                            }
+                    }
+
+
+                    FloatingActionButton(
+                        onClick = { },
+                        modifier = Modifier.size(animatableSize.value.dp)
+                    ) {
+
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(18.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(text = animationDescription.value)
@@ -130,5 +192,3 @@ enum class DragZoneState {
     ON_THREE_QUARTERS,
     ON_MAX
 }
-
-const val TAG = "MainScreen2"
