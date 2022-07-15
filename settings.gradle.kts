@@ -13,7 +13,8 @@ enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            version("kotlin", "1.6.21") //такая версия из-за Compose
+            version("kotlin", "1.7.0") //такая версия из-за Compose
+            // Версия Компилятора Compose 1.2.0 совместима c kotlin 1.7.0
 
             //android
             alias("androidx-core-ktx").to("androidx.core:core-ktx:1.7.0")
@@ -44,7 +45,7 @@ dependencyResolutionManagement {
                 listOf("jetpack-navigation-fragment", "jetpack-navigation-ui")
             )
             //compose
-            version("compose", "1.2.0-rc01")
+            version("compose", "1.2.0-rc03")
             alias("jetpack-compose-ui").to("androidx.compose.ui", "ui").versionRef("compose")
             // Tooling support (Previews, etc.)
             alias("jetpack-compose-ui-tooling")
@@ -99,7 +100,7 @@ dependencyResolutionManagement {
             alias("androidTest-compose").to("androidx.compose.ui:ui-test-junit4:1.1.1")
 
             //dagger
-            version("dagger2", "2.40.5")
+            version("dagger2", "2.42")
             alias("dagger").to("com.google.dagger", "dagger").versionRef("dagger2")
             alias("dagger-compiler").to("com.google.dagger", "dagger-compiler")
                 .versionRef("dagger2")

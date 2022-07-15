@@ -9,7 +9,9 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.orNull
+        //TODO раскоментировать, когда выйдет версия компоуза 1.2.0
+        //kotlinCompilerExtensionVersion = libs.versions.compose.orNull
+        kotlinCompilerExtensionVersion = "1.2.0"
     }
     buildTypes {
         release {
@@ -35,7 +37,7 @@ dependencies {
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.jetpack.compose)
-    implementation("androidx.compose.material3:material3:1.0.0-alpha13")
+    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
 
     //region fix bug compose preview

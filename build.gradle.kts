@@ -71,7 +71,7 @@ fun com.android.build.gradle.BaseExtension.baseAndroidConfig() {
             jvmTarget = "1.8"
 //            useFir = true
             freeCompilerArgs = freeCompilerArgs + listOf(
-                "-Xopt-in=kotlin.RequiresOptIn",
+                "-opt-in=kotlin.RequiresOptIn",
                 "-Xjvm-default=all"
             )
         }
