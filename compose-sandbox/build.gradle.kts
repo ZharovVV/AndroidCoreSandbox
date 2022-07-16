@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.bundles.jetpack.compose)
     implementation("androidx.compose.material3:material3:1.0.0-alpha14")
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
+    implementation(libs.coroutines)
 
     //region fix bug compose preview
     //https://stackoverflow.com/questions/71812710/can-no-longer-view-jetpack-compose-previews-failed-to-instantiate-one-or-more-c

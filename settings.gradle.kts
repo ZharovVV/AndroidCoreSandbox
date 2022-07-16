@@ -17,12 +17,12 @@ dependencyResolutionManagement {
             // Версия Компилятора Compose 1.2.0 совместима c kotlin 1.7.0
 
             //android
-            alias("androidx-core-ktx").to("androidx.core:core-ktx:1.7.0")
-            alias("androidx-appcompat").to("androidx.appcompat:appcompat:1.4.1")
+            alias("androidx-core-ktx").to("androidx.core:core-ktx:1.8.0")
+            alias("androidx-appcompat").to("androidx.appcompat:appcompat:1.4.2")
             alias("androidx-constraintlayout").to("androidx.constraintlayout:constraintlayout:2.1.3")
             alias("material").to("com.google.android.material:material:1.5.0")
             //for delegating ViewModel (by viewModels())
-            alias("androidx-activity-ktx").to("androidx.activity:activity-ktx:1.4.0")
+            alias("androidx-activity-ktx").to("androidx.activity:activity-ktx:1.5.0")
             bundle(
                 "core",
                 listOf(
@@ -68,7 +68,7 @@ dependencyResolutionManagement {
             // Integration with activities
             alias("jetpack-compose-activity").to("androidx.activity:activity-compose:1.4.0")
             // Integration with ViewModels
-            alias("jetpack-compose-viewmodel").to("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+            alias("jetpack-compose-viewmodel").to("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0")
             // Integration with observables
             alias("jetpack-compose-livedata").to("androidx.compose.runtime:runtime-livedata:1.1.1")
             alias("jetpack-compose-rxjava2").to("androidx.compose.runtime:runtime-rxjava2:1.1.1")
@@ -110,6 +110,10 @@ dependencyResolutionManagement {
             alias("rxjava2-android").to("io.reactivex.rxjava2:rxandroid:2.1.1")
             alias("rxjava2-kotlin").to("io.reactivex.rxjava2:rxkotlin:2.3.0")
             bundle("rxjava", listOf("rxjava2", "rxjava2-android", "rxjava2-kotlin"))
+
+            //coroutines
+            alias("coroutines").to("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+            //транзитивно тянет kotlinx-coroutines-core-jvm
         }
     }
 }

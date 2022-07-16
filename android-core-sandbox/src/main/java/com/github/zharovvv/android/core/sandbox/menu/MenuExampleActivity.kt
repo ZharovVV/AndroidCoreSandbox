@@ -53,21 +53,19 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
      * вызывается каждый раз перед отображением меню.
      * Здесь мы вносим изменения в уже созданное меню, если это необходимо
      */
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu?.setGroupVisible(R.id.menu_group_1, checkBox.isChecked)
-        if (menu != null) {
-            if (checkBoxOverflow.isChecked) {
-                for (item: MenuItem in menu) {
-                    when (item.itemId) {
-                        R.id.menu_item_1, R.id.menu_item_2 -> {
-                            item.setShowAsAction(SHOW_AS_ACTION_NEVER)
-                        }
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.setGroupVisible(R.id.menu_group_1, checkBox.isChecked)
+        if (checkBoxOverflow.isChecked) {
+            for (item: MenuItem in menu) {
+                when (item.itemId) {
+                    R.id.menu_item_1, R.id.menu_item_2 -> {
+                        item.setShowAsAction(SHOW_AS_ACTION_NEVER)
                     }
                 }
-            } else {
-                menu.getItem(0).setShowAsAction(SHOW_AS_ACTION_ALWAYS)
-                menu.getItem(1).setShowAsAction(SHOW_AS_ACTION_IF_ROOM)
             }
+        } else {
+            menu.getItem(0).setShowAsAction(SHOW_AS_ACTION_ALWAYS)
+            menu.getItem(1).setShowAsAction(SHOW_AS_ACTION_IF_ROOM)
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -76,7 +74,11 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
      * вызывается при нажатии пункта меню. Здесь мы определяем какой пункт меню был нажат.
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this, "item title: ${item.title}\nshowAsAction: ${item.showAsAction}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            "item title: ${item.title}\nshowAsAction: ${item.showAsAction}",
+            Toast.LENGTH_SHORT
+        ).show()
         return super.onOptionsItemSelected(item)
     }
 
@@ -93,7 +95,11 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
      * * [menuInfo] : ContextMenu.ContextMenuInfo – содержит доп.информацию,
      * когда контекстное меню вызвано для элемента списка.
      */
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
         menuInflater.inflate(R.menu.context_menu_example, menu)
     }
 
@@ -105,15 +111,19 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
         when (item.itemId) {
             R.id.context_menu_item_1 -> {
                 Toast.makeText(this, "Нажат пункт контекстного меню Activity", Toast.LENGTH_SHORT)
-                        .show()
+                    .show()
             }
             CustomOnCreateContextMenuListener.MAIN_ITEM_ID -> {
                 Toast.makeText(this, "Нажат пункт контекстного меню Custom", Toast.LENGTH_SHORT)
-                        .show()
+                    .show()
             }
             else -> {
-                Toast.makeText(this, "Нажат пункт контекстного меню для неизвестного пункта", Toast.LENGTH_SHORT)
-                        .show()
+                Toast.makeText(
+                    this,
+                    "Нажат пункт контекстного меню для неизвестного пункта",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
             }
         }
         return super.onContextItemSelected(item)

@@ -16,7 +16,9 @@ abstract class BaseFeatureHolder<Feature : FeatureApi>(
         if (_feature == null) {
             _buildFeatureLock.lock()
             try {
-                _feature = buildFeature()
+                if (_feature == null) {
+                    _feature = buildFeature()
+                }
             } finally {
                 _buildFeatureLock.unlock()
             }
