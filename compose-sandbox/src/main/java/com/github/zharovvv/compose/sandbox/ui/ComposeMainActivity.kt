@@ -4,13 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.github.zharovvv.compose.sandbox.di.api.internal.ui.diViewModels
 import com.github.zharovvv.compose.sandbox.ui.main.MainScreen2
 import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
+import kotlinx.coroutines.launch
 
 typealias AndroidColor = android.graphics.Color
 
@@ -20,7 +25,6 @@ class ComposeMainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        defaultViewModelCreationExtras
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
@@ -33,6 +37,13 @@ class ComposeMainActivity : ComponentActivity() {
             AppTheme(isDynamic = true) {
                 MainScreen2()
             }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                Log.i("ComposeMainActivity-DEBUG", "call repeatOnLifecycle block")
+            }
+            //вызвалось только после onStop()
+            Log.i("ComposeMainActivity-DEBUG", "call after repeatOnLifecycle block")
         }
     }
 

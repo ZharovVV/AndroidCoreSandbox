@@ -27,8 +27,8 @@ internal class ComposeSandboxUiModule {
     @Provides
     @[IntoMap ViewModelKey(ComposeMainViewModel::class)]
     fun composeMainViewModel(
-        scopeProvider: Provider<ViewModelScope>
-    ): ViewModel = ComposeMainViewModel(scopeProvider.get())
+        scopeProvider: Provider<ViewModelScope> //не нужно, у вью модели уже есть скоуп внутри
+    ): ViewModel = ComposeMainViewModel()
 
     @PerFeature
     @Provides
