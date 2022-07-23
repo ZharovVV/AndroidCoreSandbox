@@ -56,9 +56,8 @@ dependencyResolutionManagement {
                 .to("androidx.compose.foundation", "foundation")
                 .versionRef("compose")
             // Material Design
-            alias("jetpack-compose-material")
-                .to("androidx.compose.material", "material")
-                .versionRef("compose")
+            alias("jetpack-compose-material3")
+                .to("androidx.compose.material3:material3:1.0.0-alpha14")
             alias("jetpack-compose-material-icons-core")
                 .to("androidx.compose.material", "material-icons-core")
                 .versionRef("compose")
@@ -78,7 +77,7 @@ dependencyResolutionManagement {
                     "jetpack-compose-ui",
                     "jetpack-compose-ui-tooling",
                     "jetpack-compose-foundation",
-                    "jetpack-compose-material",
+                    "jetpack-compose-material3",
                     "jetpack-compose-material-icons-core",
                     "jetpack-compose-material-icons-extended",
                     "jetpack-compose-activity",

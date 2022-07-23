@@ -13,12 +13,25 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.github.zharovvv.compose.sandbox.di.api.internal.ui.diViewModels
-import com.github.zharovvv.compose.sandbox.ui.main.MainScreen2
+import com.github.zharovvv.compose.sandbox.ui.navigation.MainScreenNavComponent
 import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
 typealias AndroidColor = android.graphics.Color
 
+/**
+ * # Jetpack Compose
+ * ## Требования к архитектуре приложения с точки зрения Compose
+ * Это требование можно описать формулой:
+ * __UI = f( state )__
+ * * UI - макет экрана
+ * * f(..) - методы компоновки
+ * * state - состояние приложения
+ *
+ * Так в принципе работают почти все декларитивные фреймворки (в т.ч. Compose).
+ * Максимально удобно работать с Compose в UDF-архитектурах (MVI, ELM, MVU).
+ * UDF - Unidirectional Data Flow (Однонаправленный поток данных).
+ */
 class ComposeMainActivity : ComponentActivity() {
 
     private val composeMainViewModel: ComposeMainViewModel by diViewModels()
@@ -34,8 +47,11 @@ class ComposeMainActivity : ComponentActivity() {
         window.statusBarColor = AndroidColor.TRANSPARENT
         window.navigationBarColor = AndroidColor.TRANSPARENT
         setContent {
+//            //У данной вью модели вызовется onCleared, когда ComposeMainActivity финиширует
+//            val anotherComposeViewModel: Compose1ViewModel = viewModel()
+//            val navController = rememberNavController()
             AppTheme(isDynamic = true) {
-                MainScreen2()
+                MainScreenNavComponent()
             }
         }
         lifecycleScope.launch {

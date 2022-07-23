@@ -7,9 +7,9 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.contentColorFor
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -33,7 +33,7 @@ fun DraggableSurface(
     modifier: Modifier = Modifier,
     containerModifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    color: Color = MaterialTheme.colors.surface,
+    color: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = contentColorFor(color),
     border: BorderStroke? = null,
     elevation: Dp = 0.dp,
@@ -83,7 +83,7 @@ fun DraggableSurface(
             color = color,
             contentColor = contentColor,
             border = border,
-            elevation = elevation,
+            shadowElevation = elevation,
             content = content
         )
     }

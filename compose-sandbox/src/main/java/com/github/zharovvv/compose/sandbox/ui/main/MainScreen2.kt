@@ -6,11 +6,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Text
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +14,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.github.zharovvv.compose.sandbox.ext.compose.distinctUntilChanged
+import com.github.zharovvv.compose.sandbox.ui.Compose2ViewModel
 import com.github.zharovvv.compose.sandbox.ui.pager.AnimatedPager
 import com.github.zharovvv.compose.sandbox.ui.pager.DraggableSurface
 import com.github.zharovvv.compose.sandbox.ui.pager.StubItem
@@ -27,15 +24,15 @@ import kotlinx.coroutines.flow.scan
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
-fun MainScreen2() {
+fun MainScreen2(viewModel: Compose2ViewModel) {
     val data = remember {
         listOf("first", "second", "third", "fourth")
     }
     Scaffold(
         modifier = Modifier
             .fillMaxHeight()
-            .fillMaxWidth()
-            .padding(top = 48.dp, bottom = 16.dp), //отступы статусбара и навбара
+            .fillMaxWidth(),
+//            .padding(top = 48.dp, bottom = 16.dp), //отступы статусбара и навбара
         containerColor = MaterialTheme.colorScheme.primary
     ) { contentPadding ->
         val dragZoneState = remember {

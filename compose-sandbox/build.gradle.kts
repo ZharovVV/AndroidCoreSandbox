@@ -37,8 +37,8 @@ dependencies {
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.jetpack.compose)
-    implementation("androidx.compose.material3:material3:1.0.0-alpha14")
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
+    implementation("androidx.navigation:navigation-compose:2.5.0")
     implementation(libs.coroutines)
 
     //region fix bug compose preview

@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,7 +21,7 @@ import com.github.zharovvv.compose.sandbox.models.ui.Message
 @Composable
 fun MessageCardList(messages: List<Message>, contentPadding: PaddingValues = PaddingValues(0.dp)) {
     LazyColumn(
-        modifier = Modifier.padding(top = 48.dp, bottom = 16.dp),
+//        modifier = Modifier.padding(top = 48.dp, bottom = 16.dp),
         contentPadding = contentPadding
     ) {
         items(messages) { message ->
@@ -72,7 +72,7 @@ fun MessageCard(message: Message) {
                 Surface(
                     shape = MaterialTheme.shapes.medium,
                     color = MaterialTheme.colorScheme.secondaryContainer,
-                    elevation = 1.dp
+                    tonalElevation = 1.dp
                 ) {
                     Text(
                         text = message.body,
