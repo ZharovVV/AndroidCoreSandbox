@@ -1,6 +1,9 @@
 package com.github.zharovvv.compose.sandbox.ui.main
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -16,9 +19,7 @@ import com.github.zharovvv.compose.sandbox.ui.Compose3ViewModel
 @Composable
 fun MainScreen3(navController: NavHostController? = null, viewModel: Compose3ViewModel) {
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .systemBarsPadding()
+        modifier = Modifier.fillMaxSize()
     ) {
         Box(
             contentAlignment = Alignment.Center,

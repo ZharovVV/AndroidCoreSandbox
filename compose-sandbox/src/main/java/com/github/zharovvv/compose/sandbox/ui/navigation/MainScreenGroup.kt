@@ -9,4 +9,4 @@ sealed class MainScreenGroup(val route: String, @StringRes val resourceId: Int) 
     object Screen3 : MainScreenGroup("screen3", R.string.screen3_name)
 }
 
-val mainScreenGroupItems = listOf(MainScreenGroup.Screen1, MainScreenGroup.Screen2, MainScreenGroup.Screen3)
+val mainScreenTabs = listOf(MainScreenGroup.Screen1, MainScreenGroup.Screen2, MainScreenGroup.Screen3)

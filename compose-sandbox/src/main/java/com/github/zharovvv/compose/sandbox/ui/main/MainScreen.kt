@@ -1,7 +1,6 @@
 package com.github.zharovvv.compose.sandbox.ui.main
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -23,7 +22,7 @@ fun MainScreen(viewModel: Compose1ViewModel) {
     // компоновки и собирая необходимые данные,
     // чтобы эти компоненты работали вместе правильно.
     Scaffold(
-        modifier = Modifier.fillMaxSize().systemBarsPadding()
+        modifier = Modifier.fillMaxSize()
     ) { contentPadding ->
         //если не использвать функцию remember для сохранения стейта компонуемой функции,
         //то LazyColumn в MessageCardList будет дико лагать.

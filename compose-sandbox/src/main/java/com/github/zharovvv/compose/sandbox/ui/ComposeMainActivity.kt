@@ -13,7 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.github.zharovvv.compose.sandbox.di.api.internal.ui.diViewModels
-import com.github.zharovvv.compose.sandbox.ui.navigation.MainScreenNavComponent
+import com.github.zharovvv.compose.sandbox.ui.navigation.RootNavGraph
 import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
@@ -51,7 +51,7 @@ class ComposeMainActivity : ComponentActivity() {
 //            val anotherComposeViewModel: Compose1ViewModel = viewModel()
 //            val navController = rememberNavController()
             AppTheme(isDynamic = true) {
-                MainScreenNavComponent()
+                RootNavGraph()
             }
         }
         lifecycleScope.launch {
