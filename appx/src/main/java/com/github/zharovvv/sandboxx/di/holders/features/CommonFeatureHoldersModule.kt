@@ -19,7 +19,8 @@ import javax.inject.Singleton
         AndroidCoreSandboxFeatureHolderModule::class,
         RxJavaSandboxFeatureHolderModule::class,
         AnimationSandboxFeatureHolderModule::class,
-        ComposeSandboxFeatureHolderModule::class
+        ComposeSandboxFeatureHolderModule::class,
+        AndroidCoreSandboxFeatureHolderModule::class
     ]
 )
 abstract class CommonFeatureHoldersModule {

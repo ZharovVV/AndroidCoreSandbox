@@ -1,15 +1,10 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
 }
 
 android {
-    defaultConfig {
-        applicationId = "com.github.zharovvv.sandboxx"
-        versionCode = 1
-        versionName = "1.0"
-    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -28,19 +23,12 @@ dependencies {
     kapt(libs.dagger.compiler)
     //endregion
 
-    //region-ui
+    //region UI
     implementation(project(":core-ui"))
     //endregion
 
-    //region Features
-    implementation(project(":android-core-sandbox"))
-    implementation(project(":rx-java-sandbox"))
-    implementation(project(":animation-sandbox"))
-    implementation(project(":compose-sandbox"))
-    implementation(project(":android-accessibility"))
-    //endregion
-
     implementation(libs.bundles.core)
+    implementation(libs.coroutines)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
 }

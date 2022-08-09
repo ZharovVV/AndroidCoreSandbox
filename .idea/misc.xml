@@ -18,6 +18,7 @@
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/app/src/main/res/layout/widget.xml" value="0.2695035460992908" />
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/rxJavaSandboxModule/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/rxJavaSandboxModule/src/main/res/layout/fragment_main.xml" value="0.20625" />
+        <entry key="android-accessibility/src/main/res/layout/activity_android_accessibility.xml" value="0.2972222222222222" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_custom_view_example.xml" value="0.15520833333333334" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_true_main.xml" value="0.2972222222222222" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_view_model_rxjava_example.xml" value="0.15520833333333334" />
@@ -40,7 +41,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1305" />
         <entry key="appx/src/main/res/drawable/border.xml" value="0.1305" />
-        <entry key="appx/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="appx/src/main/res/layout/activity_main.xml" value="0.2422836303710938" />
         <entry key="appx/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1305" />
         <entry key="appx/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1305" />
         <entry key="core-ui/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
