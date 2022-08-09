@@ -45,7 +45,7 @@ dependencyResolutionManagement {
                 listOf("jetpack-navigation-fragment", "jetpack-navigation-ui")
             )
             //compose
-            version("compose", "1.2.0-rc03")
+            version("compose", "1.2.0")
             alias("jetpack-compose-ui").to("androidx.compose.ui", "ui").versionRef("compose")
             // Tooling support (Previews, etc.)
             alias("jetpack-compose-ui-tooling")

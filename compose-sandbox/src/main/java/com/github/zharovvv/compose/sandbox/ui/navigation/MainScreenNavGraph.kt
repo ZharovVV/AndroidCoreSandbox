@@ -31,7 +31,6 @@ import com.github.zharovvv.compose.sandbox.ui.main.MainScreen3
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreenNavGraph(rootNavController: NavHostController? = null) {
-    mapOf<String, String>().containsKey("")
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
