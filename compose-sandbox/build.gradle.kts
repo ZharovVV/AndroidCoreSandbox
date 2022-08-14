@@ -33,6 +33,10 @@ dependencies {
     implementation(project(":core-ui"))
     //endregion
 
+    //region navigation
+    implementation(project(":core-navigation"))
+    //endregion
+
     implementation(libs.bundles.core)
     implementation(libs.bundles.jetpack.compose)
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")

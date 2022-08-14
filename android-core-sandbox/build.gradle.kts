@@ -36,6 +36,10 @@ dependencies {
     implementation(project(":core-ui"))
     //endregion
 
+    //region navigation
+    implementation(project(":core-navigation"))
+    //endregion
+
     //region feature
     implementation(project(":rx-java-sandbox"))
     implementation(project(":animation-sandbox"))

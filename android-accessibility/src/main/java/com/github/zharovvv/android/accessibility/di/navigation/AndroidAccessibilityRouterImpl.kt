@@ -1,4 +1,4 @@
-package com.github.zharovvv.android.accessibility.di.api
+package com.github.zharovvv.android.accessibility.di.navigation
 
 import android.content.Context
 import com.github.zharovvv.android.accessibility.presentation.AndroidAccessibilityActivity

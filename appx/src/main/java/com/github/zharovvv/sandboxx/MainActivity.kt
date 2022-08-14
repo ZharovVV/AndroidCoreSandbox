@@ -1,35 +1,28 @@
 package com.github.zharovvv.sandboxx
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.github.zharovvv.android.accessibility.di.api.AndroidAccessibilityApi
-import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
+import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.common.di.featureApi
-import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
-import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxApi
+import com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.api.MainScreenEntryPointsApi
+import com.github.zharovvv.sandboxx.ui.mainscreen.entry.point.MainScreenEntryPointsAdapter
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //TODO вынести это уже в список наконец
-        // также сделать отдельный общий dagger-модуль "точек входа с главного экрана"
-        val toAndroidCoreApiButton: Button = findViewById(R.id.to_android_core_sandbox_module)
-        toAndroidCoreApiButton.setOnClickListener {
-            featureApi<AndroidCoreSandboxApi>().router.launch(this)
-        }
-        val toRxJavaModuleButton: Button = findViewById(R.id.to_rx_java_module_button)
-        toRxJavaModuleButton.setOnClickListener {
-            featureApi<RxJavaSandboxApi>().router.launch(this)
-        }
-        val toJetpackComposeModule: Button = findViewById(R.id.to_compose_module_button)
-        toJetpackComposeModule.setOnClickListener {
-            featureApi<ComposeSandboxApi>().router.launch(this)
-        }
-        val toAndroidAccessibilityModule: Button = findViewById(R.id.to_accessibility_module_button)
-        toAndroidAccessibilityModule.setOnClickListener {
-            featureApi<AndroidAccessibilityApi>().router.launch(this)
-        }
+        val recyclerView: RecyclerView = findViewById(R.id.main_screen_entry_points_recycler_view)
+        val adapter = MainScreenEntryPointsAdapter(
+            onItemClickBlock = { entryPoint ->
+                val router = entryPoint.routerProvider.invoke()
+                router.launch(context = this)
+            }
+        )
+        recyclerView.adapter = adapter
+        val mainScreenEntryPoints = featureApi<MainScreenEntryPointsApi>()
+            .mainScreenEntryPointsMap
+            .values
+            .toList()
+        adapter.submitList(mainScreenEntryPoints)
     }
 }

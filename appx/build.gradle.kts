@@ -19,6 +19,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -30,6 +33,10 @@ dependencies {
 
     //region-ui
     implementation(project(":core-ui"))
+    //endregion
+
+    //region navigation
+    implementation(project(":core-navigation"))
     //endregion
 
     //region Features

@@ -1,4 +1,4 @@
-package com.github.zharovvv.compose.sandbox.di.api
+package com.github.zharovvv.compose.sandbox.di.api.navigation
 
 import android.content.Context
 import com.github.zharovvv.compose.sandbox.ui.ComposeMainActivity

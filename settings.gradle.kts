@@ -3,6 +3,7 @@ include(
     ":appx",
     ":core-di",
     ":core-ui",
+    ":core-navigation",
     ":android-core-sandbox",
     ":rx-java-sandbox",
     ":animation-sandbox",

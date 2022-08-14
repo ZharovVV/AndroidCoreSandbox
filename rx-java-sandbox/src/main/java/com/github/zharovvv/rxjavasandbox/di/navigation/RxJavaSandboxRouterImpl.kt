@@ -1,4 +1,4 @@
-package com.github.zharovvv.rxjavasandbox.di.api
+package com.github.zharovvv.rxjavasandbox.di.navigation
 
 import android.content.Context
 import com.github.zharovvv.rxjavasandbox.MainActivity

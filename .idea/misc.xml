@@ -18,7 +18,11 @@
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/app/src/main/res/layout/widget.xml" value="0.2695035460992908" />
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/rxJavaSandboxModule/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/Program Files/Android/Android Studio Projects/AndroidCoreSandbox/rxJavaSandboxModule/src/main/res/layout/fragment_main.xml" value="0.20625" />
+        <entry key="android-accessibility/src/main/res/drawable/ic_baseline_accessibility_new_24.xml" value="0.2735" />
         <entry key="android-accessibility/src/main/res/layout/activity_android_accessibility.xml" value="0.2972222222222222" />
+        <entry key="android-core-sandbox/src/main/res/drawable/border.xml" value="0.2735" />
+        <entry key="android-core-sandbox/src/main/res/drawable/wave_view_background.xml" value="0.2735" />
+        <entry key="android-core-sandbox/src/main/res/drawable/widget_backgroud.xml" value="0.2735" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_custom_view_example.xml" value="0.15520833333333334" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_true_main.xml" value="0.2972222222222222" />
         <entry key="android-core-sandbox/src/main/res/layout/activity_view_model_rxjava_example.xml" value="0.15520833333333334" />
@@ -27,7 +31,10 @@
         <entry key="android-core-sandbox/src/main/res/layout/list_item_person.xml" value="0.15520833333333334" />
         <entry key="android-core-sandbox/src/main/res/menu/context_menu_choose_location_provider.xml" value="0.3098958333333333" />
         <entry key="android-core-sandbox/src/main/res/menu/menu_example.xml" value="0.3098958333333333" />
+        <entry key="animation-sandbox/src/main/res/drawable/avd_pathmorph_drawer_arrow_to_hamburger.xml" value="0.2735" />
+        <entry key="animation-sandbox/src/main/res/drawable/avd_pathmorph_drawer_hamburger_to_arrow.xml" value="0.2735" />
         <entry key="animation-sandbox/src/main/res/drawable/frame_animation.xml" value="0.127" />
+        <entry key="animation-sandbox/src/main/res/drawable/ic_baseline_all_inclusive_24.xml" value="0.2735" />
         <entry key="animation-sandbox/src/main/res/drawable/vd_pathmorph_drawer_arrow.xml" value="0.127" />
         <entry key="animation-sandbox/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
         <entry key="animation-sandbox/src/main/res/layout/animation_sandbox_activity_main.xml" value="0.15520833333333334" />
@@ -41,10 +48,13 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1305" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1305" />
         <entry key="appx/src/main/res/drawable/border.xml" value="0.1305" />
-        <entry key="appx/src/main/res/layout/activity_main.xml" value="0.2422836303710938" />
+        <entry key="appx/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="appx/src/main/res/layout/list_item_main_screen_entry_point.xml" value="0.1" />
         <entry key="appx/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1305" />
         <entry key="appx/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1305" />
+        <entry key="core-navigation/src/main/res/layout/entry_point_default.xml" value="0.2972222222222222" />
         <entry key="core-ui/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
+        <entry key="core-ui/src/main/res/drawable/ic_launcher_background.xml" value="0.2735" />
         <entry key="core-ui/src/main/res/layout/activity_main.xml" value="0.29583333333333334" />
         <entry key="core-ui/src/main/res/layout/ds_example.xml" value="0.29583333333333334" />
         <entry key="core-ui/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1355" />

@@ -1,4 +1,4 @@
-package com.github.zharovvv.animationsandbox.di.api
+package com.github.zharovvv.animationsandbox.di.navigation
 
 import android.content.Context
 import com.github.zharovvv.animationsandbox.MainActivity

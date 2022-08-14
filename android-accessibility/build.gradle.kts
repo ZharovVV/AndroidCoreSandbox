@@ -27,6 +27,10 @@ dependencies {
     implementation(project(":core-ui"))
     //endregion
 
+    //region navigation
+    implementation(project(":core-navigation"))
+    //endregion
+
     implementation(libs.bundles.core)
     implementation(libs.coroutines)
     testImplementation(libs.bundles.test)
