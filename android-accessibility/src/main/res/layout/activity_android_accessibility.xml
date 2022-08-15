@@ -1,7 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!--Далее в комментариях будет указан текст озвучки Talkback-->
+
+    <!--При первом запуске экрана: Android Core Sandbox.-->
+    <!--Тестовый текст. Вне списка-->
+
+    <!--При повторном фокусе на элементе:-->
+    <!--Тестовый текст.-->
+    <TextView
+        android:id="@+id/accessibility_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_medium_margin"
+        android:text="Тестовый текст"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <!--ТЕСТОВАЯ КНОПКА, Кнопка-->
+    <!--Коснитесь дважды, чтобы активировать.-->
+    <Button
+        android:id="@+id/accessibility_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_medium_margin"
+        android:text="Тестовая кнопка"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accessibility_text_view"
+        tools:ignore="HardcodedText" />
+
+    <!--Не фокусируется talkback-ом.-->
+    <ImageView
+        android:id="@+id/bad_accessibility_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_medium_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_accessibility_new_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accessibility_button" />
+
+    <!--Иконка Accessibility, Изображение-->
+    <ImageView
+        android:id="@+id/good_accessibility_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_medium_margin"
+        android:contentDescription="Иконка Accessibility"
+        android:src="@drawable/ic_baseline_accessibility_new_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bad_accessibility_image_view"
+        tools:ignore="HardcodedText" />
+
+    <!--ВЫКЛ, Переключатель-->
+    <!--Коснитесь дважды, чтобы включить или выключить.
+    Доступно: Ярлыки. Чтобы посмотреть используйте жест
+    Нажатие тремя пальцами.-->
+
+    <!--После двойного прикосновения: ВКЛ-->
+
+    <!--При нажатии тремя пальцами можно установить ярлык для данного свича. Например "тестовый ярлык".-->
+    <!--В таком случае свич будет озвучиваться как: ВЫКЛ, тестовый ярлык, Переключатель-->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/accessibility_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_medium_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/good_accessibility_image_view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

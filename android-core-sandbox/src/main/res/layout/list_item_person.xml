@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/ds_middle_margin"
-    android:layout_marginEnd="@dimen/ds_middle_margin"
+    android:layout_marginStart="@dimen/ds_medium_margin"
+    android:layout_marginEnd="@dimen/ds_medium_margin"
     android:orientation="horizontal">
 
     <TextView

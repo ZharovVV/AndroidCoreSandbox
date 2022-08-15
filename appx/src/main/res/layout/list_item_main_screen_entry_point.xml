@@ -5,7 +5,7 @@
     android:id="@+id/entry_point_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/ds_middle_margin"
+    android:layout_marginHorizontal="@dimen/ds_medium_margin"
     android:layout_marginVertical="@dimen/ds_small_margin"
     android:clickable="true"
     android:focusable="true"
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/ds_middle_margin">
+        android:padding="@dimen/ds_medium_margin">
 
         <ImageView
             android:id="@+id/entry_point_icon_image_view"
@@ -43,7 +43,7 @@
             android:id="@+id/entry_point_title_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ds_middle_margin"
+            android:layout_marginStart="@dimen/ds_medium_margin"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
             android:id="@+id/entry_point_description_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ds_middle_margin"
+            android:layout_marginStart="@dimen/ds_medium_margin"
             android:layout_marginTop="@dimen/ds_small_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/barrier"
