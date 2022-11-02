@@ -17,6 +17,14 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
 
     private lateinit var binding: ActivityFragmentExampleBinding
     private val tagStack = TagStack()
+    private val fragmentSingleInstance: ExampleFragment by lazy {
+        ExampleFragment().apply {
+            arguments = bundleOf(
+                FRAGMENT_DATA_KEY to "SingleFragment",
+                FRAGMENT_COLOR_KEY to DSR.color.ds_teal_700
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,13 +74,23 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
                 // не претерпевают изменения жизненного цикла или их анимации или переходы не выполняются.
                 // Обратите внимание, что этот флаг влияет как на начальное выполнение транзакции,
                 // так и на отмену транзакции с помощью popBackStack().
-                .add(//добавляет фрагмент на активити или другой фрагмент.
-                    R.id.fragment_host,
-                    ExampleFragment::class.java,
-                    bundle,
-                    generateFragmentTag()
-                )
                 .apply {
+                    if (binding.useSingleInstanceCheckBox.isChecked) {
+                        supportFragmentManager.fragments.forEach {
+                            remove(it)
+                        }
+                        //Если использовать везде один и тот же инстанс и предварительно
+                        // не удалять фрагмент, то будет ошибка:
+                        //java.lang.IllegalStateException: Fragment already added: ExampleFragment...
+                        add(R.id.fragment_host, fragmentSingleInstance, SINGLE_FRAGMENT_TAG)
+                    } else {
+                        add(//добавляет фрагмент на активити или другой фрагмент.
+                            R.id.fragment_host,
+                            ExampleFragment::class.java,
+                            bundle,
+                            generateFragmentTag()
+                        )
+                    }
                     if (binding.addToBackStackCheckBox.isChecked) {
                         addToBackStack(null)
                     }
@@ -95,12 +113,16 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
             val bundle = bundleFromBinding()
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                replace<ExampleFragment>( //удаляет все фрагменты, добавленные методом add() в заданный контейнер,
-                    // и добавляет переданный аргументом фрагмент в контейнер. Параметр tag может быть null.
-                    containerViewId = R.id.fragment_host,
-                    tag = generateFragmentTag(),
-                    args = bundle
-                )
+                if (binding.useSingleInstanceCheckBox.isChecked) {
+                    replace(R.id.fragment_host, fragmentSingleInstance, SINGLE_FRAGMENT_TAG)
+                } else {
+                    replace<ExampleFragment>( //удаляет все фрагменты, добавленные методом add() в заданный контейнер,
+                        // и добавляет переданный аргументом фрагмент в контейнер. Параметр tag может быть null.
+                        containerViewId = R.id.fragment_host,
+                        tag = generateFragmentTag(),
+                        args = bundle
+                    )
+                }
                 if (binding.addToBackStackCheckBox.isChecked) {
                     addToBackStack(null)    //Метод addToBackStack() добавляет транзакцию в Back Stack.
                     // Это значит, что когда пользователь нажмет Back транзакция откатится.
@@ -115,7 +137,7 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
                     // то у добавленных ранее фрагментов не будут вызваны onDestroy и onDetach.
                     // - Если был вызван replace + addToBackStack, то при popBackStack у добавленных ранее фрагментов
                     // вызовется сразу onCreateView (и далее до onResume) (у тех же самых объектов Fragment).
-                    // - Если был вызван просто replace, то при popBackStack у последнего добавленного ранее фрагмента
+                    // - Если был вызван просто replace, то при popBackStack у последнего добавленного ранее фрагмента (через add)
                     // вызовется onDestroy и onDetach (у того же объекта Fragment). Так как транзакция с replace не была добавлена в BackStack.
                     // Фрагмент, добаленный через replace остается видимым для пользователя.
 
@@ -142,6 +164,10 @@ class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResum
 
     override fun fragmentOnResume(fragmentTag: String) {
         tagStack.push(tag = fragmentTag)
+    }
+
+    companion object {
+        const val SINGLE_FRAGMENT_TAG = "ExampleFragment-Single"
     }
 }
 

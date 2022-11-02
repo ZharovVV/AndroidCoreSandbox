@@ -46,7 +46,7 @@ class ExampleFragment : Fragment() {
     ): View {
         Log.i(LOG_TAG, "$this#onCreateView")
         val args = requireArguments()
-        val colorId : Int = args.getInt(FRAGMENT_COLOR_KEY)
+        val colorId: Int = args.getInt(FRAGMENT_COLOR_KEY)
         _binding = FragmentExampleBinding.inflate(inflater, container, false)
         return binding.root.apply {
             setBackgroundColor(
@@ -63,6 +63,12 @@ class ExampleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fragmentNameTextView.text = tag
         binding.fragmentDataTextView.text = requireArguments().getCharSequence(FRAGMENT_DATA_KEY)
+        binding.debugInfoTextView.text = "parentTransactionManager#getFragments:\n" +
+                parentFragmentManager.fragments
+                    .joinToString(separator = ";", postfix = "\n") { "fragment: $it" } +
+                "parentFragmentManager#backStackEntryCount:\n" +
+                parentFragmentManager.backStackEntryCount.toString()
+
     }
 
     override fun onStart() {
