@@ -14,6 +14,10 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -32,5 +36,6 @@ dependencies {
     //endregion
 
     implementation(libs.bundles.core)
+    implementation(libs.bundles.jetpack.navigation)
     implementation(libs.coroutines)
 }

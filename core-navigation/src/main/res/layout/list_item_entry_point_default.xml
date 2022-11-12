@@ -21,7 +21,7 @@
             android:id="@+id/entry_point_icon_image_view"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/widget_backgroud"
+            android:background="@drawable/background_alpha_20"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
             android:scaleType="centerInside"
@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_baseline_all_inclusive_24" />
+            tools:src="@drawable/ic_baseline_android_24" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"

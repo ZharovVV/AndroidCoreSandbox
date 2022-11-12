@@ -41,6 +41,8 @@ dependencyResolutionManagement {
             alias("jetpack-workmanager").to("androidx.work:work-runtime:2.7.1")
             alias("jetpack-workmanager-ktx").to("androidx.work:work-runtime-ktx:2.7.1")
             bundle("jetpack-workmanager", listOf("jetpack-workmanager", "jetpack-workmanager-ktx"))
+
+            //где-то тут тянется библиотека ktx Fragment с функциями-расширениями типа commit {..}
             alias("jetpack-navigation-fragment").to("androidx.navigation:navigation-fragment-ktx:2.4.2")
             alias("jetpack-navigation-ui").to("androidx.navigation:navigation-ui-ktx:2.4.2")
             bundle(

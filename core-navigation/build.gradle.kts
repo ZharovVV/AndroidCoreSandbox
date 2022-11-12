@@ -19,5 +19,6 @@ android {
 }
 
 dependencies {
-//    implementation(libs.bundles.core)
+    implementation(project(":core-ui"))
+    implementation(libs.bundles.core)
 }
