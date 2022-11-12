@@ -24,6 +24,7 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(findViewById(R.id.toolbar))
         checkBox = findViewById(R.id.checkbox)
         checkBoxOverflow = findViewById(R.id.checkbox_for_moving_into_overflow)
         checkBoxOverflow.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -34,6 +35,11 @@ class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu
 
         textView2 = findViewById(R.id.checkbox_2_description)
         textView2.setOnCreateContextMenuListener(CustomOnCreateContextMenuListener())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        setSupportActionBar(null)
     }
 
     /**

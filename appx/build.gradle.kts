@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":animation-sandbox"))
     implementation(project(":compose-sandbox"))
     implementation(project(":android-accessibility"))
+    implementation(project(":graphics-3d"))
     //endregion
 
     implementation(libs.bundles.core)

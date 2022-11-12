@@ -12,6 +12,7 @@ import com.github.zharovvv.common.di.meta.FeatureApi
 import com.github.zharovvv.common.di.multibinds.FeatureApiKey
 import com.github.zharovvv.common.di.qualifier.ApplicationContext
 import com.github.zharovvv.compose.sandbox.di.ComposeSandboxFeatureHolderModule
+import com.github.zharovvv.graphics.di.Graphics3DFeatureHolderModule
 import com.github.zharovvv.rxjavasandbox.di.RxJavaSandboxFeatureHolderModule
 import com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.MainScreenEntryPointsFeatureHolder
 import com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.api.MainScreenEntryPointsApi
@@ -28,7 +29,8 @@ import javax.inject.Singleton
         RxJavaSandboxFeatureHolderModule::class,
         AnimationSandboxFeatureHolderModule::class,
         ComposeSandboxFeatureHolderModule::class,
-        AndroidAccessibilityFeatureHolderModule::class
+        AndroidAccessibilityFeatureHolderModule::class,
+        Graphics3DFeatureHolderModule::class
     ]
 )
 abstract class CommonFeatureHoldersModule {

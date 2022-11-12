@@ -9,6 +9,7 @@
       <module name="Android_Core_Sandbox.compose-sandbox" target="11" />
       <module name="Android_Core_Sandbox.core-navigation" target="11" />
       <module name="Android_Core_Sandbox.core-ui" target="11" />
+      <module name="Android_Core_Sandbox.graphics-3d" target="11" />
       <module name="Android_Core_Sandbox.rx-java-sandbox" target="11" />
     </bytecodeTargetLevel>
   </component>

@@ -8,7 +8,8 @@ include(
     ":rx-java-sandbox",
     ":animation-sandbox",
     ":compose-sandbox",
-    ":android-accessibility"
+    ":android-accessibility",
+    ":graphics-3d"
 )
 
 enableFeaturePreview("VERSION_CATALOGS")
