@@ -9,7 +9,8 @@
     android:layout_marginVertical="@dimen/ds_small_margin"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="@dimen/ds_small_margin"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/ds_small_corner_radius"
     app:elevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

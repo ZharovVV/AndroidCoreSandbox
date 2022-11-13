@@ -16,9 +16,11 @@ class Graphics3DActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graphics_3d)
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<MainFragment>(R.id.host, MainFragment.TAG)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<MainFragment>(R.id.host, MainFragment.TAG)
+            }
         }
     }
 
