@@ -4,23 +4,28 @@ import com.github.zharovvv.android.accessibility.R
 import com.github.zharovvv.android.accessibility.di.api.AndroidAccessibilityApi
 import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.multibinds.FeatureApiKey
-import com.github.zharovvv.core.navigation.EntryPoint
+import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
+import com.github.zharovvv.core.navigation.OnlyForMainScreen
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import javax.inject.Singleton
 
+@OptIn(OnlyForMainScreen::class)
 @Module
 class AndroidAccessibilityNavigationModule {
 
     @Singleton
     @Provides
     @[IntoMap FeatureApiKey(AndroidAccessibilityApi::class)]
-    fun androidAccessibilityEntryPoint(): EntryPoint =
-        EntryPoint(
+    fun androidAccessibilityEntryPoint(): ActivityEntryPoint =
+        ActivityEntryPoint(
             name = "Android Accessibility",
             description = "Сервисы специальных возможностей",
             iconResId = R.drawable.ic_baseline_accessibility_new_24,
-            routerProvider = { featureApi<AndroidAccessibilityApi>().router }
+            //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
+            // Имеет смысл проводить инициализацию графа непосредственно в onCreate Activity
+            // И заменить провайдер просто на сам объект.
+            activityLauncherProvider = { featureApi<AndroidAccessibilityApi>().router }
         )
 }

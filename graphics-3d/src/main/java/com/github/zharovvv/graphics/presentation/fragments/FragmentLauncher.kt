@@ -4,13 +4,13 @@ import android.content.Context
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.github.zharovvv.core.navigation.Router
+import com.github.zharovvv.core.navigation.ActivityLauncher
 import kotlin.reflect.KClass
 
-internal class FragmentRouter(
+internal class FragmentLauncher(
     private val fragmentClass: KClass<out Fragment>,
     private val fragmentTag: String
-) : Router {
+) : ActivityLauncher {
 
     override fun launch(context: Context) {
         //ну такое

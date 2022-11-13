@@ -1,7 +1,7 @@
 package com.github.zharovvv.animationsandbox.di.api
 
-import com.github.zharovvv.animationsandbox.di.navigation.AnimationSandboxRouter
-import com.github.zharovvv.animationsandbox.di.navigation.AnimationSandboxRouterImpl
+import com.github.zharovvv.animationsandbox.di.navigation.AnimationSandboxLauncher
+import com.github.zharovvv.animationsandbox.di.navigation.AnimationSandboxLauncherImpl
 import com.github.zharovvv.common.di.scope.PerFeature
 import dagger.Module
 import dagger.Provides
@@ -11,7 +11,7 @@ class AnimationSandboxModule {
 
     @PerFeature
     @Provides
-    fun provideAnimationSandboxRouter(): AnimationSandboxRouter {
-        return AnimationSandboxRouterImpl()
+    fun provideAnimationSandboxRouter(): AnimationSandboxLauncher {
+        return AnimationSandboxLauncherImpl()
     }
 }

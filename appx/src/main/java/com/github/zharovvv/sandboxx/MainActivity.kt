@@ -4,17 +4,20 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.common.di.featureApi
+import com.github.zharovvv.core.navigation.EntryPoint
+import com.github.zharovvv.core.navigation.OnlyForMainScreen
 import com.github.zharovvv.core.navigation.ui.DefaultEntryPointsAdapter
 import com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.api.MainScreenEntryPointsApi
 
+@OptIn(OnlyForMainScreen::class)
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val recyclerView: RecyclerView = findViewById(R.id.main_screen_entry_points_recycler_view)
-        val adapter = DefaultEntryPointsAdapter(
+        val adapter = DefaultEntryPointsAdapter<EntryPoint.ActivityEntryPoint>(
             onItemClick = { entryPoint ->
-                val router = entryPoint.routerProvider.invoke()
+                val router = entryPoint.activityLauncherProvider.invoke()
                 router.launch(context = this)
             }
         )

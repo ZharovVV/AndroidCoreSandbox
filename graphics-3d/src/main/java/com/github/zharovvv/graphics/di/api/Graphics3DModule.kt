@@ -2,8 +2,8 @@ package com.github.zharovvv.graphics.di.api
 
 import com.github.zharovvv.common.di.scope.PerFeature
 import com.github.zharovvv.graphics.di.internal.Graphics3DInternalModule
-import com.github.zharovvv.graphics.di.navigation.Graphics3DRouter
-import com.github.zharovvv.graphics.di.navigation.Graphics3DRouterImpl
+import com.github.zharovvv.graphics.di.navigation.Graphics3DLauncher
+import com.github.zharovvv.graphics.di.navigation.Graphics3DLauncherImpl
 import dagger.Module
 import dagger.Provides
 
@@ -16,5 +16,5 @@ class Graphics3DModule {
 
     @PerFeature
     @Provides
-    fun router(): Graphics3DRouter = Graphics3DRouterImpl()
+    fun router(): Graphics3DLauncher = Graphics3DLauncherImpl()
 }

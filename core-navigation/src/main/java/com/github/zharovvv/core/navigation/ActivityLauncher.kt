@@ -2,7 +2,7 @@ package com.github.zharovvv.core.navigation
 
 import android.content.Context
 
-interface Router {
+interface ActivityLauncher {
 
     fun launch(context: Context)
 }

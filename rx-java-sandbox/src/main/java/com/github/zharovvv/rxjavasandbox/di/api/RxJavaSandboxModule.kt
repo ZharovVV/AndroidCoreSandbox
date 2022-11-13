@@ -1,8 +1,8 @@
 package com.github.zharovvv.rxjavasandbox.di.api
 
 import com.github.zharovvv.common.di.scope.PerFeature
-import com.github.zharovvv.rxjavasandbox.di.navigation.RxJavaSandboxRouter
-import com.github.zharovvv.rxjavasandbox.di.navigation.RxJavaSandboxRouterImpl
+import com.github.zharovvv.rxjavasandbox.di.navigation.RxJavaSandboxLauncher
+import com.github.zharovvv.rxjavasandbox.di.navigation.RxJavaSandboxLauncherImpl
 import dagger.Module
 import dagger.Provides
 
@@ -11,7 +11,7 @@ class RxJavaSandboxModule {
 
     @PerFeature
     @Provides
-    fun provideRxJavaSandboxRouter(): RxJavaSandboxRouter {
-        return RxJavaSandboxRouterImpl()
+    fun provideRxJavaSandboxRouter(): RxJavaSandboxLauncher {
+        return RxJavaSandboxLauncherImpl()
     }
 }

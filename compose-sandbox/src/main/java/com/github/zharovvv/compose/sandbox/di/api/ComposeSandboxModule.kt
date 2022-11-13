@@ -2,8 +2,8 @@ package com.github.zharovvv.compose.sandbox.di.api
 
 import com.github.zharovvv.common.di.scope.PerFeature
 import com.github.zharovvv.compose.sandbox.di.api.internal.ComposeSandboxInternalModule
-import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxRouter
-import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxRouterImpl
+import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxLauncher
+import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxLauncherImpl
 import dagger.Module
 import dagger.Provides
 
@@ -16,7 +16,7 @@ class ComposeSandboxModule {
 
     @PerFeature
     @Provides
-    fun provideComposeSandboxRouter(): ComposeSandboxRouter {
-        return ComposeSandboxRouterImpl()
+    fun provideComposeSandboxRouter(): ComposeSandboxLauncher {
+        return ComposeSandboxLauncherImpl()
     }
 }
