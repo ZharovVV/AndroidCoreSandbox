@@ -1,8 +1,11 @@
 package com.github.zharovvv.graphics.opengl.shader
 
-import androidx.annotation.RawRes
+import com.github.zharovvv.graphics.opengl.shader.model.Shader
+import com.github.zharovvv.graphics.opengl.shader.model.ShaderCreatingException
+import com.github.zharovvv.graphics.opengl.shader.model.ShaderSource
 
 interface ShaderCreator {
-    fun create(type: Int, @RawRes shaderResId: Int): Shader
-    fun create(type: Int, shaderUrl: String): Shader
+
+    @Throws(ShaderCreatingException::class)
+    fun create(shaderSource: ShaderSource): Shader
 }

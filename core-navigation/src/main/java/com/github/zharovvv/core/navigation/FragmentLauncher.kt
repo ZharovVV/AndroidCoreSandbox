@@ -12,6 +12,7 @@ interface FragmentLauncher {
 
     fun launch(fragmentManager: FragmentManager, @IdRes containerViewId: Int) {
         fragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
             .replace(containerViewId, fragmentClass.java, null, fragmentTag)
             .addToBackStack(BACKSTACK_NAME)
             .commit()

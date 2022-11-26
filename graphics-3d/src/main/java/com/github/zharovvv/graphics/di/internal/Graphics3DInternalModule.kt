@@ -4,7 +4,9 @@ import com.github.zharovvv.common.di.scope.PerFeature
 import com.github.zharovvv.core.navigation.EntryPoint.FragmentEntryPoint
 import com.github.zharovvv.core.navigation.FragmentLauncher
 import com.github.zharovvv.graphics.R
+import com.github.zharovvv.graphics.di.internal.opengl.OpenGLInternalModule
 import com.github.zharovvv.graphics.di.internal.routers.Graphics3DLaunchersModule
+import com.github.zharovvv.graphics.di.internal.ui.Graphics3DUiModule
 import com.github.zharovvv.graphics.presentation.fragments.OpenGLFragment
 import dagger.Module
 import dagger.Provides
@@ -13,7 +15,9 @@ import javax.inject.Named
 
 @Module(
     includes = [
-        Graphics3DLaunchersModule::class
+        Graphics3DLaunchersModule::class,
+        Graphics3DUiModule::class,
+        OpenGLInternalModule::class
     ]
 )
 internal class Graphics3DInternalModule {
