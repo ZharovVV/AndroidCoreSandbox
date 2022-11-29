@@ -23,9 +23,6 @@ class AndroidAccessibilityNavigationModule {
             name = "Android Accessibility",
             description = "Сервисы специальных возможностей",
             iconResId = R.drawable.ic_baseline_accessibility_new_24,
-            //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
-            // Имеет смысл проводить инициализацию графа непосредственно в onCreate Activity
-            // И заменить провайдер просто на сам объект.
             activityLauncherProvider = { featureApi<AndroidAccessibilityApi>().router }
         )
 }

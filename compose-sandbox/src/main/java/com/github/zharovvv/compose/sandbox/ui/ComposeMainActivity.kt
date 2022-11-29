@@ -12,6 +12,8 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.github.zharovvv.common.di.releaseFeature
+import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
 import com.github.zharovvv.compose.sandbox.di.api.internal.ui.diViewModels
 import com.github.zharovvv.compose.sandbox.ui.navigation.RootNavGraph
 import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
@@ -59,17 +61,22 @@ class ComposeMainActivity : ComponentActivity() {
                 Log.i("ComposeMainActivity-DEBUG", "call repeatOnLifecycle block")
             }
             //вызвалось только после onStop()
+            //TODO Разобраться, действительно ли вызывается именно после onStop и если да,
+            // то почему? Из реализации похоже что данный блок вызовется только при onDestroy.
+            // Но это не точно :)
             Log.i("ComposeMainActivity-DEBUG", "call after repeatOnLifecycle block")
         }
     }
 
     // Перенесено в ComposeMainViewModel
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        if (isFinishing) {
-//            releaseFeature<ComposeSandboxApi>()
-//        }
-//    }
+    //UPD Вернул, так как ComposeMainViewModel больше не используется.
+    //Кажется, выносить очистку фичи во ViewModel - плохая идея.
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isFinishing) {
+            releaseFeature<ComposeSandboxApi>()
+        }
+    }
 
     companion object {
         internal fun newIntent(context: Context): Intent =

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.zharovvv.android.core.sandbox">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- В манифесте прописываются все компоненты приложения.
     Прописываются intent-filters, разрешения, требования по оборудованию.

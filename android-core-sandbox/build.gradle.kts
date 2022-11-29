@@ -18,6 +18,7 @@ android {
         dataBinding = true
         viewBinding = true //Enabled View Binding
     }
+    namespace = "com.github.zharovvv.android.core.sandbox"
 }
 
 dependencies {

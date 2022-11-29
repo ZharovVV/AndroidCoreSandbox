@@ -22,6 +22,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "com.github.zharovvv.sandboxx"
 }
 
 dependencies {

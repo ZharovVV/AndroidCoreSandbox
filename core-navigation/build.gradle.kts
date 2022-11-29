@@ -16,6 +16,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "com.github.zharovvv.core.navigation"
 }
 
 dependencies {

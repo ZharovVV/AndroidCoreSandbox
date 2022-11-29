@@ -14,6 +14,9 @@ sealed interface EntryPoint {
         override val description: String?,
         @DrawableRes
         override val iconResId: Int? = null,
+        //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
+        // Имеет смысл проводить инициализацию графа непосредственно в onCreate Activity
+        // И заменить провайдер просто на сам объект.
         val activityLauncherProvider: () -> ActivityLauncher
     ) : EntryPoint
 
@@ -22,6 +25,9 @@ sealed interface EntryPoint {
         override val description: String?,
         @DrawableRes
         override val iconResId: Int? = null,
+        //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
+        // Имеет смысл проводить инициализацию графа непосредственно в onAttach Fragment
+        // И заменить провайдер просто на сам объект.
         val fragmentLauncherProvider: () -> FragmentLauncher
     ) : EntryPoint
 }

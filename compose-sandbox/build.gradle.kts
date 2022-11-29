@@ -20,6 +20,7 @@ android {
             )
         }
     }
+    namespace = "com.github.zharovvv.compose.sandbox"
 }
 
 dependencies {

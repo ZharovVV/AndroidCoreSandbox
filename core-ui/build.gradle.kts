@@ -13,6 +13,7 @@ android {
             )
         }
     }
+    namespace = "com.github.zharovvv.core.ui"
 }
 
 dependencies {

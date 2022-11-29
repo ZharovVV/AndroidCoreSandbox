@@ -14,6 +14,7 @@ android {
             )
         }
     }
+    namespace = "com.github.zharovvv.android.accessibility"
 }
 
 dependencies {
