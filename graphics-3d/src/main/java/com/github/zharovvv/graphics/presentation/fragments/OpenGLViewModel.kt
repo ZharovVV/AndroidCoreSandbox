@@ -17,8 +17,8 @@ internal class OpenGLViewModel(
     private val shaderSourceLoader: ShaderSourceLoader
 ) : ViewModel() {
 
-    private val _shaderSource: MutableStateFlow<List<ShaderSource>?> = MutableStateFlow(null)
-    val shaderSource: Flow<List<ShaderSource>> = _shaderSource.filterNotNull()
+    private val _primitiveShaderSource: MutableStateFlow<List<ShaderSource>?> = MutableStateFlow(null)
+    val primitiveShaderSource: Flow<List<ShaderSource>> = _primitiveShaderSource.filterNotNull()
 
     init {
         viewModelScope.launch {
@@ -28,7 +28,7 @@ internal class OpenGLViewModel(
             val fragmentShaderSource = async {
                 shaderSourceLoader.loadFromRaw(R.raw.fragment_shader, GL_FRAGMENT_SHADER)
             }
-            _shaderSource.value = listOf(
+            _primitiveShaderSource.value = listOf(
                 vertexShaderSource.await(),
                 fragmentShaderSource.await()
             )

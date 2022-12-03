@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.github.zharovvv.graphics.R
+import com.github.zharovvv.graphics.opengl.RendererWrapper
 
 class LoadableGLSurfaceView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -27,10 +28,17 @@ class LoadableGLSurfaceView @JvmOverloads constructor(
         glSurfaceView = findViewById(R.id.gl_surface_view)
     }
 
-    fun onRendererReady(renderer: GLSurfaceView.Renderer) {
+    private val failRenderListener: () -> Unit = {
+        glIsReady = false
+        glSurfaceView.isVisible = false
+        processBar.isVisible = true
+    }
+
+    fun onRendererReady(renderer: RendererWrapper) {
         with(glSurfaceView) {
             setEGLContextClientVersion(2)
             setRenderer(renderer)
+            renderer.addOnFailRenderListener(failRenderListener)
             isVisible = true
             if (isResumed) {
                 onResume()

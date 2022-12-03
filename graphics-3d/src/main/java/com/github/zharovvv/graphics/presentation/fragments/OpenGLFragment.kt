@@ -8,18 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Lifecycle.Event.*
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.github.zharovvv.common.di.internalFeatureApi
 import com.github.zharovvv.graphics.databinding.FragmentOpenGlBinding
 import com.github.zharovvv.graphics.di.api.Graphics3DApi
 import com.github.zharovvv.graphics.di.internal.Graphics3DInternalApi
 import com.github.zharovvv.graphics.di.internal.ui.diViewModels
-import com.github.zharovvv.graphics.opengl.OpenGLRenderer
-import com.github.zharovvv.graphics.opengl.SimpleOpenGLRenderer
+import com.github.zharovvv.graphics.opengl.PrimitivesRenderer
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -35,10 +30,6 @@ class OpenGLFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOpenGlBinding.inflate(inflater, container, false)
-        with(binding.simpleGlSurfaceView) {
-            setEGLContextClientVersion(2)
-            setRenderer(SimpleOpenGLRenderer())
-        }
         initShader()
         return binding.root
     }
@@ -49,22 +40,6 @@ class OpenGLFragment : Fragment() {
             Toast.makeText(requireActivity(), "OpenGl ES 2.0 is not supported", Toast.LENGTH_LONG)
                 .show()
         }
-        viewLifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
-            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-                when (event) {
-                    ON_RESUME -> {
-                        binding.simpleGlSurfaceView.onResume()
-                    }
-                    ON_PAUSE -> {
-                        binding.simpleGlSurfaceView.onPause()
-                    }
-                    ON_DESTROY -> {
-                        source.lifecycle.removeObserver(this)
-                    }
-                    else -> {}
-                }
-            }
-        })
     }
 
     override fun onDestroyView() {
@@ -93,11 +68,11 @@ class OpenGLFragment : Fragment() {
      * От нас требуется создать эти шейдеры и передать в них данные из нашего приложения.
      */
     private fun initShader() {
-        openGLViewModel.shaderSource
+        openGLViewModel.primitiveShaderSource
             .onEach { shaderSources ->
                 val internalApi: Graphics3DInternalApi =
                     internalFeatureApi<Graphics3DApi, Graphics3DInternalApi>()
-                val renderer = OpenGLRenderer(internalApi.openGLEngine, shaderSources)
+                val renderer = PrimitivesRenderer(internalApi.openGLEngine, shaderSources)
                 with(binding.shaderGlSurfaceView) {
                     associateWith(viewLifecycleOwner.lifecycle)
                     onRendererReady(renderer)
