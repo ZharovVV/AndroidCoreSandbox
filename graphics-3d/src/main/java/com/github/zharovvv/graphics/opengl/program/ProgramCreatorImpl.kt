@@ -22,8 +22,9 @@ class ProgramCreatorImpl : ProgramCreator {
             val linkStatus = IntArray(size = 1)
             glGetProgramiv(programId, GL_LINK_STATUS, linkStatus, 0)
             if (linkStatus[0] == 0) {
+                val linkError = glGetProgramInfoLog(programId)
                 glDeleteProgram(programId)
-                throw ProgramCreatingException("Incorrect program link status!")
+                throw ProgramCreatingException("Incorrect program link status!\nCause: $linkError")
             }
         }
         Log.d(LOG_TAG, "Creating program duration = $duration ms.")

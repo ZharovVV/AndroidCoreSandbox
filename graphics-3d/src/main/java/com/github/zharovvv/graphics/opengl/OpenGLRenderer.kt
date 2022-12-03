@@ -27,7 +27,7 @@ class OpenGLRenderer(
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         try {
-            glClearColor(0f, 0f, 0f, 1f)
+            glClearColor(1f, 1f, 1f, 0.33f)
             val program = openGLEngine.createProgram(shaderSources)
             glUseProgram(program.id)
             bindData(program.id)
@@ -40,8 +40,24 @@ class OpenGLRenderer(
         val uColorLocation = glGetUniformLocation(programId, "u_Color")
         glUniform4f(uColorLocation, 0.0f, 0.0f, 1.0f, 1.0f)
         val aPositionLocation = glGetAttribLocation(programId, "a_Position")
+        //Методом position сообщаем системе, что данные из vertexData надо будет читать
+        // начиная с элемента с индексом 0, т.е. с самого начала.
         vertexData.position(0)
-        glVertexAttribPointer(aPositionLocation, 2, GL_FLOAT, false, 0, vertexData)
+        glVertexAttribPointer(
+            //переменная указывающая на положение атрибута в шейдере. Тут все понятно, используем ранее полученную aPositionLocation, которая знает где сидит a_Position.
+            aPositionLocation,
+            //указывает системе, сколько элементов буфера vertexData брать для заполнения атрибута a_Position.
+            2,  //Указываем именно это значение и таким образом у нас будет три запуска вершинного шейдера:
+            // (-0.5, -0.2) - недостающие значения vec4 заполнятся след. образом -> (-0.5, -0.2, 0, 1)
+            // (0.0, 0.2)
+            // (0.5, -0.2)
+            // Значение по умолчанию для vec4 - (0, 0, 0, 1)
+            GL_FLOAT,
+            false,
+            0,
+            vertexData
+        )
+        //Включаем атрибут aPositionLocation
         glEnableVertexAttribArray(aPositionLocation)
     }
 
@@ -51,6 +67,13 @@ class OpenGLRenderer(
 
     override fun onDrawFrame(gl: GL10?) {
         glClear(GL_COLOR_BUFFER_BIT)
-        glDrawArrays(GL_TRIANGLES, 0, 3)
+        glDrawArrays(
+            //указываем тип графического примитива
+            GL_TRIANGLES,
+            //указываем, что брать вершины из массива вершин надо начиная с элемента с индексом 0, т.е. с первого элемента массива
+            0,
+            //кол-во вершин которое необходимо использовать для рисования.
+            3
+        )
     }
 }

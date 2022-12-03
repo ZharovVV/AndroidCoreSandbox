@@ -20,8 +20,11 @@ internal class ShaderCreatorImpl : ShaderCreator {
             val compileStatus = IntArray(size = 1)
             glGetShaderiv(shaderId, GL_COMPILE_STATUS, compileStatus, 0)
             if (compileStatus[0] == 0) {
+                val compileError: String = glGetShaderInfoLog(shaderId)
                 glDeleteShader(shaderId)
-                throw ShaderCreatingException("Incorrect shader compile status!")
+                throw ShaderCreatingException(
+                    message = "Incorrect shader compile status!\nCause: $compileError"
+                )
             }
         }
         Log.d(LOG_TAG, "Creating shader duration = $duration ms.")
