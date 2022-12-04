@@ -14,6 +14,7 @@ import com.github.zharovvv.graphics.databinding.FragmentOpenGlBinding
 import com.github.zharovvv.graphics.di.api.Graphics3DApi
 import com.github.zharovvv.graphics.di.internal.Graphics3DInternalApi
 import com.github.zharovvv.graphics.di.internal.ui.diViewModels
+import com.github.zharovvv.graphics.opengl.PerspectiveRenderer
 import com.github.zharovvv.graphics.opengl.PrimitivesRenderer
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -74,6 +75,18 @@ class OpenGLFragment : Fragment() {
                     internalFeatureApi<Graphics3DApi, Graphics3DInternalApi>()
                 val renderer = PrimitivesRenderer(internalApi.openGLEngine, shaderSources)
                 with(binding.shaderGlSurfaceView) {
+                    associateWith(viewLifecycleOwner.lifecycle)
+                    onRendererReady(renderer)
+                }
+            }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+
+        openGLViewModel.perspectiveShaderSource
+            .onEach { shaderSources ->
+                val internalApi: Graphics3DInternalApi =
+                    internalFeatureApi<Graphics3DApi, Graphics3DInternalApi>()
+                val renderer = PerspectiveRenderer(internalApi.openGLEngine, shaderSources)
+                with(binding.perspectiveGlSurfaceView) {
                     associateWith(viewLifecycleOwner.lifecycle)
                     onRendererReady(renderer)
                 }

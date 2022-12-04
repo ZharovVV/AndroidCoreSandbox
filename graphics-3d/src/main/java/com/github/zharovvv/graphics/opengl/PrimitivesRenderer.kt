@@ -1,6 +1,8 @@
 package com.github.zharovvv.graphics.opengl
 
 import android.opengl.GLES20.*
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.github.zharovvv.graphics.opengl.shader.model.ShaderSource
 import java.nio.ByteBuffer
@@ -13,6 +15,7 @@ class PrimitivesRenderer(
     private val openGLEngine: OpenGLEngine, private val shaderSources: List<ShaderSource>
 ) : RendererWrapper {
 
+    private val handler = Handler(Looper.getMainLooper())
     private var _failRenderAction: (() -> Unit)? = null
     private val positionVertexData: FloatBuffer
     private val colorVertexBuffer: FloatBuffer = floatArrayOf(
@@ -105,7 +108,7 @@ class PrimitivesRenderer(
             Log.e(DebugConstants.LOG_TAG, e.stackTraceToString())
             val failRenderAction = _failRenderAction
             if (failRenderAction != null) {
-                failRenderAction.invoke()
+                handler.post(failRenderAction)
             } else {
                 throw e
             }
@@ -148,6 +151,13 @@ class PrimitivesRenderer(
 
         //Синие треугольники
 //        glUniform4f(colorLocation, 0.0f, 0.0f, 1.0f, 1.0f)
+
+        //По сути имменно здесь и начнут вызываться наши шейдеры.
+        //Сначала вызовутся вершинные шейдеры (12 раз) - в рамках этого вызова.
+        //Все атрибуты вершинного шейдера мы связали с буферами (источниками данных) ранее
+        //при помощи метода glVertexAttribPointer.
+        //При помощи метода glEnableVertexAttribArray - включили атрибуты.
+        //Далее будут вызваны фрагментные шейдеры для каждого пикселя каждого примитива.
         glDrawArrays(
             //указываем тип графического примитива
             GL_TRIANGLES,
