@@ -2,22 +2,17 @@ package com.github.zharovvv.graphics.opengl
 
 import android.opengl.GLES20.*
 import android.opengl.Matrix
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import com.github.zharovvv.graphics.opengl.shader.model.ShaderSource
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
-import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-
 class PerspectiveRenderer(
-    private val openGLEngine: OpenGLEngine, private val shaderSources: List<ShaderSource>
-) : RendererWrapper {
+    openGLEngine: OpenGLEngine,
+    shaderSources: List<ShaderSource>
+) : BaseRenderer(openGLEngine, shaderSources) {
 
-    private val handler = Handler(Looper.getMainLooper())
     private val z1 = -1f
     private val z2 = -2.99f
     private val positionFloatBuffer: FloatBuffer = floatArrayOf(
@@ -31,38 +26,17 @@ class PerspectiveRenderer(
         0.7f, -0.4f, z2,
         0.2f, 0.4f, z2,
     ).let { source ->
-        ByteBuffer.allocateDirect(source.size * 4).order(ByteOrder.nativeOrder()).asFloatBuffer()
-            .put(source).position(0) as FloatBuffer
+        ByteBuffer.allocateDirect(source.size * 4)
+            .order(ByteOrder.nativeOrder())
+            .asFloatBuffer()
+            .put(source)
+            .position(0) as FloatBuffer
     }
     private var uColorLocation: Int = 0
     private var uMatrixLocation: Int = 0
     private var _programId: Int = 0
 
-    private var _failRenderAction: (() -> Unit)? = null
-
-    override fun addOnFailRenderListener(action: () -> Unit) {
-        _failRenderAction = action
-    }
-
-    override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-        try {
-            glEnable(GL_DEPTH_TEST) //строка включает использование буфера глубины
-            glClearColor(1f, 1f, 1f, 0.33f)
-            val program = openGLEngine.createProgram(shaderSources)
-            glUseProgram(program.id)
-            bindData(program.id)
-        } catch (e: RuntimeException) {
-            Log.e(DebugConstants.LOG_TAG, e.stackTraceToString())
-            val failRenderAction = _failRenderAction
-            if (failRenderAction != null) {
-                handler.post(failRenderAction)
-            } else {
-                throw e
-            }
-        }
-    }
-
-    private fun bindData(programId: Int) {
+    override fun bindData(programId: Int) {
         val aPositionLocation = glGetAttribLocation(programId, "a_Position")
         glVertexAttribPointer(aPositionLocation, 3, GL_FLOAT, false, 0, positionFloatBuffer)
         glEnableVertexAttribArray(aPositionLocation)

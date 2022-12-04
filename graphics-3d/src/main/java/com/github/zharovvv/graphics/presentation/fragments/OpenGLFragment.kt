@@ -14,6 +14,7 @@ import com.github.zharovvv.graphics.databinding.FragmentOpenGlBinding
 import com.github.zharovvv.graphics.di.api.Graphics3DApi
 import com.github.zharovvv.graphics.di.internal.Graphics3DInternalApi
 import com.github.zharovvv.graphics.di.internal.ui.diViewModels
+import com.github.zharovvv.graphics.opengl.CameraRenderer
 import com.github.zharovvv.graphics.opengl.PerspectiveRenderer
 import com.github.zharovvv.graphics.opengl.PrimitivesRenderer
 import kotlinx.coroutines.flow.launchIn
@@ -89,6 +90,10 @@ class OpenGLFragment : Fragment() {
                 with(binding.perspectiveGlSurfaceView) {
                     associateWith(viewLifecycleOwner.lifecycle)
                     onRendererReady(renderer)
+                }
+                with(binding.cameraGlSurfaceView) {
+                    associateWith(viewLifecycleOwner.lifecycle)
+                    onRendererReady(CameraRenderer(internalApi.openGLEngine, shaderSources))
                 }
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)

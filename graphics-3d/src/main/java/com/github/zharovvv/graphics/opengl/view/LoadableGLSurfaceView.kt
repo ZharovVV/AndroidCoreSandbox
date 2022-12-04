@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.github.zharovvv.graphics.R
-import com.github.zharovvv.graphics.opengl.RendererWrapper
+import com.github.zharovvv.graphics.opengl.BaseRenderer
 
 class LoadableGLSurfaceView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -34,7 +34,7 @@ class LoadableGLSurfaceView @JvmOverloads constructor(
         processBar.isVisible = true
     }
 
-    fun onRendererReady(renderer: RendererWrapper) {
+    fun onRendererReady(renderer: BaseRenderer) {
         with(glSurfaceView) {
             setEGLContextClientVersion(2)
             setRenderer(renderer)
