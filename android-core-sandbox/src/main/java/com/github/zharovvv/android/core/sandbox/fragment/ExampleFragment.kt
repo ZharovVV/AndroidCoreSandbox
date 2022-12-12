@@ -32,6 +32,10 @@ class ExampleFragment : Fragment() {
         Log.i(LOG_TAG, "$this#onCreate")
         super.onCreate(savedInstanceState)
         val viewModel = exampleViewModel
+        // при добавлении транзакции в backStack - предыдущий фрагмент не уничтожается
+        // (вызывается onStop, возможно ещё onDestroyView при replace)
+        // следовательно у ViewModel предыдущего фрагмента не вызывается onCleared.
+
         // Метод setRetainInstance() принимает boolean параметр.
         // По умолчанию значение retainInstance фрагмента – false.
         // Если retainInstance выставлен в true,
