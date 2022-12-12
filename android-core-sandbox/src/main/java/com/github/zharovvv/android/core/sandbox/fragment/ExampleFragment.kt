@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.github.zharovvv.android.core.sandbox.databinding.FragmentExampleBinding
 
 class ExampleFragment : Fragment() {
@@ -16,6 +17,8 @@ class ExampleFragment : Fragment() {
         const val FRAGMENT_COLOR_KEY = "FRAGMENT_COLOR_KEY"
         private const val LOG_TAG = "FragmentLifecycle"
     }
+
+    private val exampleViewModel: ExampleViewModel by viewModels()
 
     private var _binding: FragmentExampleBinding? = null
     private val binding get() = _binding!!
@@ -28,6 +31,7 @@ class ExampleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i(LOG_TAG, "$this#onCreate")
         super.onCreate(savedInstanceState)
+        val viewModel = exampleViewModel
         // Метод setRetainInstance() принимает boolean параметр.
         // По умолчанию значение retainInstance фрагмента – false.
         // Если retainInstance выставлен в true,
