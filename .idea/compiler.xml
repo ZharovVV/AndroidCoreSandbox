@@ -2,15 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
-      <module name="Android_Core_Sandbox.android-accessibility" target="11" />
-      <module name="Android_Core_Sandbox.android-core-sandbox" target="11" />
-      <module name="Android_Core_Sandbox.animation-sandbox" target="11" />
-      <module name="Android_Core_Sandbox.appx" target="11" />
-      <module name="Android_Core_Sandbox.compose-sandbox" target="11" />
-      <module name="Android_Core_Sandbox.core-navigation" target="11" />
-      <module name="Android_Core_Sandbox.core-ui" target="11" />
-      <module name="Android_Core_Sandbox.graphics-3d" target="11" />
-      <module name="Android_Core_Sandbox.rx-java-sandbox" target="11" />
+      <module name="Android_Core_Sandbox.android-accessibility" target="13" />
+      <module name="Android_Core_Sandbox.android-core-sandbox" target="13" />
+      <module name="Android_Core_Sandbox.animation-sandbox" target="13" />
+      <module name="Android_Core_Sandbox.appx" target="13" />
+      <module name="Android_Core_Sandbox.compose-sandbox" target="13" />
+      <module name="Android_Core_Sandbox.core-navigation" target="13" />
+      <module name="Android_Core_Sandbox.core-ui" target="13" />
+      <module name="Android_Core_Sandbox.graphics-3d" target="13" />
+      <module name="Android_Core_Sandbox.rx-java-sandbox" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>

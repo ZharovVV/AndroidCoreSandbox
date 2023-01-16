@@ -5,7 +5,6 @@ import androidx.annotation.RawRes
 import com.github.zharovvv.graphics.opengl.shader.model.ShaderSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.InputStreamReader
 
 internal class ShaderSourceLoaderImpl(private val context: Context) : ShaderSourceLoader {
 
@@ -13,10 +12,9 @@ internal class ShaderSourceLoaderImpl(private val context: Context) : ShaderSour
         withContext(Dispatchers.IO) {
             ShaderSource(
                 type = type,
-                source = InputStreamReader(context.resources.openRawResource(shaderResId))
-                    .useLines { stringSequence ->
-                        stringSequence.joinToString(separator = "\r\n") { it }
-                    }
+                source = context.resources.openRawResource(shaderResId)
+                    .bufferedReader()
+                    .use { it.readText() }
             )
         }
 
