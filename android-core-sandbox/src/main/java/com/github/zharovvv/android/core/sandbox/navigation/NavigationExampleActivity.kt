@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 /**
  * # Navigation AC

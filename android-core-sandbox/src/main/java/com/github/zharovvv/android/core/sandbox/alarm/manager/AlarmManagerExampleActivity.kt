@@ -5,8 +5,8 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityAlarmManagerExampleBinding
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class AlarmManagerExampleActivity : LogLifecycleAppCompatActivity() {
 

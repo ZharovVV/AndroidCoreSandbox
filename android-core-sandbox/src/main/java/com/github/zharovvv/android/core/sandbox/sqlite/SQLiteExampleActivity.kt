@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
 import com.github.zharovvv.common.di.featureApi
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import com.github.zharovvv.core.ui.R as DSR
 
 class SQLiteExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_sqlite_example) {

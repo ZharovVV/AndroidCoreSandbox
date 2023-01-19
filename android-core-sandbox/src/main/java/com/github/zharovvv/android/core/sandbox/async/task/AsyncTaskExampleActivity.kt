@@ -3,8 +3,8 @@ package com.github.zharovvv.android.core.sandbox.async.task
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class AsyncTaskExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_async_task_example) {
 

@@ -52,27 +52,27 @@ class PropertyAnimationExampleFragment : Fragment() {
                 rotatedImageView.rotation = value
             }
             addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationRepeat(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
                     super.onAnimationRepeat(animation)
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
+                override fun onAnimationCancel(animation: Animator) {
                     super.onAnimationCancel(animation)
                 }
 
-                override fun onAnimationPause(animation: Animator?) {
+                override fun onAnimationPause(animation: Animator) {
                     super.onAnimationPause(animation)
                 }
 
-                override fun onAnimationStart(animation: Animator?) {
+                override fun onAnimationStart(animation: Animator) {
                     super.onAnimationStart(animation)
                 }
 
-                override fun onAnimationResume(animation: Animator?) {
+                override fun onAnimationResume(animation: Animator) {
                     super.onAnimationResume(animation)
                 }
             })

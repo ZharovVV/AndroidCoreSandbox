@@ -1,8 +1,8 @@
 package com.github.zharovvv.android.core.sandbox.data.binding
 
 import android.os.Bundle
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityDataBindingExampleBinding
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class DataBindingExampleActivity : LogLifecycleAppCompatActivity() {
 

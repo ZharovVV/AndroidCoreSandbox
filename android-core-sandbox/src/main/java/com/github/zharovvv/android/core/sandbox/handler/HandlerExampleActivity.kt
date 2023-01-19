@@ -12,8 +12,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import java.lang.ref.WeakReference
 import java.util.concurrent.TimeUnit
 

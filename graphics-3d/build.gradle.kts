@@ -39,4 +39,9 @@ dependencies {
     implementation(libs.bundles.core)
     implementation(libs.bundles.jetpack.navigation)
     implementation(libs.coroutines)
+    //Не подходит из-за:
+    // android:minSdkVersion="28"
+    // android:compileSdkVersion="33"
+     implementation("io.github.sceneview:sceneview:1.0.2")
+    
 }

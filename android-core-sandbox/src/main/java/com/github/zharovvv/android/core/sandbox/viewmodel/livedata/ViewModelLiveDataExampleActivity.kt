@@ -6,8 +6,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.*
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class ViewModelLiveDataExampleActivity :
     LogLifecycleAppCompatActivity(R.layout.activity_view_model_livedata_example) {

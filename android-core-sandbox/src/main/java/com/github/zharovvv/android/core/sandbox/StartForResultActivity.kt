@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class StartForResultActivity : LogLifecycleAppCompatActivity() {
 

@@ -12,8 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.iterator
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class MenuExampleActivity : LogLifecycleAppCompatActivity(R.layout.activity_menu_example) {
 

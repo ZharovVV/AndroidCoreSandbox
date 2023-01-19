@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import com.github.zharovvv.android.core.sandbox.TrueMainActivity.Companion.EXTRA_DATA_NAME_FOR_SECOND_ACTIVITY
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class ExplicitCallExampleActivity : LogLifecycleAppCompatActivity() {
 

@@ -6,11 +6,11 @@ import android.widget.Spinner
 import androidx.core.os.bundleOf
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityFragmentExampleBinding
 import com.github.zharovvv.android.core.sandbox.fragment.ExampleFragment.Companion.FRAGMENT_COLOR_KEY
 import com.github.zharovvv.android.core.sandbox.fragment.ExampleFragment.Companion.FRAGMENT_DATA_KEY
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import com.github.zharovvv.core.ui.R as DSR
 
 class FragmentExampleActivity : LogLifecycleAppCompatActivity(), FragmentOnResumeListener {

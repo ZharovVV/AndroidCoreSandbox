@@ -3,6 +3,7 @@ package com.github.zharovvv.android.core.sandbox
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 

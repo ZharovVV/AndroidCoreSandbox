@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.R
 import com.github.zharovvv.android.core.sandbox.service.ExampleService.Companion.SERVICE_INPUT
 import com.github.zharovvv.android.core.sandbox.service.ExampleService.Companion.START_SERVICE_CONSTANT
 import com.github.zharovvv.android.core.sandbox.service.PendingIntentService.Companion.SERVICE_EXTRA_NAME
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class ServiceExampleActivity :
     LogLifecycleAppCompatActivity(R.layout.activity_service_example_activity) {

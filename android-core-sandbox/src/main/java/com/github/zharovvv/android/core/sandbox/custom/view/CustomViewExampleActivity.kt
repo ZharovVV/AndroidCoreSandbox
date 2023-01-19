@@ -1,8 +1,8 @@
 package com.github.zharovvv.android.core.sandbox.custom.view
 
 import android.os.Bundle
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityCustomViewExampleBinding
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class CustomViewExampleActivity : LogLifecycleAppCompatActivity() {
 

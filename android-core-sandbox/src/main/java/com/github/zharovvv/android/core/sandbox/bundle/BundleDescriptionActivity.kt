@@ -2,8 +2,8 @@ package com.github.zharovvv.android.core.sandbox.bundle
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
 import com.github.zharovvv.android.core.sandbox.databinding.ActivityBundleDescriptionBinding
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 
 class BundleDescriptionActivity : LogLifecycleAppCompatActivity() {
 

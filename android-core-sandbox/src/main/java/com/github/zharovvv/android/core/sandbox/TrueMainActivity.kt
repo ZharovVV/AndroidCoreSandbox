@@ -38,6 +38,7 @@ import com.github.zharovvv.android.core.sandbox.work.manager.WorkManagerExampleA
 import com.github.zharovvv.animationsandbox.di.api.AnimationSandboxApi
 import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.releaseFeature
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import com.github.zharovvv.rxjavasandbox.di.api.RxJavaSandboxApi
 
 class TrueMainActivity : LogLifecycleAppCompatActivity() {

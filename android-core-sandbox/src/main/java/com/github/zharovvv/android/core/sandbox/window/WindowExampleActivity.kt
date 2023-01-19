@@ -4,7 +4,7 @@ import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.view.SurfaceHolder
-import com.github.zharovvv.android.core.sandbox.LogLifecycleAppCompatActivity
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import com.github.zharovvv.core.ui.R as DSR
 
 class WindowExampleActivity : LogLifecycleAppCompatActivity() {

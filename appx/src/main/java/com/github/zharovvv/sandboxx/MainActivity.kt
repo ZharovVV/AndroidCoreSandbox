@@ -1,16 +1,16 @@
 package com.github.zharovvv.sandboxx
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.core.navigation.EntryPoint
 import com.github.zharovvv.core.navigation.OnlyForMainScreen
 import com.github.zharovvv.core.navigation.ui.DefaultEntryPointsAdapter
+import com.github.zharovvv.core.ui.activity.LogLifecycleAppCompatActivity
 import com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.api.MainScreenEntryPointsApi
 
 @OptIn(OnlyForMainScreen::class)
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : LogLifecycleAppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
