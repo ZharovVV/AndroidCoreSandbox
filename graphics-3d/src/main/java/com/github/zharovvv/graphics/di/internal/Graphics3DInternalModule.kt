@@ -53,7 +53,6 @@ internal class Graphics3DInternalModule {
                 object : FragmentLauncher {
                     override val fragmentClass: KClass<out Fragment> = SceneViewFragment::class
                     override val fragmentTag: String = SceneViewFragment.TAG
-
                 }
             }
         )

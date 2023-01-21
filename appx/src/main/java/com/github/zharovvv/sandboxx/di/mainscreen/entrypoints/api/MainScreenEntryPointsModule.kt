@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
 @OptIn(OnlyForMainScreen::class)
 @Module(
     includes = [
-        //здесь указываем модули, в которых объевлены фичевые entryPoint-ы, которые мы хотим увидеть
+        //здесь указываем модули, в которых объявлены фичевые entryPoint-ы, которые мы хотим увидеть
         //на главном экране
         AndroidCoreSandboxNavigationModule::class,
         AndroidAnimationNavigationModule::class,

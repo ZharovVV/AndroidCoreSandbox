@@ -1,8 +1,6 @@
 package com.github.zharovvv.android.core.sandbox.noncore.di.api
 
 import android.content.Context
-import com.github.zharovvv.android.core.sandbox.noncore.di.navigation.AndroidCoreSandboxLauncher
-import com.github.zharovvv.android.core.sandbox.noncore.di.navigation.AndroidCoreSandboxLauncherImpl
 import com.github.zharovvv.android.core.sandbox.notification.NotificationUtil
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabase
 import com.github.zharovvv.android.core.sandbox.sqlite.PersonDatabaseProvider
@@ -14,12 +12,6 @@ import dagger.Provides
 
 @Module
 class AndroidCoreSandboxModule {
-
-    @PerFeature
-    @Provides
-    fun provideAndroidCoreSandboxRouter(): AndroidCoreSandboxLauncher {
-        return AndroidCoreSandboxLauncherImpl()
-    }
 
     @PerFeature
     @Provides

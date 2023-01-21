@@ -1,6 +1,5 @@
 package com.github.zharovvv.rxjavasandbox.di.navigation
 
-import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.multibinds.FeatureApiKey
 import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
 import com.github.zharovvv.core.navigation.OnlyForMainScreen
@@ -23,6 +22,6 @@ class RxJavaSandboxNavigationModule {
             name = "RxJava Sandbox",
             description = "Описание работы RxJava 2",
             iconResId = R.drawable.rx_java_logo,
-            activityLauncherProvider = { featureApi<RxJavaSandboxApi>().router }
+            launcher = RxJavaSandboxLauncherImpl()
         )
 }

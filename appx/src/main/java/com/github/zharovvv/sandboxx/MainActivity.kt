@@ -17,8 +17,7 @@ class MainActivity : LogLifecycleAppCompatActivity(R.layout.activity_main) {
         val recyclerView: RecyclerView = findViewById(R.id.main_screen_entry_points_recycler_view)
         val adapter = DefaultEntryPointsAdapter<EntryPoint.ActivityEntryPoint>(
             onItemClick = { entryPoint ->
-                val router = entryPoint.activityLauncherProvider.invoke()
-                router.launch(context = this)
+                entryPoint.launcher.launch(context = this)
             }
         )
         recyclerView.adapter = adapter

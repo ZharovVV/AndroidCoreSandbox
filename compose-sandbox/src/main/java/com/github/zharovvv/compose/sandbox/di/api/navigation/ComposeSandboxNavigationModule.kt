@@ -1,9 +1,9 @@
 package com.github.zharovvv.compose.sandbox.di.api.navigation
 
-import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.multibinds.FeatureApiKey
 import com.github.zharovvv.compose.sandbox.R
 import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
+import com.github.zharovvv.compose.sandbox.ui.ComposeMainActivity
 import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
 import com.github.zharovvv.core.navigation.OnlyForMainScreen
 import dagger.Module
@@ -23,6 +23,8 @@ class ComposeSandboxNavigationModule {
             name = "Compose Sandbox",
             description = "Песочница для Jetpack Compose",
             iconResId = R.drawable.jetpack_compose_icon,
-            activityLauncherProvider = { featureApi<ComposeSandboxApi>().router }
+            launcher = { context ->
+                context.startActivity(ComposeMainActivity.newIntent(context))
+            }
         )
 }

@@ -2,7 +2,6 @@ package com.github.zharovvv.animationsandbox.di.navigation
 
 import com.github.zharovvv.animationsandbox.R
 import com.github.zharovvv.animationsandbox.di.api.AnimationSandboxApi
-import com.github.zharovvv.common.di.featureApi
 import com.github.zharovvv.common.di.multibinds.FeatureApiKey
 import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
 import com.github.zharovvv.core.navigation.OnlyForMainScreen
@@ -23,6 +22,6 @@ class AndroidAnimationNavigationModule {
             name = "Animation Sandbox",
             description = "Песочница для разбора анимаций в андроиде.",
             iconResId = R.drawable.ic_baseline_all_inclusive_24,
-            activityLauncherProvider = { featureApi<AnimationSandboxApi>().router }
+            launcher = AnimationSandboxLauncherImpl()
         )
 }

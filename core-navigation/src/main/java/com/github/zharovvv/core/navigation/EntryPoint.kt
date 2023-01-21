@@ -14,10 +14,7 @@ sealed interface EntryPoint {
         override val description: String?,
         @DrawableRes
         override val iconResId: Int? = null,
-        //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
-        // Имеет смысл проводить инициализацию графа непосредственно в onCreate Activity
-        // И заменить провайдер просто на сам объект.
-        val activityLauncherProvider: () -> ActivityLauncher
+        val launcher: ActivityLauncher
     ) : EntryPoint
 
     data class FragmentEntryPoint(
@@ -25,9 +22,11 @@ sealed interface EntryPoint {
         override val description: String?,
         @DrawableRes
         override val iconResId: Int? = null,
-        //TODO плохо, что довольно тяжелая работа по созданию кучи объектов лежит именно здесь.
-        // Имеет смысл проводить инициализацию графа непосредственно в onAttach Fragment
-        // И заменить провайдер просто на сам объект.
+        //TODO Заменить на какую-то другую сущность.
+        // В ней должна быть только информация о фрагменте, на который мы хотим перейти.
+        // За способ перехода должна отвечать другая сущность по типу NavController.
+        // В этом NavController должна быть возможность перейти на фрагмент через add или через replace.
+        // А также гибкая кастомизация анимации перехода.
         val fragmentLauncherProvider: () -> FragmentLauncher
     ) : EntryPoint
 }
