@@ -16,8 +16,8 @@ enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            version("kotlin", "1.7.0") //такая версия из-за Compose
-            // Версия Компилятора Compose 1.2.0 совместимая c kotlin 1.7.0
+            version("kotlin", "1.8.0") //такая версия из-за Compose
+            // Версия Компилятора Compose 1.4.0 совместимая c kotlin 1.8.0
 
             //android
             library("androidx-core-ktx", "androidx.core:core-ktx:1.8.0")
@@ -52,15 +52,17 @@ dependencyResolutionManagement {
                 "jetpack-navigation",
                 listOf("jetpack-navigation-fragment", "jetpack-navigation-ui")
             )
-            //compose
-            version("compose", "1.2.0")
-            library("jetpack-compose-ui", "androidx.compose.ui", "ui").versionRef("compose")
+
+            //region compose
+            version("compose", "1.4.0")
+            library("jetpack-compose-ui", "androidx.compose.ui:ui:1.4.0-alpha04")
             // Tooling support (Previews, etc.)
-            library("jetpack-compose-ui-tooling", "androidx.compose.ui", "ui-tooling")
-                .versionRef("compose")
+            library("jetpack-compose-ui-tooling", "androidx.compose.ui:ui-tooling:1.4.0-alpha04")
             // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-            library("jetpack-compose-foundation", "androidx.compose.foundation", "foundation")
-                .versionRef("compose")
+            library(
+                "jetpack-compose-foundation",
+                "androidx.compose.foundation:foundation:1.4.0-alpha04"
+            )
             // Material Design
             library(
                 "jetpack-compose-material3",
@@ -68,16 +70,12 @@ dependencyResolutionManagement {
             )
             library(
                 "jetpack-compose-material-icons-core",
-                "androidx.compose.material",
-                "material-icons-core"
+                "androidx.compose.material:material-icons-core:1.4.0-alpha04"
             )
-                .versionRef("compose")
             library(
                 "jetpack-compose-material-icons-extended",
-                "androidx.compose.material",
-                "material-icons-extended"
+                "androidx.compose.material:material-icons-extended:1.4.0-alpha04"
             )
-                .versionRef("compose")
             // Integration with activities
             library("jetpack-compose-activity", "androidx.activity:activity-compose:1.4.0")
             // Integration with ViewModels
@@ -103,6 +101,7 @@ dependencyResolutionManagement {
                     "jetpack-compose-rxjava2"
                 )
             )
+            //endregion
 
             //unit tests
             library("junit", "junit:junit:4.13.2")
@@ -116,7 +115,7 @@ dependencyResolutionManagement {
             library("androidTest-compose", "androidx.compose.ui:ui-test-junit4:1.1.1")
 
             //dagger
-            version("dagger2", "2.42")
+            version("dagger2", "2.44.2")
             library("dagger", "com.google.dagger", "dagger").versionRef("dagger2")
             library("dagger-compiler", "com.google.dagger", "dagger-compiler")
                 .versionRef("dagger2")
@@ -127,9 +126,10 @@ dependencyResolutionManagement {
             library("rxjava2-kotlin", "io.reactivex.rxjava2:rxkotlin:2.3.0")
             bundle("rxjava", listOf("rxjava2", "rxjava2-android", "rxjava2-kotlin"))
 
-            //coroutines
-            library("coroutines", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+            //region coroutines
+            library("coroutines", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
             //транзитивно тянет kotlinx-coroutines-core-jvm
+            //endregion
         }
     }
 }
