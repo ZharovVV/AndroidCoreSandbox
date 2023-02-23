@@ -1,17 +1,25 @@
 package com.github.zharovvv.graphics.presentation.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent.ACTION_MOVE
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.github.zharovvv.graphics.databinding.FragmentSceneViewBinding
-import io.github.sceneview.loaders.loadHdrIndirectLight
-import io.github.sceneview.math.Position
-import io.github.sceneview.math.Rotation
-import io.github.sceneview.nodes.CameraNode
-import io.github.sceneview.nodes.ModelNode
+import com.google.android.filament.IndirectLight
+import com.google.ar.sceneform.Node
+import com.google.ar.sceneform.math.Quaternion
+import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.rendering.Light
+import com.google.ar.sceneform.rendering.ModelRenderable
+import com.gorisse.thomas.sceneform.Filament.engine
+import com.gorisse.thomas.sceneform.environment
+import com.gorisse.thomas.sceneform.environment.Environment
+import kotlinx.coroutines.future.asDeferred
+import kotlinx.coroutines.launch
 
 class SceneViewFragment : Fragment() {
 
@@ -26,43 +34,58 @@ class SceneViewFragment : Fragment() {
         .also { _binding = it }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.sceneView.setLifecycle(viewLifecycleOwner.lifecycle)
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            with(binding.sceneView) {
-                loadHdrIndirectLight("studio_small_09_2k.hdr", specularFilter = true) {
-                    intensity(30_000f)
+        binding.sceneView.apply {
+            scene.addOnPeekTouchListener { hitTestResult, motionEvent ->
+                when (motionEvent.action) {
+                    ACTION_MOVE -> {
+
+                    }
                 }
-//                loadHdrSkybox("studio_small_09_2k.hdr") {
-//                    intensity(50_000f)
-//                }
-                val model = modelLoader.loadModel("coin.glb")!!
-                val modelNode = ModelNode(this, model).apply {
-                    transform(
-                        position = Position(z = -4.0f),
-                        rotation = Rotation(x = 0.0f)
-                    )
-                    scaleToUnitsCube(2.0f)
-                    // TODO: Fix centerOrigin
-//                centerOrigin(Position(x=-1.0f, y=-1.0f))
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                val deferredModel = ModelRenderable.builder()
+                    .setSource(requireContext(), Uri.parse("coin.glb"))
+                    .setIsFilamentGltf(true)
+//                    .setAsyncLoadEnabled(true)
+                    .build().asDeferred()
+                val modelNode = Node().apply {
+                    renderable = deferredModel.await()
+                    localPosition = Vector3(0f, 0f, -2f)
+                    localRotation = Quaternion.axisAngle(Vector3(0f, 1f, 0f), 35f)
                 }
-                addChildNode(CameraNode(this) {
-                })
-                addChildNode(modelNode)
-                //Задание света вручную работает как-то криво((
-//                addChildNode(LightNode(this, LightManager.Type.POINT) {
-//                    intensity(100_000f)
-//                    this.position(0f, 0f, 10f)
-////                    this.sunHaloSize(50f)
-//                    direction(-1f, 0f, -3f)
-//                })
-//                addChildNode(LightNode(this, LightManager.Type.POINT) {
-//                    intensity(100_000f)
-//                    this.position(0f, 0f, -10f)
-////                    this.sunHaloSize(50f)
-//                    direction(-1f, 0f, -3f)
-//                })
+                val lightNode = Node().apply {
+                    localPosition = Vector3(0f, 0f, 2f)
+                    light = Light.builder(Light.Type.DIRECTIONAL)
+                        .setShadowCastingEnabled(true)
+                        .setColorTemperature(50000f)
+                        .setIntensity(110000f)
+                        .build()
+                }
+                environment = Environment(
+                    indirectLight = IndirectLight.Builder()
+                        .intensity(20000f)
+                        .radiance(1, floatArrayOf(1f, 1f, 1f))
+                        .irradiance(1, floatArrayOf(1f, 1f, 1f))
+                        .build(engine)
+                )
+//                environment = HDRLoader.loadEnvironment(
+//                    context = requireContext(),
+//                    hdrFileLocation = "studio_small_09_2k.hdr"
+//                )
+                scene.addChild(lightNode)
+                scene.addChild(modelNode)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.sceneView.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.sceneView.pause()
     }
 
     override fun onDestroyView() {
