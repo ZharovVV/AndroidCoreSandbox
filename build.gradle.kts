@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.1")
+        classpath("com.android.tools.build:gradle:7.4.2")
         val kotlinVersion = libs.versions.kotlin.get()
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("se.ascp.gradle:gradle-versions-filter:0.1.16")
