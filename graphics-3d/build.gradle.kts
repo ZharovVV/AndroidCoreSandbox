@@ -42,7 +42,7 @@ dependencies {
     //Не подходит из-за:
     // android:minSdkVersion="28"
     // android:compileSdkVersion="33"
-     implementation("io.github.sceneview:sceneview:1.0.2")
+     implementation("io.github.sceneview:sceneview:1.0.7")
     //Ниже более старая версия на Java.
     //дополнительно требует kotlinx-coroutines-jdk8 (Android 24)
     // чтобы было удобно работать с CompletableFuture в корутинах.

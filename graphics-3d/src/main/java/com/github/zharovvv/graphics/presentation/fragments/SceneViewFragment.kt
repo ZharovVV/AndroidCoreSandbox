@@ -35,7 +35,7 @@ class SceneViewFragment : Fragment() {
 //                loadHdrSkybox("studio_small_09_2k.hdr") {
 //                    intensity(50_000f)
 //                }
-                val model = modelLoader.loadModel("coin.glb")!!
+                val model = modelLoader.loadModel("axe.glb")!!
                 val modelNode = ModelNode(this, model).apply {
                     transform(
                         position = Position(z = -4.0f),
