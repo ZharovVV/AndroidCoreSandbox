@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -37,8 +39,8 @@ dependencies {
     //endregion
 
     implementation(libs.bundles.core)
-    implementation(libs.bundles.jetpack.navigation)
-    implementation(libs.coroutines)
+    implementation(libs.bundles.androidx.navigation)
+    implementation(libs.coroutines.android)
     //Не подходит из-за:
     // android:minSdkVersion="28"
     // android:compileSdkVersion="33"

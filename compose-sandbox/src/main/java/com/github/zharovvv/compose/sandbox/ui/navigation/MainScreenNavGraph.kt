@@ -2,7 +2,6 @@ package com.github.zharovvv.compose.sandbox.ui.navigation
 
 import android.util.Log
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -95,7 +94,7 @@ fun MainScreenNavGraph(rootNavController: NavHostController? = null) {
                 }
             }
         },
-        modifier = Modifier.systemBarsPadding()
+//        modifier = Modifier.systemBarsPadding()
     ) { innerPadding ->
         NavHost(
             navController,

@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -48,8 +50,8 @@ dependencies {
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.rxjava)
-    implementation(libs.bundles.jetpack.workmanager)
-    implementation(libs.bundles.jetpack.navigation)
+    implementation(libs.bundles.androidx.work)
+    implementation(libs.bundles.androidx.navigation)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
 }

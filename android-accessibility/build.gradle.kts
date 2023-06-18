@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -33,7 +35,7 @@ dependencies {
     //endregion
 
     implementation(libs.bundles.core)
-    implementation(libs.coroutines)
+    implementation(libs.coroutines.android)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
 }

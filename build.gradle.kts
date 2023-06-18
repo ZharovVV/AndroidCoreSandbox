@@ -1,39 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        //for se.ascp.gradle:gradle-versions-filter:0.1.16
-        maven {
-            url = uri("https://plugins.gradle.org/m2/")
-        }
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
-        val kotlinVersion = libs.versions.kotlin.get()
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("se.ascp.gradle:gradle-versions-filter:0.1.16")
-    }
+// Gradle bug https://github.com/gradle/gradle/issues/22797
+@file:Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.gradle.versions.filter) apply true
 }
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-/**
- * TODO удалить, когда для versionCatalog заработают предложения обновления версий
- * [bug](https://issuetracker.google.com/issues/226078451)
- *
- * См. [описание работы](https://github.com/janderssonse/gradle-versions-filter-plugin)
- * Для запуска плагина нужно выполнить задачу:
- * ```
- * ./gradlew dependencyUpdates
- * ```
- */
-apply(plugin = "se.ascp.gradle.gradle-versions-filter")
 
 subprojects {
     project.plugins.applyBaseAndroidConfig(project)
@@ -88,6 +63,7 @@ fun com.android.build.gradle.BaseExtension.baseAndroidConfig() {
             jvmTarget = "1.8"
 //            useFir = true
             freeCompilerArgs = freeCompilerArgs + listOf(
+                "-Xcontext-receivers",
                 "-opt-in=kotlin.RequiresOptIn",
                 "-Xjvm-default=all"
             )

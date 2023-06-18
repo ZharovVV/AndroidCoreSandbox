@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -17,5 +19,7 @@ android {
 }
 
 dependencies {
+    api(libs.material)
+    api(libs.androidx.constraintlayout)
     implementation(libs.bundles.core)
 }

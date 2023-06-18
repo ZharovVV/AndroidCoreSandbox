@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -9,7 +11,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.orNull
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     buildTypes {
         release {
@@ -39,17 +41,20 @@ dependencies {
     //endregion
 
     implementation(libs.bundles.core)
-    implementation(libs.bundles.jetpack.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.compose.livedata)
+    implementation(libs.compose.rxjava2)
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
-    implementation("androidx.navigation:navigation-compose:2.5.1")
-    implementation(libs.coroutines)
+    debugImplementation(libs.compose.ui.tooling)
 
-    //region fix bug compose preview
-    //https://stackoverflow.com/questions/71812710/can-no-longer-view-jetpack-compose-previews-failed-to-instantiate-one-or-more-c
-    debugImplementation("androidx.customview:customview:1.2.0-alpha01")
-    debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0")
-    //endregion
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.coroutines.android)
+
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
-    androidTestImplementation(libs.androidTest.compose)
+    androidTestImplementation(libs.compose.ui.test.junit4)
 }
