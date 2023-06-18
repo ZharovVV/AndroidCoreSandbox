@@ -149,7 +149,7 @@ fun NavHostController.detailedInfo(): String = StringBuilder()
 //    }
     .appendLine("current BackStack: ")
     .let {
-        backQueue.fold(initial = it) { acc, navBackStackEntry ->
+        currentBackStack.value.fold(initial = it) { acc, navBackStackEntry ->
             acc.appendLine("id = ${navBackStackEntry.id}; destination = ${navBackStackEntry.destination}")
         }
     }

@@ -5,8 +5,8 @@ activity = "1.7.2"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 material = "1.9.0"
-lifecycle = "2.5.1"
-navigation = "2.5.3"
+lifecycle = "2.6.1"
+navigation = "2.6.0"
 # От версии kotlin зависит выбор версии компилятора Compose.
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 compose-compiler = "1.4.7"
