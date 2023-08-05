@@ -68,6 +68,10 @@ class MainFragment : Fragment() {
         toTransitionAnimationButton.setOnClickListener {
             transitionTo(transitionAnimationExampleFragment)
         }
+        val toDeepDiveIntoAnimationButton = view.findViewById<Button>(R.id.deep_dive_into_animation)
+        toDeepDiveIntoAnimationButton.setOnClickListener {
+            transitionTo(DeepDiveIntoAnimationFragment())
+        }
     }
 
     @SuppressLint("DefaultLocale")

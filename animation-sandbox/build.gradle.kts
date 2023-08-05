@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -5,6 +7,7 @@ plugins {
 }
 
 android {
+    namespace = "com.github.zharovvv.animationsandbox"
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -14,7 +17,9 @@ android {
             )
         }
     }
-    namespace = "com.github.zharovvv.animationsandbox"
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {

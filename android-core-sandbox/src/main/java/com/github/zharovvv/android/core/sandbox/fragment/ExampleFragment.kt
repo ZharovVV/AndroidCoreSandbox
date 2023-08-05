@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.R
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.zharovvv.android.core.sandbox.databinding.FragmentExampleBinding
@@ -71,11 +72,12 @@ class ExampleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fragmentNameTextView.text = tag
         binding.fragmentDataTextView.text = requireArguments().getCharSequence(FRAGMENT_DATA_KEY)
-        binding.debugInfoTextView.text = "parentTransactionManager#getFragments:\n" +
-                parentFragmentManager.fragments
-                    .joinToString(separator = ";", postfix = "\n") { "fragment: $it" } +
-                "parentFragmentManager#backStackEntryCount:\n" +
-                parentFragmentManager.backStackEntryCount.toString()
+        binding.debugInfoTextView.text = (view.getTag(R.id.fragment_container_view_tag) as Fragment?).toString()
+//        binding.debugInfoTextView.text = "parentTransactionManager#getFragments:\n" +
+//                parentFragmentManager.fragments
+//                    .joinToString(separator = ";", postfix = "\n") { "fragment: $it" } +
+//                "parentFragmentManager#backStackEntryCount:\n" +
+//                parentFragmentManager.backStackEntryCount.toString()
 
     }
 

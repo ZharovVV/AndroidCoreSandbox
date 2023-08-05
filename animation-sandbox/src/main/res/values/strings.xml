@@ -10,4 +10,5 @@
     <string name="rotate"><![CDATA[<- Rotate]]></string>
     <string name="combination"><![CDATA[<- Combination]]></string>
     <string name="transition_animation_title">Transition API</string>
+    <string name="deep_dive_into_animation">Глубокое погружение в анимации</string>
 </resources>
