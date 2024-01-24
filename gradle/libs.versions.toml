@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.8.21"
-android-gradle-pugin = "8.1.0"
+android-gradle-pugin = "8.2.1"
 activity = "1.7.2"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"

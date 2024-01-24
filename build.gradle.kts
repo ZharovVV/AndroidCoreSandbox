@@ -48,7 +48,7 @@ fun com.android.build.gradle.BaseExtension.baseAndroidConfig() {
     defaultConfig.apply {
         minSdk = 28
         targetSdk = 32
-        buildToolsVersion("32.0.0")
+        buildToolsVersion("33.0.1")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
