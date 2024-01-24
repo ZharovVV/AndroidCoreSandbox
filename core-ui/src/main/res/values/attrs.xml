@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="clickableCircleViewStyle" format="reference" />
+    <declare-styleable name="ClickableCircleView">
+        <attr name="circleColor" format="color|reference" />
+        <attr name="circleRadius" format="dimension" />
+    </declare-styleable>
+</resources>

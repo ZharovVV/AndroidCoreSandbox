@@ -14,8 +14,8 @@
         android:paddingBottom="4dp"
         app:itemColor="@color/ds_gray"
         app:itemWidth="2dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.zharovvv.android.core.sandbox.custom.view.WaveView
@@ -28,13 +28,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wave_view_1" />
 
-    <com.github.zharovvv.android.core.sandbox.custom.view.WaveView
-        android:id="@+id/wave_view_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ds_medium_margin"
-        app:itemColor="@color/ds_purple_200"
-        app:itemWidth="1dp"
+    <!--    <com.github.zharovvv.android.core.sandbox.custom.view.WaveView-->
+    <!--        android:id="@+id/wave_view_3"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="@dimen/ds_medium_margin"-->
+    <!--        app:itemColor="@color/ds_purple_200"-->
+    <!--        app:itemWidth="1dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/wave_view_2" />-->
+
+    <com.github.zharovvv.core.ui.custom.ClickableCircleView
+        android:id="@+id/clickable_circle_view"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wave_view_2" />
