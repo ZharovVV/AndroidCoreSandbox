@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -19,12 +21,19 @@ class ClickableCircleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = R.attr.clickableCircleViewStyle,
-    defStyleRes: Int = 0
+    defStyleRes: Int = R.style.Widget_ClickableCircleView   //То, что будет использоваться если атрибут стиля clickableCircleViewStyle в теме не задан.
 ) : View(context, attrs, defStyleAttr, defStyleRes) {
 
     private var radius: Float
     private val paint: Paint = Paint()
-        .apply { style = Paint.Style.FILL }
+        .apply {
+            style = Paint.Style.FILL
+        }
+    private val paint2: Paint = Paint()
+        .apply {
+            xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_OUT)
+            style = Paint.Style.FILL
+        }
 
     private val gestureDetector: GestureDetector =
         GestureDetector(context, object : SimpleOnGestureListener() {
@@ -78,6 +87,7 @@ class ClickableCircleView @JvmOverloads constructor(
 //        Log.i(TAG, "ClickableCircleView#onDraw; thread = ${Thread.currentThread()}")
         super.onDraw(canvas)
         canvas.drawCircle(width / 2f, height / 2f, radius, paint)
+        canvas.drawCircle(width / 2f, height / 2f, radius / 2, paint2)
     }
 
     private fun onDoubleTap() {

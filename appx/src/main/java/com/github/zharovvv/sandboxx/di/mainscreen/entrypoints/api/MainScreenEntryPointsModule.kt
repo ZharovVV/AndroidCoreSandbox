@@ -8,6 +8,7 @@ import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxNavig
 import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
 import com.github.zharovvv.core.navigation.OnlyForMainScreen
 import com.github.zharovvv.graphics.di.navigation.Graphics3DNavigationModule
+import com.github.zharovvv.photo.editor.sandbox.di.navigation.PhotoEditorNavigationModule
 import com.github.zharovvv.rxjavasandbox.di.navigation.RxJavaSandboxNavigationModule
 import dagger.Module
 import dagger.Provides
@@ -24,7 +25,8 @@ import kotlin.reflect.KClass
         RxJavaSandboxNavigationModule::class,
         ComposeSandboxNavigationModule::class,
         AndroidAccessibilityNavigationModule::class,
-        Graphics3DNavigationModule::class
+        Graphics3DNavigationModule::class,
+        PhotoEditorNavigationModule::class
     ]
 )
 class MainScreenEntryPointsModule {

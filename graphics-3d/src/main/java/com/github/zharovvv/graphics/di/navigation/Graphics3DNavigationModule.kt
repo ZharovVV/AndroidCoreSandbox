@@ -18,7 +18,7 @@ class Graphics3DNavigationModule {
     @Singleton
     @Provides
     @[IntoMap FeatureApiKey(Graphics3DApi::class)]
-    fun androidAccessibilityEntryPoint(): ActivityEntryPoint =
+    fun graphics3DEntryPoint(): ActivityEntryPoint =
         ActivityEntryPoint(
             name = "3D Graphics",
             description = "3D графика в Android",

@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":compose-sandbox"))
     implementation(project(":android-accessibility"))
     implementation(project(":graphics-3d"))
+    implementation(project(":photo-editor-sandbox"))
     //endregion
 
     implementation(libs.bundles.core)

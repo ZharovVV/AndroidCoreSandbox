@@ -41,10 +41,10 @@
 
     <com.github.zharovvv.core.ui.custom.ClickableCircleView
         android:id="@+id/clickable_circle_view"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_margin="@dimen/ds_medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wave_view_2" />
 
 

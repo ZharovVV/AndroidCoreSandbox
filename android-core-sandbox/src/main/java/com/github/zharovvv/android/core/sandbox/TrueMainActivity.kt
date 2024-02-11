@@ -12,6 +12,7 @@ import com.github.zharovvv.android.core.sandbox.StartForResultActivity.Companion
 import com.github.zharovvv.android.core.sandbox.activity.result.api.StartActivityForResultNewContract
 import com.github.zharovvv.android.core.sandbox.alarm.manager.AlarmManagerExampleActivity
 import com.github.zharovvv.android.core.sandbox.async.task.AsyncTaskExampleActivity
+import com.github.zharovvv.android.core.sandbox.bottomnavigation.BottomNavigationActivity
 import com.github.zharovvv.android.core.sandbox.bundle.BundleDescriptionActivity
 import com.github.zharovvv.android.core.sandbox.call.system.app.CallSystemAppExampleActivity
 import com.github.zharovvv.android.core.sandbox.content.provider.ContentProviderExampleActivity
@@ -208,6 +209,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<WindowExampleActivity>(launcherTitle = "Window, Surface"),
             launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle"),
             launcherFor<FragmentExampleActivity>(launcherTitle = "Fragment"),
+            launcherFor<BottomNavigationActivity>(launcherTitle = "Fragment And BottomNavigation"),
             Launcher("RxJava:id", title = "RxJava") {
                 featureApi<RxJavaSandboxApi>().router.launch(this)
             },

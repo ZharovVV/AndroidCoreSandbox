@@ -29,5 +29,6 @@ include(
     ":animation-sandbox",
     ":compose-sandbox",
     ":android-accessibility",
-    ":graphics-3d"
+    ":graphics-3d",
+    ":photo-editor-sandbox"
 )

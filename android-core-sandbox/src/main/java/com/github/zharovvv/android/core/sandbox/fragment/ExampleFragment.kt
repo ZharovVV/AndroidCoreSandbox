@@ -6,18 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorRes
+import androidx.core.os.bundleOf
 import androidx.fragment.R
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.zharovvv.android.core.sandbox.databinding.FragmentExampleBinding
 
 class ExampleFragment : Fragment() {
-
-    companion object {
-        const val FRAGMENT_DATA_KEY = "FRAGMENT_DATA_KEY"
-        const val FRAGMENT_COLOR_KEY = "FRAGMENT_COLOR_KEY"
-        private const val LOG_TAG = "FragmentLifecycle"
-    }
 
     private val exampleViewModel: ExampleViewModel by viewModels()
 
@@ -89,7 +85,7 @@ class ExampleFragment : Fragment() {
     override fun onResume() {
         Log.i(LOG_TAG, "$this#onResume")
         super.onResume()
-        (activity as FragmentOnResumeListener).fragmentOnResume(tag!!)
+        (activity as? FragmentOnResumeListener)?.fragmentOnResume(tag!!)
     }
 
     override fun onPause() {
@@ -118,5 +114,20 @@ class ExampleFragment : Fragment() {
         super.onDetach()
     }
 
+    companion object {
+        const val FRAGMENT_DATA_KEY = "FRAGMENT_DATA_KEY"
+        const val FRAGMENT_COLOR_KEY = "FRAGMENT_COLOR_KEY"
+        private const val LOG_TAG = "FragmentLifecycle"
 
+        fun newInstance(
+            @ColorRes
+            fragmentColor: Int,
+            fragmentData: String
+        ): ExampleFragment = ExampleFragment().apply {
+            arguments = bundleOf(
+                FRAGMENT_DATA_KEY to fragmentData,
+                FRAGMENT_COLOR_KEY to fragmentColor
+            )
+        }
+    }
 }
