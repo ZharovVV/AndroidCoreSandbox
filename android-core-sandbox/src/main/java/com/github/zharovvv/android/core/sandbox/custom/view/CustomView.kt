@@ -75,7 +75,7 @@ class CustomView @JvmOverloads constructor(
      * * не создавать внутри него объекты
      * * не делать сложные операции
      */
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
     }
 }

@@ -75,7 +75,7 @@ class WaveView @JvmOverloads constructor(
         setMeasuredDimension(width, height)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         if (measuredData == null) {
             return
         }
@@ -90,7 +90,7 @@ class WaveView @JvmOverloads constructor(
             wavePath.lineTo(currentX, endY)
             currentX += itemWidth * 2
         }
-        canvas?.drawPath(wavePath, linePaint)
+        canvas.drawPath(wavePath, linePaint)
     }
 
 }

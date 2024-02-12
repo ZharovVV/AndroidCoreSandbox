@@ -43,7 +43,7 @@ fun PluginContainer.applyBaseAndroidConfig(project: Project) {
 
 fun com.android.build.gradle.BaseExtension.baseAndroidConfig() {
 
-    compileSdkVersion(33)
+    compileSdkVersion(34)
 
     defaultConfig.apply {
         minSdk = 28

@@ -79,7 +79,7 @@ class CustomView @JvmOverloads constructor(
         super.onLayout(changed, left, top, right, bottom)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         if (canvas != null) {
             canvas.drawARGB(255, 255, 255, 255)
             paint.color = outBorderColor
