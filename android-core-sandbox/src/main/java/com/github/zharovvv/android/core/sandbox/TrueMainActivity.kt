@@ -23,6 +23,7 @@ import com.github.zharovvv.android.core.sandbox.fragment.FragmentExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
 import com.github.zharovvv.android.core.sandbox.menu.MenuExampleActivity
+import com.github.zharovvv.android.core.sandbox.multitouch.MultiTouchActivity
 import com.github.zharovvv.android.core.sandbox.navigation.NavigationExampleActivity
 import com.github.zharovvv.android.core.sandbox.noncore.di.api.AndroidCoreSandboxApi
 import com.github.zharovvv.android.core.sandbox.noncore.launcher.Launcher
@@ -210,6 +211,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             launcherFor<BundleDescriptionActivity>(launcherTitle = "Bundle"),
             launcherFor<FragmentExampleActivity>(launcherTitle = "Fragment"),
             launcherFor<BottomNavigationActivity>(launcherTitle = "Fragment And BottomNavigation"),
+            launcherFor<MultiTouchActivity>(launcherTitle = "Multi Touch, Zoom, Drag"),
             Launcher("RxJava:id", title = "RxJava") {
                 featureApi<RxJavaSandboxApi>().router.launch(this)
             },

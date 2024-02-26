@@ -18,6 +18,7 @@ import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
+import com.github.zharovvv.core.ui.gestures.debugInfo
 import com.github.zharovvv.photo.editor.sandbox.R
 import java.lang.Float.min
 import kotlin.math.round
@@ -99,7 +100,7 @@ class ImageEditorView @JvmOverloads constructor(
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         Log.i(
             "PhotoEditor",
-            "onTouch; event.action = ${event.action.asActionString()}; x = ${event.x}, y = ${event.y}"
+            "onTouch; ${event.debugInfo}"
         )
         event.transform(invertMatrix)
         when (event.action) {
@@ -120,24 +121,4 @@ class ImageEditorView @JvmOverloads constructor(
         }
         return true
     }
-
-    private enum class MotionEventAction(
-        val code: Int?
-    ) {
-        ACTION_DOWN(0),
-        ACTION_UP(1),
-        ACTION_MOVE(2),
-        ACTION_CANCEL(3),
-        ACTION_OUTSIDE(4),
-        ACTION_POINTER_DOWN(5),
-        ACTION_POINTER_UP(6),
-        ACTION_HOVER_MOVE(7),
-        ACTION_SCROLL(8),
-        ACTION_HOVER_ENTER(9),
-        ACTION_HOVER_EXIT(10),
-        OTHER(null)
-    }
-
-    private fun Int.asActionString(): String =
-        MotionEventAction.values().find { it.code == this }?.toString() ?: "OTHER(code = $this)"
 }

@@ -130,6 +130,7 @@
         <activity android:name=".bundle.BundleDescriptionActivity" />
         <activity android:name=".fragment.FragmentExampleActivity" />
         <activity android:name=".bottomnavigation.BottomNavigationActivity" />
+        <activity android:name=".multitouch.MultiTouchActivity" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
         <!--

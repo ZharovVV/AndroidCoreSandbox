@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent.ACTION_DOWN
 import android.view.MotionEvent.ACTION_MOVE
+import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -87,7 +88,7 @@ class PropertyAnimationExampleFragment : Fragment() {
         var touchY = 0.0f
         var lastTouchId: Int? = null
         testImageView.setOnTouchListener { v, event ->
-            when (event.action) {
+            when (event.actionMasked) {
                 ACTION_DOWN -> {
                     v.setBackgroundResource(DSR.color.ds_purple_700)
                     touchX = event.rawX
@@ -104,7 +105,7 @@ class PropertyAnimationExampleFragment : Fragment() {
                         .setDuration(0L)
                         .start()
                 }
-                else -> {
+                ACTION_UP -> {
                     touchX = event.x
                     touchY = event.y
                     v.setBackgroundResource(DSR.color.ds_purple_200)
