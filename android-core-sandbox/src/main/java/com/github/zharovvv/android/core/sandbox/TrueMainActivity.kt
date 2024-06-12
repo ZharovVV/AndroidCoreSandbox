@@ -19,6 +19,7 @@ import com.github.zharovvv.android.core.sandbox.content.provider.ContentProvider
 import com.github.zharovvv.android.core.sandbox.custom.view.CustomViewExampleActivity
 import com.github.zharovvv.android.core.sandbox.data.binding.DataBindingExampleActivity
 import com.github.zharovvv.android.core.sandbox.di.example.DaggerExampleActivity
+import com.github.zharovvv.android.core.sandbox.exoplayer.ExoPlayerActivity
 import com.github.zharovvv.android.core.sandbox.fragment.FragmentExampleActivity
 import com.github.zharovvv.android.core.sandbox.handler.HandlerExampleActivity
 import com.github.zharovvv.android.core.sandbox.location.LocationExampleActivity
@@ -149,6 +150,7 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
                     }
                 }
             }
+
             else -> {
             }
         }
@@ -217,7 +219,8 @@ class TrueMainActivity : LogLifecycleAppCompatActivity() {
             },
             Launcher("Android Animation:id", title = "Android Animation") {
                 featureApi<AnimationSandboxApi>().router.launch(this)
-            }
+            },
+            launcherFor<ExoPlayerActivity>("ExoPlayer")
         )
     }
 

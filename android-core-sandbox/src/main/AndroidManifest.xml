@@ -19,6 +19,7 @@
     как в пределах 10 футов (нескольких метров) или лучше.-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--Для использования CallLog-->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
@@ -131,6 +132,9 @@
         <activity android:name=".fragment.FragmentExampleActivity" />
         <activity android:name=".bottomnavigation.BottomNavigationActivity" />
         <activity android:name=".multitouch.MultiTouchActivity" />
+        <activity
+            android:name=".exoplayer.ExoPlayerActivity"
+            android:configChanges="orientation|screenSize" />
 
         <receiver android:name=".alarm.manager.AlarmReceiver" />
         <!--

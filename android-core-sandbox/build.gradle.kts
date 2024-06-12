@@ -52,6 +52,13 @@ dependencies {
     implementation(libs.bundles.rxjava)
     implementation(libs.bundles.androidx.work)
     implementation(libs.bundles.androidx.navigation)
+
+    //region ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:1.3.1")
+    implementation("androidx.media3:media3-exoplayer-dash:1.3.1")
+    implementation("androidx.media3:media3-ui:1.3.1")
+    //endregion
+
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidTest)
 }

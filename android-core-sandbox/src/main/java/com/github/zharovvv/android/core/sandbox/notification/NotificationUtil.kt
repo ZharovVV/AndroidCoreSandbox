@@ -1,5 +1,6 @@
 package com.github.zharovvv.android.core.sandbox.notification
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -38,6 +39,7 @@ class NotificationUtil(base: Context) : ContextWrapper(base) {
         }
     }
 
+    @SuppressLint("MissingPermission")
     fun sendNotification(
         notificationId: Int = DEFAULT_NOTIFICATION_ID,
         title: String,
