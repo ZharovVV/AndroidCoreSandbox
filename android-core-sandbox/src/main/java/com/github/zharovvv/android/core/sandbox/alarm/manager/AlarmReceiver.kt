@@ -27,7 +27,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 },
                 Intent(context, AlarmManagerExampleActivity::class.java)
             ),
-            0
+            PendingIntent.FLAG_IMMUTABLE
         )
         intArrayOf(1, 3, 5)
         featureApi<AndroidCoreSandboxApi>().notificationUtil.sendNotification(

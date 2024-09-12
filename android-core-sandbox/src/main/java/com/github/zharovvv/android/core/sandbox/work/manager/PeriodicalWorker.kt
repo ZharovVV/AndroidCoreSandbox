@@ -25,7 +25,7 @@ class PeriodicalWorker(context: Context, workerParams: WorkerParameters) :
             Intent(applicationContext, WorkManagerExampleActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             },
-            0
+            PendingIntent.FLAG_IMMUTABLE
         )
         notificationUtil.sendNotification(
             notificationId = 2,

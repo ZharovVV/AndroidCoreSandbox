@@ -15,6 +15,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.getDimensionOrThrow
+import androidx.core.content.res.use
 import com.github.zharovvv.core.ui.R
 
 class ClickableCircleView @JvmOverloads constructor(
@@ -24,7 +25,7 @@ class ClickableCircleView @JvmOverloads constructor(
     defStyleRes: Int = R.style.Widget_ClickableCircleView   //То, что будет использоваться если атрибут стиля clickableCircleViewStyle в теме не задан.
 ) : View(context, attrs, defStyleAttr, defStyleRes) {
 
-    private var radius: Float
+    private var radius: Float = 0f
     private val paint: Paint = Paint()
         .apply {
             style = Paint.Style.FILL

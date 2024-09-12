@@ -91,15 +91,21 @@ class PendingIntentExampleActivity : LogLifecycleAppCompatActivity() {
         val intent1 = createIntent(action = "action 1", extra = "extra 1")
         val intent2 = createIntent(action = "action 2", extra = "extra 2")
         intent1.filterEquals(intent2) //false т.к. actions не равны
-        val pendingIntent1 = PendingIntent.getActivity(this, 0, intent1, 0)
-        val pendingIntent2 = PendingIntent.getActivity(this, 0, intent2, 0)
+        val pendingIntent1 =
+            PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent2 =
+            PendingIntent.getActivity(this, 0, intent2, PendingIntent.FLAG_IMMUTABLE)
         pendingIntent1 == pendingIntent2 //false, так не равны (filterEquals) intents
 
         val intent3 = createIntent(action = "action", extra = "extra 1")
         val intent4 = createIntent(action = "action", extra = "extra 2")
         intent3.filterEquals(intent4) //true
-        val pendingIntent3 = PendingIntent.getActivity(this, 0, intent1, 0)
-        val pendingIntent4 = PendingIntent.getActivity(this, 0, intent2, 0)
+        val pendingIntent3 = PendingIntent.getActivity(
+            this, 0, intent1, PendingIntent.FLAG_IMMUTABLE
+        )
+        val pendingIntent4 = PendingIntent.getActivity(
+            this, 0, intent2, PendingIntent.FLAG_IMMUTABLE
+        )
         pendingIntent3 == pendingIntent4 //true, так равны (filterEquals) intents
 
         // Дефолтное поведение системы:

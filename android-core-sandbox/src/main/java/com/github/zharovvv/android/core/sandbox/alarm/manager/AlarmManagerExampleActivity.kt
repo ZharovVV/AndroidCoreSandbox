@@ -18,7 +18,8 @@ class AlarmManagerExampleActivity : LogLifecycleAppCompatActivity() {
         setContentView(binding.root)
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val sendBroadcastIntent = Intent(this, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 0, sendBroadcastIntent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 0, sendBroadcastIntent,
+            PendingIntent.FLAG_IMMUTABLE)
         with(binding) {
             startAlarmManagerButton.setOnClickListener {
                 scheduleAlarm(

@@ -68,7 +68,7 @@ class ExampleAppWidgetProvider : AppWidgetProvider() {
                     action = AppWidgetManager.ACTION_APPWIDGET_CONFIGURE
                     putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
                 },
-                0 //Missing PendingIntent mutability flag
+                PendingIntent.FLAG_IMMUTABLE //Missing PendingIntent mutability flag
             )
             widgetView.setOnClickPendingIntent(
                 R.id.widget_button,

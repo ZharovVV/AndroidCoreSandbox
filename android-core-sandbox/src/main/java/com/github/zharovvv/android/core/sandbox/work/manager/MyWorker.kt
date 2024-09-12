@@ -37,7 +37,7 @@ class MyWorker(context: Context, workerParams: WorkerParameters) : Worker(contex
             Intent(applicationContext, WorkManagerExampleActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             },
-            0
+            PendingIntent.FLAG_IMMUTABLE
         )
         //non UI Thread
         val notificationUtil = featureApi<AndroidCoreSandboxApi>().notificationUtil
