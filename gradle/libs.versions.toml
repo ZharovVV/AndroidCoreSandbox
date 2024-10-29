@@ -20,6 +20,9 @@ firebase-bom = "32.2.2"
 kotlinx-serialization-json = "1.5.0"
 junit = "4.13.2"
 
+#custom plugins
+internal = "internal"
+
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.10.1" }
 # region activity
@@ -176,3 +179,4 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 #   Для запуска плагина нужно выполнить задачу:
 #   ./gradlew dependencyUpdates
 gradle-versions-filter = { id = "se.ascp.gradle.gradle-versions-filter", version = "0.1.16" }
+my-plugin = { id = "my-plugin", version.ref = "internal" }

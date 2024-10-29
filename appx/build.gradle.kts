@@ -1,7 +1,18 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    //https://github.com/gradle/gradle/issues/20084
+    //the combination of buildSrc and plugins.alias remains problematic
+    id(libs.plugins.my.plugin.get().pluginId)
+    id("com.github.zharovvv.gradle.my-precompile-plugin")
+}
+
+//./gradlew createFileTask
+createFile {
+    message = "Message from app/build.gradle.kts"
 }
 
 android {
