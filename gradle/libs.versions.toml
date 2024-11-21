@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.8.21"
+kotlin = "1.9.25"
 android-gradle-pugin = "8.2.1"
 activity = "1.8.2"
 appcompat = "1.6.1"
@@ -9,8 +9,8 @@ lifecycle = "2.6.1"
 navigation = "2.6.0"
 # От версии kotlin зависит выбор версии компилятора Compose.
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
-compose-compiler = "1.4.7"
-compose-bom = "2023.06.01"
+compose-compiler = "1.5.15"
+compose-bom = "2024.11.00"
 coroutines = "1.7.1"
 dagger = "2.46.1"
 sceneview = "1.0.11"

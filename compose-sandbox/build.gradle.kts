@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.compose.livedata)
     implementation(libs.compose.rxjava2)
+    implementation("androidx.graphics:graphics-shapes:1.0.1")
     implementation("com.google.accompanist:accompanist-pager:0.24.11-rc")
     debugImplementation(libs.compose.ui.tooling)
 

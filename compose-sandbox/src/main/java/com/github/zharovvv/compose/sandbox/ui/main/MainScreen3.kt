@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.github.zharovvv.compose.sandbox.ui.Compose3ViewModel
+import com.github.zharovvv.compose.sandbox.ui.main.cell.Polygon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,13 +23,16 @@ fun MainScreen3(navController: NavHostController? = null, viewModel: Compose3Vie
         modifier = Modifier.fillMaxSize()
     ) {
         Box(
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.TopCenter,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
         ) {
-            Column {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = "Work in progress...")
+                Polygon(vertexCount = 5)
+                Polygon(vertexCount = 6)
+                Polygon(vertexCount = 7)
                 Button(
                     onClick = { navController?.navigate("details") },
                     modifier = Modifier.padding(top = 16.dp)
