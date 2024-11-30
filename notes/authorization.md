@@ -1,0 +1,1 @@
+[OAuth в мобильных приложениях](https://habr.com/ru/companies/kts/articles/654029/)

@@ -17,7 +17,7 @@ internal class ExoPlayerActivity : LogLifecycleAppCompatActivity() {
         player = ExoPlayer.Builder(this).build()
         binding.exoPlayerView.player = player
 
-        val mediaItem = MediaItem.fromUri("https://media.geeksforgeeks.org/wp-content/uploads/20201217163353/Screenrecorder-2020-12-17-16-32-03-350.mp4")
+        val mediaItem = MediaItem.fromUri("https://livesim.dashif.org/livesim/chunkdur_1/ato_7/testpic4_8s/Manifest.mpd")
         player.setMediaItem(mediaItem)
         player.prepare()
         player.play()
