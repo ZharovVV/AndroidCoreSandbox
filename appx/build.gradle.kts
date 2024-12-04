@@ -59,6 +59,7 @@ dependencies {
     implementation(project(":android-accessibility"))
     implementation(project(":graphics-3d"))
     implementation(project(":photo-editor-sandbox"))
+    implementation(project(":auth-core"))
     //endregion
 
     implementation(libs.bundles.core)

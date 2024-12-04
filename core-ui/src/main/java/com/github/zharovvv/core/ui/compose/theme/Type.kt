@@ -1,4 +1,4 @@
-package com.github.zharovvv.compose.sandbox.ui.theme
+package com.github.zharovvv.core.ui.compose.theme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily

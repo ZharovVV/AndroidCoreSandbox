@@ -11,7 +11,7 @@ navigation = "2.6.0"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 compose-compiler = "1.5.15"
 compose-bom = "2024.11.00"
-coroutines = "1.7.1"
+coroutines = "1.9.0"
 dagger = "2.46.1"
 sceneview = "1.0.11"
 work = "2.8.1"
@@ -19,6 +19,7 @@ google-services-plugin = "4.3.15"
 firebase-bom = "32.2.2"
 kotlinx-serialization-json = "1.5.0"
 junit = "4.13.2"
+ktor-bom = "2.3.13"
 
 #custom plugins
 internal = "internal"
@@ -98,6 +99,16 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 # endregion
 
+# region ktor
+ktor-bom = { module = "io.ktor:ktor-bom", version.ref = "ktor-bom" }
+ktor-client-android = { module = "io.ktor:ktor-client-android" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json" }
+#ktor-client-auth = { module = "io.ktor:ktor-client-auth" }
+# endregion
+
 # region dagger
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
@@ -157,6 +168,14 @@ rxjava = [
     "rxjava2",
     "rxjava2-kotlin",
     "rxjava2-android"
+]
+ktor = [
+    "ktor-client-android",
+    "ktor-client-serialization",
+    "ktor-client-content-negotiation",
+    "ktor-client-logging",
+    "ktor-serialization-kotlinx-json",
+#    "ktor-client-auth"
 ]
 test = [
     "junit"

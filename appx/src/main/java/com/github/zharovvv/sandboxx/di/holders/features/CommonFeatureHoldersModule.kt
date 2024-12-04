@@ -5,6 +5,7 @@ import android.content.Context
 import com.github.zharovvv.android.accessibility.di.AndroidAccessibilityFeatureHolderModule
 import com.github.zharovvv.android.core.sandbox.noncore.di.AndroidCoreSandboxFeatureHolderModule
 import com.github.zharovvv.animationsandbox.di.AnimationSandboxFeatureHolderModule
+import com.github.zharovvv.auth.core.di.AuthCoreFeatureHolderModule
 import com.github.zharovvv.common.di.FeatureContainer
 import com.github.zharovvv.common.di.FeatureContainerManager
 import com.github.zharovvv.common.di.FeatureHolder
@@ -30,7 +31,8 @@ import javax.inject.Singleton
         AnimationSandboxFeatureHolderModule::class,
         ComposeSandboxFeatureHolderModule::class,
         AndroidAccessibilityFeatureHolderModule::class,
-        Graphics3DFeatureHolderModule::class
+        Graphics3DFeatureHolderModule::class,
+        AuthCoreFeatureHolderModule::class
     ]
 )
 abstract class CommonFeatureHoldersModule {

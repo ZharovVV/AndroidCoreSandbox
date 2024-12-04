@@ -6,6 +6,12 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -22,4 +28,6 @@ dependencies {
     api(libs.material)
     api(libs.androidx.constraintlayout)
     implementation(libs.bundles.core)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
 }

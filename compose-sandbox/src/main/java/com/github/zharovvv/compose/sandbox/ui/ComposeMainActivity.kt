@@ -16,7 +16,7 @@ import com.github.zharovvv.common.di.releaseFeature
 import com.github.zharovvv.compose.sandbox.di.api.ComposeSandboxApi
 import com.github.zharovvv.compose.sandbox.di.api.internal.ui.diViewModels
 import com.github.zharovvv.compose.sandbox.ui.navigation.RootNavGraph
-import com.github.zharovvv.compose.sandbox.ui.theme.AppTheme
+import com.github.zharovvv.core.ui.compose.theme.AppTheme
 import kotlinx.coroutines.launch
 
 typealias AndroidColor = android.graphics.Color

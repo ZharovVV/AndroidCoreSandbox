@@ -3,6 +3,7 @@ package com.github.zharovvv.sandboxx.di.mainscreen.entrypoints.api
 import com.github.zharovvv.android.accessibility.di.navigation.AndroidAccessibilityNavigationModule
 import com.github.zharovvv.android.core.sandbox.noncore.di.navigation.AndroidCoreSandboxNavigationModule
 import com.github.zharovvv.animationsandbox.di.navigation.AndroidAnimationNavigationModule
+import com.github.zharovvv.auth.core.di.api.internal.navigation.AuthCoreNavigationModule
 import com.github.zharovvv.common.di.meta.FeatureApi
 import com.github.zharovvv.compose.sandbox.di.api.navigation.ComposeSandboxNavigationModule
 import com.github.zharovvv.core.navigation.EntryPoint.ActivityEntryPoint
@@ -26,7 +27,8 @@ import kotlin.reflect.KClass
         ComposeSandboxNavigationModule::class,
         AndroidAccessibilityNavigationModule::class,
         Graphics3DNavigationModule::class,
-        PhotoEditorNavigationModule::class
+        PhotoEditorNavigationModule::class,
+        AuthCoreNavigationModule::class
     ]
 )
 class MainScreenEntryPointsModule {
